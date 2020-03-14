@@ -1,15 +1,12 @@
 import * as React from "react";
 import styled from "styled-components";
-
+import Logo from "../../Images/Logo.png";
 const Nav = () => {
   return (
     <NavBlock>
       <ItemBlock>
         <NavImage>
-          <img
-            src="http://naturestore.co.kr/data/skin/front/the_living/img/banner/aaf30fedad6aee80bde755d90d896bc9_87693.png"
-            alt="logo"
-          ></img>
+          <img src={Logo} alt="logo"></img>
         </NavImage>
         <NavSearch>
           <TextArea />
