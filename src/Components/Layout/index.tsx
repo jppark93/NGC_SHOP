@@ -15,6 +15,9 @@ const Layout = (props: any) => {
   );
 };
 const MainBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
 `;
 export default Layout;

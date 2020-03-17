@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import Nav from "../Components/Nav";
-import Menu from "../Components/Menu";
 import Carousel from "../Components/Carousel";
-import Footer from "../Components/Footer";
 import Layout from "../Components/Layout";
+import MainInfo from "../Components/MainInfo";
 const Main = () => {
   return (
     <Layout>
       <Carousel />
+      <MainInfo />
     </Layout>
   );
 };
