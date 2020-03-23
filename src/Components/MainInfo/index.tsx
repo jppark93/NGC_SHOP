@@ -4,91 +4,91 @@ import MainImg from "./MainImg";
 const MainInfo = () => {
   return (
     <MainInfoBlock>
-      <div>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
-      <div>
+      </ImgInfoBlock>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
-      <div>
+      </ImgInfoBlock>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
-      <div>
+      </ImgInfoBlock>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
-      <div>
+      </ImgInfoBlock>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
-      <div>
+      </ImgInfoBlock>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
-      <div>
+      </ImgInfoBlock>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
-      <div>
+      </ImgInfoBlock>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
-      <div>
+      </ImgInfoBlock>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
-      <div>
+      </ImgInfoBlock>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
-      <div>
+      </ImgInfoBlock>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
-      <div>
+      </ImgInfoBlock>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
-      <div>
+      </ImgInfoBlock>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
-      <div>
+      </ImgInfoBlock>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
-      <div>
+      </ImgInfoBlock>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
-      <div>
+      </ImgInfoBlock>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
-      <div>
+      </ImgInfoBlock>
+      <ImgInfoBlock>
         <MainImg />
         <MainImg />
         <MainImg />
-      </div>
+      </ImgInfoBlock>
     </MainInfoBlock>
   );
 };
@@ -98,9 +98,9 @@ const MainInfoBlock = styled.div`
   width: 1440px;
   border: 1px solid pink;
   margin-top: 80px;
-  div {
-    display: flex;
-  }
+`;
+const ImgInfoBlock = styled.div`
+  display: flex;
 `;
 
 export default MainInfo;

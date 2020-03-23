@@ -24,17 +24,29 @@ const MainInfoCp = styled.div`
   width: 450px;
   height: 574px;
   border: 1px solid pink;
+  :first-child {
+    margin-left: 10px;
+  }
+  margin-left: 30px;
 `;
 const ImgBlock = styled.div`
   position: relative;
   width: 450px;
   height: 450px;
   border: 1px solid pink;
+  overflow: hidden;
 `;
 const Img = styled.img`
   width: 450px;
   height: 450px;
   background-size: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 0.5s;
+  &:hover {
+    transform: scale(1.2);
+    transition: transform 0.5s;
+  }
 `;
 const ExpBlock = styled.div`
   display: flex;

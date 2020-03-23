@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Img from "../../Images/car1.jpg";
 
 const Carousel = () => {
   return (
     <SlideBlock>
-      <CarouselImg
-        src="http://www.naturestore.co.kr/data/skin/front/the_living/img/banner/slider_4146068877/c97e43d1919407bd0553a696207ead2c_51313.jpg"
-        alt="img"
-      ></CarouselImg>
+      <CarouselImg src={Img} alt="img"></CarouselImg>
     </SlideBlock>
   );
 };
