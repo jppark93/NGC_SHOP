@@ -27,7 +27,7 @@ const MainInfoCp = styled.div`
   :first-child {
     margin-left: 10px;
   }
-  margin-left: 30px;
+  margin-left: 33px;
 `;
 const ImgBlock = styled.div`
   position: relative;

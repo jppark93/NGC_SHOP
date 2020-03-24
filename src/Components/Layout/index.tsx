@@ -19,5 +19,6 @@ const MainBlock = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  overflow-x: hidden;
 `;
 export default Layout;
