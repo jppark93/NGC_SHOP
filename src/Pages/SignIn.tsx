@@ -23,7 +23,7 @@ const SignIn = () => {
                 <img src={FacebookLogin} alt="zz" />
               </FacebookLoginBtn>
               <EmptyLine />
-              <Link to="/signup">
+              <Link to="/signup" style={{ textDecoration: "none" }}>
                 <SignUpBtn>
                   <button>회원가입</button>
                 </SignUpBtn>

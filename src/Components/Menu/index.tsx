@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import MenuImg from "../../Images/menu.png";
 
 const Menu = () => {
   return (
     <MenuBlock>
-      <MenuCategory src="http://www.naturestore.co.kr/data/skin/front/the_living/img/common/btn/btn_allmenu_open.png"></MenuCategory>
+      <MenuCategory src={MenuImg}></MenuCategory>
       <MenuList>
         <MenuItem>9DAYS TIME SALE</MenuItem>
         <MenuItem>마일리지 적립 20%</MenuItem>

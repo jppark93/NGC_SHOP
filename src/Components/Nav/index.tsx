@@ -1,20 +1,25 @@
 import * as React from "react";
 import styled from "styled-components";
 import Logo from "../../Images/Logo.png";
+import { Link } from "react-router-dom";
 const Nav = () => {
   return (
     <NavBlock>
       <ItemBlock>
-        <NavImage>
-          <img src={Logo} alt="logo"></img>
-        </NavImage>
+        <Link to="/">
+          <NavImage>
+            <img src={Logo} alt="logo"></img>
+          </NavImage>
+        </Link>
         <NavSearch>
           <TextArea />
           <SearchButton />
         </NavSearch>
         <NavRight>
           <RightItem>
-            <Li>LOGIN</Li>
+            <Link to="/signin" style={{ textDecoration: "none" }}>
+              <Li>LOGIN</Li>
+            </Link>
             <Li>JOIN</Li>
             <Li>MYPAGE</Li>
             <Li>
@@ -97,6 +102,10 @@ const RightItem = styled.ul`
   justify-content: center;
   width: 630px;
   height: 40px;
+  li {
+    text-decoration: none;
+    color: black;
+  }
 `;
 const Li = styled.li`
   font-size: 13px;
