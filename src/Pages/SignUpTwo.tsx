@@ -109,6 +109,7 @@ const TOP = styled.div`
 
   width: 100%;
   height: 63px;
+  padding-bottom: 30px;
   border-bottom: 1px solid #999;
   font-size: 14px;
   h3 {
@@ -119,6 +120,7 @@ const TOP = styled.div`
   ol {
     display: flex;
     align-items: center;
+    padding-top: 20px;
     margin-left: auto;
   }
   li {
@@ -140,7 +142,7 @@ const TOS = styled.div`
   align-items: center;
   width: 743px;
   height: 747px;
-  border: 1px solid pink;
+
   margin-top: 70px;
   .Top {
     display: flex;
@@ -163,7 +165,6 @@ const SignUpForm = styled.div`
   flex-direction: column;
   width: 100%;
   height: 692px;
-  border: 1px solid pink;
 `;
 
 const FormBox = styled.tr`

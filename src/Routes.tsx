@@ -4,6 +4,8 @@ import Main from "./Pages/Main";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
 import SignUpTwo from "./Pages/SignUpTwo";
+import Cart from "./Pages/Cart";
+import Shop from "./Pages/Shop";
 const Routes = () => {
   return (
     <Router>
@@ -12,6 +14,8 @@ const Routes = () => {
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Route path="/signup2" component={SignUpTwo} />
+        <Route path="/cart" component={Cart} />
+        <Route path="/shop" component={Shop} />
       </Switch>
     </Router>
   );

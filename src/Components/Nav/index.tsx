@@ -22,9 +22,11 @@ const Nav = () => {
             </Link>
             <Li>JOIN</Li>
             <Li>MYPAGE</Li>
-            <Li>
-              CART(<Strong>0</Strong>)
-            </Li>
+            <Link to="/cart" style={{ textDecoration: "none" }}>
+              <Li>
+                CART(<Strong>0</Strong>)
+              </Li>
+            </Link>
             <Li>CS CENTER</Li>
             <Li>매장개설문의</Li>
             <Li>매장찾기</Li>

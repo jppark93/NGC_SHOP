@@ -24,10 +24,7 @@ const MainInfoCp = styled.div`
   width: 450px;
   height: 574px;
   border: 1px solid pink;
-  :first-child {
-    margin-left: 10px;
-  }
-  margin-left: 33px;
+  margin-left: 23px;
 `;
 const ImgBlock = styled.div`
   position: relative;

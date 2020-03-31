@@ -37,18 +37,17 @@ const SignIn = () => {
 };
 const LoginBlock = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
   width: 1200px;
-  height: 998px;
-  margin-top: 57px;
+  height: 800px;
+  margin-top: 150px;
   margin-bottom: 80px;
 `;
 const LoginBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 593px;
-  height: 893px;
+  height: 593px;
 `;
 const Login = styled.div`
   width: 100%;
