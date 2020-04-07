@@ -99,6 +99,8 @@ const SignUpBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
   width: 1200px;
   height: 810px;
 

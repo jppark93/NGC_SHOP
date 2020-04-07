@@ -51,7 +51,7 @@ const NavBlock = styled.div`
 const ItemBlock = styled.div`
   display: flex;
   align-items: center;
-  width: 1920px;
+  width: 99%;
   height: 50px;
   margin-left: 40px;
 `;

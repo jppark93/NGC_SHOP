@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Layout from "../Components/Layout";
 import FacebookLogin from "../Images/fblogin.png";
+
 import { Link } from "react-router-dom";
 const SignIn = () => {
   return (
@@ -35,10 +36,16 @@ const SignIn = () => {
     </Layout>
   );
 };
+const Wrap = styled.div`
+  display: flex;
+  width: 100%;
+`;
 const LoginBlock = styled.div`
   display: flex;
   justify-content: center;
-  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1440px;
   height: 800px;
   margin-top: 150px;
   margin-bottom: 80px;

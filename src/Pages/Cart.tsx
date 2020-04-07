@@ -9,69 +9,75 @@ import PriceTotal from "../Images/pricetotal.png";
 const Cart = () => {
   return (
     <Layout>
-      <SignUpBlock>
-        <TOP>
-          <h3>장바구니</h3>
-          <ol>
-            <li>
-              <h1>01</h1>&nbsp;장바구니&nbsp;&nbsp;
-              <img src={Next} />
-            </li>
+      <DIV>
+        <SignUpBlock>
+          <TOP>
+            <h3>장바구니</h3>
+            <ol>
+              <li>
+                <h1>01</h1>&nbsp;장바구니&nbsp;&nbsp;
+                <img src={Next} />
+              </li>
 
-            <li>
-              <h1>02</h1>&nbsp;주문서작성/결제&nbsp;&nbsp;
-              <img src={Next2} />
-            </li>
+              <li>
+                <h1>02</h1>&nbsp;주문서작성/결제&nbsp;&nbsp;
+                <img src={Next2} />
+              </li>
 
-            <li>
-              <h1>03</h1>&nbsp;주문완료
-            </li>
-          </ol>
-        </TOP>
-        <Basket>
-          <span>장바구니에 담겨있는 상품이 없습니다.</span>
-        </Basket>
-        <PriceDiv>
-          <Price>
-            <Num>
-              <span>
-                총 <h1>0</h1>개의 상품금액
+              <li>
+                <h1>03</h1>&nbsp;주문완료
+              </li>
+            </ol>
+          </TOP>
+          <Basket>
+            <span>장바구니에 담겨있는 상품이 없습니다.</span>
+          </Basket>
+          <PriceDiv>
+            <Price>
+              <Num>
+                <span>
+                  총 <h1>0</h1>개의 상품금액
+                </span>
+                <span>
+                  <h1>0</h1>원
+                </span>
+              </Num>
+              <span className="price">
+                <img src={PricePlus} alt="" />
               </span>
-              <span>
-                <h1>0</h1>원
+              <Num2>
+                <span>배송비</span>
+                <span>
+                  <h1>0</h1>원
+                </span>
+              </Num2>
+              <span className="price">
+                <img src={PriceTotal} alt="" />
               </span>
-            </Num>
-            <span className="price">
-              <img src={PricePlus} alt="" />
-            </span>
-            <Num2>
-              <span>배송비</span>
-              <span>
-                <h1>0</h1>원
-              </span>
-            </Num2>
-            <span className="price">
-              <img src={PriceTotal} alt="" />
-            </span>
-            <Num3>
-              <span>합계</span>
-              <span>
-                <h1>0</h1>원
-              </span>
-            </Num3>
-          </Price>
-        </PriceDiv>
-      </SignUpBlock>
+              <Num3>
+                <span>합계</span>
+                <span>
+                  <h1>0</h1>원
+                </span>
+              </Num3>
+            </Price>
+          </PriceDiv>
+        </SignUpBlock>
+      </DIV>
     </Layout>
   );
 };
+const DIV = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 85px;
+`;
 const SignUpBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 1200px;
-  height: 810px;
-
   margin-top: 85px;
 `;
 

@@ -4,6 +4,7 @@ import Layout from "../Components/Layout";
 import Next from "../Images/next.png";
 import Next2 from "../Images/next2.png";
 import { Link } from "react-router-dom";
+
 const SignUp = () => {
   return (
     <Layout>
@@ -297,6 +298,8 @@ const SignUpBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
   width: 1200px;
   height: 810px;
 

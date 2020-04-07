@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Img from "../../Images/car1.jpg";
 
-const Carousel = () => {
+const Empty = () => {
   return (
     <SlideBlock>
       <img src={Img} alt="d" />
@@ -13,11 +13,10 @@ const SlideBlock = styled.div`
   display: flex;
   position: relative;
   width: 100%;
-  height: 700px;
+  height: 0.3px;
   img {
     width: 100%;
-    height: 700px;
   }
 `;
 
-export default Carousel;
+export default Empty;

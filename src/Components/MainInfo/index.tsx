@@ -4,54 +4,47 @@ import MainImg from "./MainImg";
 const MainInfo = () => {
   return (
     <MainInfoBlock>
-      <ImgInfoBlock>
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-      </ImgInfoBlock>
-      <ImgInfoBlock>
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-      </ImgInfoBlock>
-      <ImgInfoBlock>
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-        <MainImg />
-      </ImgInfoBlock>
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
+      <MainImg />
     </MainInfoBlock>
   );
 };
 const MainInfoBlock = styled.div`
   display: flex;
+  flex-wrap: wrap;
   width: 1440px;
+  margin-right: auto;
+  margin-left: auto;
   border: 1px solid pink;
   margin-top: 80px;
-`;
-const ImgInfoBlock = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 
 export default MainInfo;

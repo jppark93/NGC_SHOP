@@ -34,6 +34,8 @@ const Social = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: auto;
+  margin-left: auto;
   width: 1440px;
   height: 255px;
   color: #111111;
@@ -44,6 +46,8 @@ const SNS = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: auto;
+  margin-left: auto;
   width: 1440px;
   height: 80px;
   margin-bottom: 80px;

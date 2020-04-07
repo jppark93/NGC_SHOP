@@ -6,6 +6,7 @@ import SignUp from "./Pages/SignUp";
 import SignUpTwo from "./Pages/SignUpTwo";
 import Cart from "./Pages/Cart";
 import Shop from "./Pages/Shop";
+import Product from "./Pages/ProductDetail";
 const Routes = () => {
   return (
     <Router>
@@ -16,6 +17,7 @@ const Routes = () => {
         <Route path="/signup2" component={SignUpTwo} />
         <Route path="/cart" component={Cart} />
         <Route path="/shop" component={Shop} />
+        <Route path="/product" component={Product} />
       </Switch>
     </Router>
   );
