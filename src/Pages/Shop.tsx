@@ -31,26 +31,28 @@ const Shop = () => {
               </PickList>
             </div>
           </ListNum>
-          <ProductDiv>
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-          </ProductDiv>
+          <div>
+            <ProductDiv>
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+            </ProductDiv>
+          </div>
           <Pagination>
             <ul>
               <span>1</span>
@@ -87,12 +89,13 @@ const MenuBar = styled.div`
 const ShopProduct = styled.div`
   display: flex;
   flex-direction: column;
-  width: 1195px;
-  margin-left: 15px;
+  width: 80%;
+  margin-left: 30px;
   margin-top: 50px;
+  border: 1px solid black;
 `;
 const ListNum = styled.div`
-  width: 1195px;
+  width: 100%;
   height: 79.8px;
   color: #111111;
   font-size: 14px;
@@ -131,10 +134,10 @@ const PickList = styled.ul`
 const ProductDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 1195px;
+  width: 100%;
 `;
 const Pagination = styled.div`
-  width: 1195px;
+  width: 100%;
   height: 70px;
   border-top: 1px solid #e6e6e6;
   margin-top: 40px;

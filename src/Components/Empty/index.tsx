@@ -13,7 +13,7 @@ const SlideBlock = styled.div`
   display: flex;
   position: relative;
   width: 100%;
-  height: 0.3px;
+  height: 0.01px;
   img {
     width: 100%;
   }

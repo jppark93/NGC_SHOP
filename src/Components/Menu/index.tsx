@@ -58,7 +58,4 @@ const MenuItem = styled.li`
   font-size: 13px;
   font-weight: 800;
   border-right: 1px solid #333;
-  :last-child {
-    border-right: none;
-  }
 `;
