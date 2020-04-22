@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Layout from "../Components/Layout";
 import Img from "../Images/testing.jpg";
-const ProductDetail = () => {
+import Info from "../Components/ProductInfo/Info";
+import ExChange from "../Components/ProductInfo/ExChange";
+type GreetingsProps = {
+  onClick: (changeNum: number) => void;
+};
+const ProductDetail = ({ onClick }: GreetingsProps) => {
+  const [changeNum, setChangeNum] = useState<number>(1);
   return (
     <Layout>
       <PdBlock>
@@ -12,6 +18,12 @@ const ProductDetail = () => {
               <PdImg>
                 <img src={Img} alt="pd"></img>
               </PdImg>
+              <Imgs>
+                <img src="http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg"></img>
+                <img src="http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg"></img>
+                <img src="http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg"></img>
+                <img src="http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg"></img>
+              </Imgs>
             </PdBox>
             <PdItemInfo>
               <PdName>
@@ -73,6 +85,19 @@ const ProductDetail = () => {
               </ItemDetail>
             </PdItemInfo>
           </Pd>
+          <InfoDiv>
+            <BtnDiv>
+              <ul>
+                <li></li>
+                <li onClick={() => setChangeNum(1)}>상품상세정보</li>
+                <li onClick={() => setChangeNum(2)}>배송안내</li>
+                <li onClick={() => setChangeNum(3)}>교환 및 반품안내</li>
+                <li onClick={() => setChangeNum(4)}>상품후기</li>
+                <li></li>
+              </ul>
+            </BtnDiv>
+            <ExChange />
+          </InfoDiv>
         </PdInfo>
       </PdBlock>
     </Layout>
@@ -233,5 +258,73 @@ const BtnChoice = styled.div`
     }
   }
 `;
+const Imgs = styled.div`
+  display: flex;
+  width: 100%;
+  height: 84px;
+  border: 1px solid blue;
 
+  img {
+    display: flex;
+    width: 80px;
+    height: 80px;
+    background-size: 100%;
+    border: none;
+    margin-left: 35px;
+    &:hover {
+      border: 2px solid black;
+    }
+  }
+`;
+
+const InfoDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 1200px;
+
+  margin-top: 100px;
+  border: 1px solid red;
+`;
+
+const BtnDiv = styled.div`
+  display: flex;
+  width: 100%;
+  height: 139px;
+
+  justify-content: center;
+
+  ul {
+    display: flex;
+    width: 100%;
+    height: 58px;
+
+    margin-top: auto;
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 25%;
+      height: 43px;
+      border: 1px solid #dadada;
+      margin-top: auto;
+      font-size: 13px;
+      color: #999999;
+      font-weight: bold;
+      &:first-child {
+        border: none;
+        border-bottom: 1px solid #dadada;
+      }
+      &:nth-child(2) {
+        height: 100%;
+        border-bottom: 1px solid white;
+        color: #111111;
+      }
+      :last-child {
+        border: none;
+        border-bottom: 1px solid #dadada;
+      }
+    }
+  }
+`;
 export default ProductDetail;
