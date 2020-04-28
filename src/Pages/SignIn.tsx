@@ -1,10 +1,43 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import Layout from "../Components/Layout";
 import FacebookLogin from "../Images/fblogin.png";
 
 import { Link } from "react-router-dom";
+import { stringify } from "querystring";
+
 const SignIn = () => {
+
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onChangeId = (e: any) => {
+    if (e.target.id === 'idBox')
+      setId(e.target.value);
+    else
+      setPassword(e.target.value);
+  };
+  
+  function tryLogin() : void {
+
+    var xhr = new XMLHttpRequest();
+    var data = {
+      id: id,
+      password: password,
+    };
+
+    xhr.onload = function () {
+      if (xhr.status === 200 || xhr.status === 304) {
+        var tests = JSON.parse(xhr.responseText);
+        console.log('로그인 성공', xhr.responseText);
+      } else {
+        console.log('로그인 실패', xhr.responseText);
+      }
+    };
+    xhr.open('POST', 'http://172.30.1.43:8999/accounts/login');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(data));
+  }
   return (
     <Layout>
       <LoginBlock>
@@ -15,10 +48,10 @@ const SignIn = () => {
               <FormTop>회원 로그인</FormTop>
               <IdPassForm>
                 <LoginInput>
-                  <input type="text" placeholder="아이디" />
-                  <input type="text" placeholder="비밀번호" />
+                  <input type="text" placeholder="아이디" onChange={onChangeId} id='idBox'/>
+                  <input type="password" placeholder="비밀번호" onChange={onChangeId} id='pwBox'/>
                 </LoginInput>
-                <LoginBtn>로그인</LoginBtn>
+                <LoginBtn onClick={tryLogin}>로그인</LoginBtn>
               </IdPassForm>
               <FacebookLoginBtn>
                 <img src={FacebookLogin} alt="zz" />
