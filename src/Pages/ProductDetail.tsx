@@ -4,6 +4,7 @@ import Layout from "../Components/Layout";
 import Img from "../Images/testing.jpg";
 import Info from "../Components/ProductInfo/Info";
 import ExChange from "../Components/ProductInfo/ExChange";
+import Review from "../Components/ProductInfo/Review";
 type GreetingsProps = {
   onClick: (changeNum: number) => void;
 };
@@ -96,7 +97,7 @@ const ProductDetail = ({ onClick }: GreetingsProps) => {
                 <li></li>
               </ul>
             </BtnDiv>
-            <ExChange />
+            <Review />
           </InfoDiv>
         </PdInfo>
       </PdBlock>

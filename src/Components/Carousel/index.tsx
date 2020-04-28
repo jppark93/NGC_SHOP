@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Img from "../../Images/car1.jpg";
 
-const Carousel = () => {
+const Carousel = (props: any) => {
   return (
     <SlideBlock>
       <img src={Img} alt="d" />
