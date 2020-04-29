@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Layout from "../Components/Layout";
@@ -6,6 +6,72 @@ import Next from "../Images/next.png";
 import Next2 from "../Images/next2.png";
 
 const SignUpTwo = () => {
+
+  const [id, setId] = useState("");
+  const [pw1, setPw1] = useState("");
+  const [pw2, setPw2] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+
+  const onSignUpButtonClick = () => {
+    const xhr = new XMLHttpRequest();
+    const data = {
+      id: id,
+      password: pw1,
+      email: email,
+      address: address,
+    };
+
+    xhr.onload = function () {
+      if (xhr.status === 201) {
+        var tests = JSON.parse(xhr.responseText);
+        console.log('회원가입 성공', xhr.responseText);
+      } else {
+        console.log('회원가입 실패', xhr.responseText);
+      }
+    };
+    xhr.open('POST', 'http://172.30.1.43:8999/accounts/signup');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(data));
+  }
+
+  const onInputChanged = (e: any) => {
+
+    let isSameDiv: any = document.getElementById("isSameDiv");
+
+    switch (e.target.id){
+      case 'idBox':
+        setId(e.target.value);
+        break;
+
+      case 'pwBox1':
+        let pwBox2: any = document.getElementById("pwBox2");
+        setPw1(e.target.value);
+        if (e.target.value === pw2)
+          isSameDiv.innerHTML = "두 비밀번호가 일치합니다."
+        else
+          isSameDiv.innerHTML = "두 비밀번호가 일치하지 않습니다."
+        break;
+
+      case 'pwBox2':
+        let pwBox1: any = document.getElementById("pwBox1");
+        setPw2(e.target.value);
+        if (pw1 === e.target.value)
+          isSameDiv.innerHTML = "두 비밀번호가 일치합니다."
+        else
+          isSameDiv.innerHTML = "두 비밀번호가 일치하지 않습니다."
+        break;
+
+      case 'emailBox':
+        setEmail(e.target.value);
+        break;
+
+      case 'addressBox':
+        setAddress(e.target.value);
+        break;
+    }
+  }
+
   return (
     <Layout>
       <SignUpBlock>
@@ -38,8 +104,8 @@ const SignUpTwo = () => {
                 <h1>*</h1>아이디
               </div>
               <div className="right">
-                <input type="text" />
-                <div>사용가능한 아이디입니다.</div>
+                <input type="text" id="idBox" onChange={onInputChanged} value={id}/>
+                <div id="isPossibleIdDiv">사용가능한 아이디입니다.</div>
               </div>
             </FormBox>
             <FormBox>
@@ -47,8 +113,8 @@ const SignUpTwo = () => {
                 <h1>*</h1>비밀번호
               </div>
               <div className="right">
-                <input type="password" />
-                <div>사용가능한 패스워드입니다.</div>
+                <input type="password" id="pwBox1" onChange={onInputChanged} value={pw1}/>
+                <div id="isPossiblePwDiv">사용가능한 패스워드입니다.</div>
               </div>
             </FormBox>
             <FormBox>
@@ -56,8 +122,8 @@ const SignUpTwo = () => {
                 <h1>*</h1>비밀번호 확인
               </div>
               <div className="right">
-                <input type="text" />
-                <div>비밀번호가 서로 다릅니다.</div>
+                <input type="password"  id="pwBox2" onChange={onInputChanged} value={pw2}/>
+                <div id="isSameDiv">두 비밀번호가 일치하지 않습니다.</div>
               </div>
             </FormBox>
             <FormBox>
@@ -65,15 +131,15 @@ const SignUpTwo = () => {
                 <h1>*</h1>이메일
               </div>
               <div className="right">
-                <input type="text" />
-                <div>사용가능한 이메일입니다.</div>
+                <input type="text"  id="emailBox" onChange={onInputChanged} value={email}/>
+                <div id="isPossibleEmailDiv">사용가능한 이메일입니다.</div>
               </div>
             </FormBox>
             <FormBox>
               <div className="left">&nbsp;주소</div>
               <div className="right">
                 <div>
-                  <input type="text" />
+                  <input type="text" id="addressBox" onChange={onInputChanged} value={address}/>
                   <button type="button">우편번호검색</button>
                 </div>
                 <input type="text" />
@@ -86,7 +152,7 @@ const SignUpTwo = () => {
                 </button>
               </Link>
               <Link to="/">
-                <NextBtn>회원가입</NextBtn>
+                <NextBtn onClick={onSignUpButtonClick}>회원가입</NextBtn>
               </Link>
             </ButtonBox>
           </SignUpForm>

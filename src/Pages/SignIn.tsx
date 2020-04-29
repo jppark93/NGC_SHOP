@@ -18,10 +18,10 @@ const SignIn = () => {
       setPassword(e.target.value);
   };
   
-  function tryLogin() : void {
+  const tryLogin = () => {
 
-    var xhr = new XMLHttpRequest();
-    var data = {
+    const xhr = new XMLHttpRequest();
+    const data = {
       id: id,
       password: password,
     };
@@ -38,6 +38,7 @@ const SignIn = () => {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(data));
   }
+  
   return (
     <Layout>
       <LoginBlock>

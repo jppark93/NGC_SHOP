@@ -6,6 +6,36 @@ import Next2 from "../Images/next2.png";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
+
+  const onCheckChanged = (e: any) => {
+    let checkAll: any = document.getElementById("checkAll");
+    let check1: any = document.getElementById("check1");
+    let check2: any = document.getElementById("check2");
+    switch(e.target.id){
+      case 'checkAll':
+        if (checkAll.checked){
+          check1.checked = true;
+          check2.checked = true;
+        }
+        else{
+          check1.checked = false;
+          check2.checked = false;
+        } 
+        break;
+      default:
+        if (check1.checked && check2.checked)
+          checkAll.checked = true;
+        else
+          checkAll.checked = false;
+        break;
+    }
+    let nextBtn: any = document.getElementById("nextBtn");
+    if (checkAll.checked)
+      nextBtn.disabled = false;
+    else
+      nextBtn.disabled = true;      
+  }
+
   return (
     <Layout>
       <SignUpBlock>
@@ -32,7 +62,7 @@ const SignUp = () => {
           <AgreeBox>
             <AbTop>
               <CheckBox>
-                <input type="checkbox" />
+                <input type="checkbox" id="checkAll" onChange={onCheckChanged}/>
                 <span className="checkmark" />
               </CheckBox>
               <span>
@@ -42,7 +72,7 @@ const SignUp = () => {
             </AbTop>
             <AgreementOne>
               <CheckBox2>
-                <input type="checkbox" />
+                <input type="checkbox" id="check1" onChange={onCheckChanged}/>
                 <span className="checkmark" />
                 <span>
                   <h1>(필수)</h1>이용약관
@@ -253,7 +283,7 @@ const SignUp = () => {
             </AgreementOne>
             <AgreementOne>
               <CheckBox2>
-                <input type="checkbox" />
+                <input type="checkbox" id="check2" onChange={onCheckChanged}/>
                 <span className="checkmark" />
                 <span>
                   <h1>(필수)</h1>개인정보 수집 및 이용
@@ -285,8 +315,8 @@ const SignUp = () => {
                 이전단계
               </button>
             </Link>
-            <Link to="/signup2">
-              <NextBtn>다음단계</NextBtn>
+            <Link to="/signup2" >
+              <NextBtn id="nextBtn">다음단계</NextBtn>
             </Link>
           </ButtonBox>
         </TOS>
