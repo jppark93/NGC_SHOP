@@ -37,29 +37,17 @@ const SignUpTwo = () => {
 
   const onInputChanged = (e: any) => {
 
-    let isSameDiv: any = document.getElementById("isSameDiv");
-
     switch (e.target.id){
       case 'idBox':
         setId(e.target.value);
         break;
 
       case 'pwBox1':
-        let pwBox2: any = document.getElementById("pwBox2");
         setPw1(e.target.value);
-        if (e.target.value === pw2)
-          isSameDiv.innerHTML = "두 비밀번호가 일치합니다."
-        else
-          isSameDiv.innerHTML = "두 비밀번호가 일치하지 않습니다."
         break;
 
       case 'pwBox2':
-        let pwBox1: any = document.getElementById("pwBox1");
         setPw2(e.target.value);
-        if (pw1 === e.target.value)
-          isSameDiv.innerHTML = "두 비밀번호가 일치합니다."
-        else
-          isSameDiv.innerHTML = "두 비밀번호가 일치하지 않습니다."
         break;
 
       case 'emailBox':
@@ -123,7 +111,7 @@ const SignUpTwo = () => {
               </div>
               <div className="right">
                 <input type="password"  id="pwBox2" onChange={onInputChanged} value={pw2}/>
-                <div id="isSameDiv">두 비밀번호가 일치하지 않습니다.</div>
+                <div>{pw1===pw2? "두 비밀번호가 일치합니다." : "두 비밀번호가 일치하지 않습니다."}</div>
               </div>
             </FormBox>
             <FormBox>

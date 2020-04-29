@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Layout from "../Components/Layout";
 import Next from "../Images/next.png";
@@ -7,33 +7,38 @@ import { Link } from "react-router-dom";
 
 const SignUp = () => {
 
+  const [checkAll, setCheckAll] = useState(false);
+  const [check1, setCheck1] = useState(false);
+  const [check2, setCheck2] = useState(false);
+
   const onCheckChanged = (e: any) => {
-    let checkAll: any = document.getElementById("checkAll");
-    let check1: any = document.getElementById("check1");
-    let check2: any = document.getElementById("check2");
+
+    let checkAll_temp = checkAll;
+    let check1_temp = check1;
+    let check2_temp = check2;
+
     switch(e.target.id){
       case 'checkAll':
-        if (checkAll.checked){
-          check1.checked = true;
-          check2.checked = true;
-        }
-        else{
-          check1.checked = false;
-          check2.checked = false;
-        } 
+        checkAll_temp = check1_temp = check2_temp = e.target.checked;
+        setCheckAll(e.target.checked);
+        setCheck1(e.target.checked);
+        setCheck2(e.target.checked);
         break;
-      default:
-        if (check1.checked && check2.checked)
-          checkAll.checked = true;
-        else
-          checkAll.checked = false;
+      case 'check1':
+        check1_temp = e.target.checked;
+        setCheck1(e.target.checked);
+        break;
+      case 'check2':
+        check2_temp = e.target.checked;
+        setCheck2(e.target.checked);
         break;
     }
-    let nextBtn: any = document.getElementById("nextBtn");
-    if (checkAll.checked)
-      nextBtn.disabled = false;
+
+    if (check1_temp && check2_temp)
+      setCheckAll(true);
     else
-      nextBtn.disabled = true;      
+      setCheckAll(false);
+
   }
 
   return (
@@ -62,7 +67,7 @@ const SignUp = () => {
           <AgreeBox>
             <AbTop>
               <CheckBox>
-                <input type="checkbox" id="checkAll" onChange={onCheckChanged}/>
+                <input type="checkbox" id="checkAll" onChange={onCheckChanged} checked={checkAll}/>
                 <span className="checkmark" />
               </CheckBox>
               <span>
@@ -72,7 +77,7 @@ const SignUp = () => {
             </AbTop>
             <AgreementOne>
               <CheckBox2>
-                <input type="checkbox" id="check1" onChange={onCheckChanged}/>
+                <input type="checkbox" id="check1" onChange={onCheckChanged} checked={check1}/>
                 <span className="checkmark" />
                 <span>
                   <h1>(필수)</h1>이용약관
@@ -283,7 +288,7 @@ const SignUp = () => {
             </AgreementOne>
             <AgreementOne>
               <CheckBox2>
-                <input type="checkbox" id="check2" onChange={onCheckChanged}/>
+                <input type="checkbox" id="check2" onChange={onCheckChanged} checked={check2}/>
                 <span className="checkmark" />
                 <span>
                   <h1>(필수)</h1>개인정보 수집 및 이용
@@ -316,7 +321,7 @@ const SignUp = () => {
               </button>
             </Link>
             <Link to="/signup2" >
-              <NextBtn id="nextBtn">다음단계</NextBtn>
+              <NextBtn id="nextBtn" disabled={!checkAll}>다음단계</NextBtn>
             </Link>
           </ButtonBox>
         </TOS>
