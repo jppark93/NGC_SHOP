@@ -6,13 +6,13 @@ import Next from "../Images/next.png";
 import Next2 from "../Images/next2.png";
 
 const SignUpTwo = () => {
-
   const [id, setId] = useState("");
   const [pw1, setPw1] = useState("");
   const [pw2, setPw2] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
-
+  const [idError, setIdError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
   const onSignUpButtonClick = () => {
     const xhr = new XMLHttpRequest();
     const data = {
@@ -24,41 +24,44 @@ const SignUpTwo = () => {
 
     xhr.onload = function () {
       if (xhr.status === 201) {
-        var tests = JSON.parse(xhr.responseText);
-        console.log('회원가입 성공', xhr.responseText);
+        let tests = JSON.parse(xhr.responseText);
+        console.log("회원가입 성공", xhr.responseText);
       } else {
-        console.log('회원가입 실패', xhr.responseText);
+        console.log("회원가입 실패", xhr.responseText);
       }
     };
-    xhr.open('POST', 'http://172.30.1.43:8999/accounts/signup');
-    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.open("POST", "http://172.30.1.43:8999/accounts/signup");
+    xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(data));
-  }
+  };
 
   const onInputChanged = (e: any) => {
-
-    switch (e.target.id){
-      case 'idBox':
+    switch (e.target.id) {
+      case "idBox":
+        const nickName = /^[가-힣,a-zA-Z]{2,15}|[a-zA-Z]{2,15}\s[a-zA-Z]{2,15}$/;
         setId(e.target.value);
+        setIdError(nickName.test(e.target.value) === false);
         break;
 
-      case 'pwBox1':
+      case "pwBox1":
         setPw1(e.target.value);
         break;
 
-      case 'pwBox2':
+      case "pwBox2":
         setPw2(e.target.value);
         break;
 
-      case 'emailBox':
+      case "emailBox":
+        const emailtest = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
         setEmail(e.target.value);
+        setEmailError(emailtest.test(e.target.value) === false);
         break;
 
-      case 'addressBox':
+      case "addressBox":
         setAddress(e.target.value);
         break;
     }
-  }
+  };
 
   return (
     <Layout>
@@ -92,8 +95,20 @@ const SignUpTwo = () => {
                 <h1>*</h1>아이디
               </div>
               <div className="right">
-                <input type="text" id="idBox" onChange={onInputChanged} value={id}/>
-                <div id="isPossibleIdDiv">사용가능한 아이디입니다.</div>
+                <input
+                  type="text"
+                  id="idBox"
+                  onChange={onInputChanged}
+                  value={id}
+                />
+                <Btn type="button">중복체크</Btn>
+                {!idError && id.length > 2 ? (
+                  <div className="blue" id="isPossibleIdDiv">
+                    사용가능한 아이디입니다.
+                  </div>
+                ) : (
+                  <Red>사용불가능한 아이디입니다.</Red>
+                )}
               </div>
             </FormBox>
             <FormBox>
@@ -101,8 +116,15 @@ const SignUpTwo = () => {
                 <h1>*</h1>비밀번호
               </div>
               <div className="right">
-                <input type="password" id="pwBox1" onChange={onInputChanged} value={pw1}/>
-                <div id="isPossiblePwDiv">사용가능한 패스워드입니다.</div>
+                <input
+                  type="password"
+                  id="pwBox1"
+                  onChange={onInputChanged}
+                  value={pw1}
+                />
+                <div className="blue" id="isPossiblePwDiv">
+                  사용가능한 패스워드입니다.
+                </div>
               </div>
             </FormBox>
             <FormBox>
@@ -110,8 +132,17 @@ const SignUpTwo = () => {
                 <h1>*</h1>비밀번호 확인
               </div>
               <div className="right">
-                <input type="password"  id="pwBox2" onChange={onInputChanged} value={pw2}/>
-                <div>{pw1===pw2? "두 비밀번호가 일치합니다." : "두 비밀번호가 일치하지 않습니다."}</div>
+                <input
+                  type="password"
+                  id="pwBox2"
+                  onChange={onInputChanged}
+                  value={pw2}
+                />
+                <div className="blue">
+                  {pw1 === pw2
+                    ? "두 비밀번호가 일치합니다."
+                    : "두 비밀번호가 일치하지 않습니다."}
+                </div>
               </div>
             </FormBox>
             <FormBox>
@@ -119,16 +150,29 @@ const SignUpTwo = () => {
                 <h1>*</h1>이메일
               </div>
               <div className="right">
-                <input type="text"  id="emailBox" onChange={onInputChanged} value={email}/>
-                <div id="isPossibleEmailDiv">사용가능한 이메일입니다.</div>
+                <input
+                  type="text"
+                  id="emailBox"
+                  onChange={onInputChanged}
+                  value={email}
+                />
+                <Btn type="button">형식체크</Btn>
+                <div className="blue" id="isPossibleEmailDiv">
+                  사용가능한 이메일입니다.
+                </div>
               </div>
             </FormBox>
             <FormBox>
               <div className="left">&nbsp;주소</div>
               <div className="right">
                 <div>
-                  <input type="text" id="addressBox" onChange={onInputChanged} value={address}/>
-                  <button type="button">우편번호검색</button>
+                  <input
+                    type="text"
+                    id="addressBox"
+                    onChange={onInputChanged}
+                    value={address}
+                  />
+                  <Btn>우편번호검색</Btn>
                 </div>
                 <input type="text" />
               </div>
@@ -263,13 +307,28 @@ const FormBox = styled.tr`
       background-color: white;
       border: 1px solid #111;
     }
-    div {
+    .blue {
       display: flex;
       align-items: center;
       font-size: 12px;
       color: #329cff;
     }
   }
+`;
+const Red = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: red;
+`;
+const Btn = styled.button`
+  margin-left: 10px;
+  width: 88px;
+  height: 30px;
+  background-color: white;
+  border: 1px solid #111;
+  font-size: 12px;
+  font-weight: bold;
 `;
 const ButtonBox = styled.div`
   display: flex;

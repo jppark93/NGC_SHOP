@@ -6,40 +6,33 @@ import Next2 from "../Images/next2.png";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
-
   const [checkAll, setCheckAll] = useState(false);
   const [check1, setCheck1] = useState(false);
   const [check2, setCheck2] = useState(false);
-
+  let checkAll_temp = checkAll;
+  let check1_temp = check1;
+  let check2_temp = check2;
   const onCheckChanged = (e: any) => {
-
-    let checkAll_temp = checkAll;
-    let check1_temp = check1;
-    let check2_temp = check2;
-
-    switch(e.target.id){
-      case 'checkAll':
+    switch (e.target.id) {
+      case "checkAll":
         checkAll_temp = check1_temp = check2_temp = e.target.checked;
         setCheckAll(e.target.checked);
         setCheck1(e.target.checked);
         setCheck2(e.target.checked);
         break;
-      case 'check1':
+      case "check1":
         check1_temp = e.target.checked;
         setCheck1(e.target.checked);
         break;
-      case 'check2':
+      case "check2":
         check2_temp = e.target.checked;
         setCheck2(e.target.checked);
         break;
     }
 
-    if (check1_temp && check2_temp)
-      setCheckAll(true);
-    else
-      setCheckAll(false);
-
-  }
+    if (check1_temp && check2_temp) setCheckAll(true);
+    else setCheckAll(false);
+  };
 
   return (
     <Layout>
@@ -67,7 +60,12 @@ const SignUp = () => {
           <AgreeBox>
             <AbTop>
               <CheckBox>
-                <input type="checkbox" id="checkAll" onChange={onCheckChanged} checked={checkAll}/>
+                <input
+                  type="checkbox"
+                  id="checkAll"
+                  onChange={onCheckChanged}
+                  checked={checkAll}
+                />
                 <span className="checkmark" />
               </CheckBox>
               <span>
@@ -77,7 +75,12 @@ const SignUp = () => {
             </AbTop>
             <AgreementOne>
               <CheckBox2>
-                <input type="checkbox" id="check1" onChange={onCheckChanged} checked={check1}/>
+                <input
+                  type="checkbox"
+                  id="check1"
+                  onChange={onCheckChanged}
+                  checked={check1}
+                />
                 <span className="checkmark" />
                 <span>
                   <h1>(필수)</h1>이용약관
@@ -288,7 +291,12 @@ const SignUp = () => {
             </AgreementOne>
             <AgreementOne>
               <CheckBox2>
-                <input type="checkbox" id="check2" onChange={onCheckChanged} checked={check2}/>
+                <input
+                  type="checkbox"
+                  id="check2"
+                  onChange={onCheckChanged}
+                  checked={check2}
+                />
                 <span className="checkmark" />
                 <span>
                   <h1>(필수)</h1>개인정보 수집 및 이용
@@ -320,8 +328,10 @@ const SignUp = () => {
                 이전단계
               </button>
             </Link>
-            <Link to="/signup2" >
-              <NextBtn id="nextBtn" disabled={!checkAll}>다음단계</NextBtn>
+            <Link to="/signup2">
+              <NextBtn id="nextBtn" disabled={!checkAll}>
+                다음단계
+              </NextBtn>
             </Link>
           </ButtonBox>
         </TOS>
@@ -473,6 +483,7 @@ const NextBtn = styled.button`
   font-weight: bold;
   color: white;
   background-color: #dd3d42;
+  cursor: pointer;
 `;
 const CheckBox = styled.label`
   display: flex;
