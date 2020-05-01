@@ -66,7 +66,7 @@ const SignUpTwo = (props: any) => {
         console.log("회원가입 실패", xhr.responseText);
       }
     };
-    xhr.open("POST", "http://172.30.1.43:8999/accounts/signup");
+    xhr.open("POST", "http://220.73.54.64:8999/accounts/signup");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(data));
   };
@@ -135,10 +135,10 @@ const SignUpTwo = (props: any) => {
 
     switch(e.target.id){
       case "dupIdCheckButton":
-        xhr.open("POST", "http://172.30.1.43:8999/accounts/dupIdCheck");
+        xhr.open("POST", "http://220.73.54.64:8999/accounts/dupIdCheck");
         break;
       case "dupEmailCheckButton":
-        xhr.open("POST", "http://172.30.1.43:8999/accounts/dupEmailCheck");
+        xhr.open("POST", "http://220.73.54.64:8999/accounts/dupEmailCheck");
         break;
       default:
         return;
