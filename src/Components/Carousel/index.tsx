@@ -5,10 +5,29 @@ import Img1 from "../../Images/img2.jpg";
 import Img2 from "../../Images/img3.jpg";
 import next from "../../Images/next3.png";
 import Slide from "./Slide";
+import { wait } from "@testing-library/react";
 
 const Carousel = () => {
   const SLIDES: number = 2;
   const [currentSlide, setCurrentSlide] = useState<number>(0);
+  const [timerId, setTimerId] = useState<number>(0);
+
+  useEffect(() => {
+    let timer = timerId;
+    clearTimeout(timer);
+    console.log(new Date().toLocaleString() + ") 타이머 초기화 : " + timer);
+    timer = setTimeout(() => {
+      console.log(new Date().toLocaleString() + ") 타이머 실행 : " + timer);
+      nextSlide();
+    }, 5000);
+    setTimerId(timer);
+    console.log(
+      new Date().toLocaleString() +
+        ") 타이머 생성 : " +
+        timer +
+        " (5초 뒤 실행)"
+    );
+  }, [currentSlide]);
 
   const nextSlide = () => {
     if (currentSlide >= SLIDES) {
