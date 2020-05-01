@@ -2,16 +2,36 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import Layout from "../Components/Layout";
 import FacebookLogin from "../Images/fblogin.png";
+import crypto from 'crypto';
 
 import { Link } from "react-router-dom";
 import { stringify } from "querystring";
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from "../Redux/index"; 
+import { setLogIn, setLogOut, changeId } from "../Redux/login"; 
 
-const SignIn = () => {
+
+const SignIn = (props : any) => {
 
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const {loginState, userId} = useSelector((redux: RootState) => redux.login);
+  const dispatch = useDispatch(); 
 
-  const onChangeId = (e: any) => {
+  const onLogIn = () => {
+    dispatch(setLogIn());
+  };
+  const onLogOut = () => {
+    dispatch(setLogOut());
+  };
+  const onChangeId = (id : string) => {
+    dispatch(changeId(id));
+  };
+
+  const onChangeInput = (e: any) => {
+
+    console.log(loginState, userId);
+    
     if (e.target.id === 'idBox')
       setId(e.target.value);
     else
@@ -20,18 +40,37 @@ const SignIn = () => {
   
   const tryLogin = () => {
 
+    /* // 비밀번호 암호화 아이디어 (SHA256에서 한층 더 보안을 강화한 HMAC SHA256방식)
+const crypto = require('crypto');
+
+const password = 'abc123';
+const secret = 'MySecretKey1$1$234';    // 비밀키
+
+const hashed = crypto.createHmac('sha256', secret).update(password).digest('hex');
+
+console.log(hashed);
+    */
+
+
     const xhr = new XMLHttpRequest();
     const data = {
       id: id,
       password: password,
     };
 
+    
+
     xhr.onload = function () {
       if (xhr.status === 200 || xhr.status === 304) {
         var tests = JSON.parse(xhr.responseText);
         console.log('로그인 성공', xhr.responseText);
+        onChangeId(id);
+        onLogIn();
+        props.history.push("./");
+
       } else {
         console.log('로그인 실패', xhr.responseText);
+        onLogOut();
       }
     };
     xhr.open('POST', 'http://220.73.54.64:8999/accounts/login');
@@ -49,8 +88,8 @@ const SignIn = () => {
               <FormTop>회원 로그인</FormTop>
               <IdPassForm>
                 <LoginInput>
-                  <input type="text" placeholder="아이디" onChange={onChangeId} id='idBox'/>
-                  <input type="password" placeholder="비밀번호" onChange={onChangeId} id='pwBox'/>
+                  <input type="text" placeholder="아이디" onChange={onChangeInput} id='idBox'/>
+                  <input type="password" placeholder="비밀번호" onChange={onChangeInput} id='pwBox'/>
                 </LoginInput>
                 <LoginBtn onClick={tryLogin}>로그인</LoginBtn>
               </IdPassForm>
