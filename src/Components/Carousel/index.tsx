@@ -5,6 +5,9 @@ import Img1 from "../../Images/img2.jpg";
 import Img2 from "../../Images/img3.jpg";
 import next from "../../Images/next3.png";
 import Slide from "./Slide";
+
+//import { clearTimeout, clearInterval, setTimeout } from "timers";
+
 import { wait } from "@testing-library/react";
 
 const Carousel = () => {
@@ -36,6 +39,7 @@ const Carousel = () => {
       setCurrentSlide(currentSlide + 1);
     }
   };
+
   const prevSlide = () => {
     if (currentSlide === 0) {
       setCurrentSlide(SLIDES);
