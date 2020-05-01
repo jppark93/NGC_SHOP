@@ -43,7 +43,7 @@ const MenuList = styled.ul`
   position: relative;
   align-items: center;
   justify-content: center;
-  margin-left: 80px;
+  margin-left: 50px;
   width: 99%;
   height: 51px;
 `;
@@ -53,9 +53,13 @@ const MenuItem = styled.li`
   justify-content: center;
   cursor: pointer;
   width: 160px;
-  height: 20px;
+  height: 30px;
   color: #ffffff;
   font-size: 13px;
   font-weight: 800;
   border-right: 1px solid #333;
+
+  :hover {
+    color: yellow;
+  }
 `;

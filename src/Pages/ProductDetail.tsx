@@ -5,11 +5,10 @@ import Img from "../Images/testing.jpg";
 import Info from "../Components/ProductInfo/Info";
 import ExChange from "../Components/ProductInfo/ExChange";
 import Review from "../Components/ProductInfo/Review";
-type GreetingsProps = {
-  onClick: (changeNum: number) => void;
-};
-const ProductDetail = ({ onClick }: GreetingsProps) => {
-  const [changeNum, setChangeNum] = useState<number>(1);
+
+const ProductDetail = () => {
+  const [changeNum, setChangeNum] = useState<string>("1");
+
   return (
     <Layout>
       <PdBlock>
@@ -90,10 +89,18 @@ const ProductDetail = ({ onClick }: GreetingsProps) => {
             <BtnDiv>
               <ul>
                 <li></li>
-                <li onClick={() => setChangeNum(1)}>상품상세정보</li>
-                <li onClick={() => setChangeNum(2)}>배송안내</li>
-                <li onClick={() => setChangeNum(3)}>교환 및 반품안내</li>
-                <li onClick={() => setChangeNum(4)}>상품후기</li>
+                <li className={changeNum} onClick={() => setChangeNum("1")}>
+                  상품상세정보
+                </li>
+                <li className={changeNum} onClick={() => setChangeNum("2")}>
+                  배송안내
+                </li>
+                <li className={changeNum} onClick={() => setChangeNum("3")}>
+                  교환 및 반품안내
+                </li>
+                <li className={changeNum} onClick={() => setChangeNum("4")}>
+                  상품후기
+                </li>
                 <li></li>
               </ul>
             </BtnDiv>
@@ -311,6 +318,7 @@ const BtnDiv = styled.div`
       margin-top: auto;
       font-size: 13px;
       color: #999999;
+
       font-weight: bold;
       &:first-child {
         border: none;

@@ -5,7 +5,6 @@ import Layout from "../Components/Layout";
 import Next from "../Images/next.png";
 import Next2 from "../Images/next2.png";
 
-
 const SignUpTwo = (props: any) => {
   const [id, setId] = useState("");
   const [pw1, setPw1] = useState("");
@@ -18,32 +17,34 @@ const SignUpTwo = (props: any) => {
   const [dupEmailCheck, setDupEmailCheck] = useState(false);
 
   const onSignUpButtonClick = () => {
-
     // 체크1. 작성하지 않은 칸이 있는가?
-    if (!((id.length > 0)
-      && pw1.length > 0
-      && pw2.length > 0
-      && email.length > 0
-      && address.length > 0)){
-        alert("작성하지 않은 항목이 존재합니다.");
-        return;
+    if (
+      !(
+        id.length > 0 &&
+        pw1.length > 0 &&
+        pw2.length > 0 &&
+        email.length > 0 &&
+        address.length > 0
+      )
+    ) {
+      alert("작성하지 않은 항목이 존재합니다.");
+      return;
     }
-      
+
     // 체크2. pw2와 pw1은 같은가?
-    if (!(pw1 === pw2)){
+    if (!(pw1 === pw2)) {
       alert("두 비밀번호의 내용이 다릅니다.");
       return;
     }
 
     // 체크3. 입력 형식에서 벗어난 칸이 있는가?
-    if (!((!idError && id.length > 2)
-      && (!emailError && email.length > 4))){
-        alert("입력 형식에서 벗어난 항목이 존재합니다.");
-        return;
+    if (!(!idError && id.length > 2 && !emailError && email.length > 4)) {
+      alert("입력 형식에서 벗어난 항목이 존재합니다.");
+      return;
     }
 
     // 체크4. 중복체크는 모두 통과했는가?
-    if (!(dupIdCheck && dupEmailCheck)){
+    if (!(dupIdCheck && dupEmailCheck)) {
       alert("중복체크가 되지 않은 항목이 존재합니다.");
       return;
     }
@@ -102,8 +103,7 @@ const SignUpTwo = (props: any) => {
   };
 
   const onDupCheck = (e: any) => {
-
-    switch(e.target.id){
+    switch (e.target.id) {
       case "dupIdCheckButton":
         if (!(!idError && id.length > 2)) return;
         break;
@@ -121,8 +121,8 @@ const SignUpTwo = (props: any) => {
 
     xhr.onload = function () {
       if (xhr.status === 201) {
-        const result : boolean = xhr.response === "true" ? true : false;
-        switch(componentId){
+        const result: boolean = xhr.response === "true" ? true : false;
+        switch (componentId) {
           case "dupIdCheckButton":
             setDupIdCheck(result);
             break;
@@ -133,7 +133,7 @@ const SignUpTwo = (props: any) => {
       }
     };
 
-    switch(e.target.id){
+    switch (e.target.id) {
       case "dupIdCheckButton":
         xhr.open("POST", "http://220.73.54.64:8999/accounts/dupIdCheck");
         break;
@@ -186,16 +186,17 @@ const SignUpTwo = (props: any) => {
                   onChange={onInputChanged}
                   value={id}
                 />
-                <Btn type="button" onClick={onDupCheck} id="dupIdCheckButton">중복체크</Btn>
-                { dupIdCheck ? (
-                  <div className="blue">
-                  사용할 수 있는 아이디입니다.
-                </div>
-                ) : ((!idError && id.length > 2) ? (
-                      <Red>아이디 중복 체크를 하지 않았거나, 이미 가입된 아이디입니다.</Red>
-                    ) : (
-                      <Red>올바르지 않은 아이디 형식입니다.</Red>
-                    )
+                <Btn type="button" onClick={onDupCheck} id="dupIdCheckButton">
+                  중복체크
+                </Btn>
+                {dupIdCheck ? (
+                  <div className="blue">사용할 수 있는 아이디입니다.</div>
+                ) : !idError && id.length > 2 ? (
+                  <Red>
+                    아이디 중복 체크를 하지 않았거나, 이미 가입된 아이디입니다.
+                  </Red>
+                ) : (
+                  <Red>올바르지 않은 아이디 형식입니다.</Red>
                 )}
               </div>
             </FormBox>
@@ -210,9 +211,7 @@ const SignUpTwo = (props: any) => {
                   onChange={onInputChanged}
                   value={pw1}
                 />
-                <div className="blue">
-                  사용가능한 패스워드입니다.
-                </div>
+                <div className="blue">사용가능한 패스워드입니다.</div>
               </div>
             </FormBox>
             <FormBox>
@@ -244,16 +243,21 @@ const SignUpTwo = (props: any) => {
                   onChange={onInputChanged}
                   value={email}
                 />
-                <Btn type="button" onClick={onDupCheck} id="dupEmailCheckButton">중복체크</Btn>
-                { dupEmailCheck ? (
-                  <div className="blue">
-                  사용할 수 있는 이메일입니다.
-                  </div>
-                ) : ((!emailError && email.length > 4) ? (
-                      <Red>이메일 중복 체크를 하지 않았거나, 이미 가입된 이메일입니다.</Red>
-                    ) : (
-                      <Red>올바르지 않은 이메일 형식입니다.</Red>
-                    )
+                <Btn
+                  type="button"
+                  onClick={onDupCheck}
+                  id="dupEmailCheckButton"
+                >
+                  중복체크
+                </Btn>
+                {dupEmailCheck ? (
+                  <div className="blue">사용할 수 있는 이메일입니다.</div>
+                ) : !emailError && email.length > 4 ? (
+                  <Red>
+                    이메일 중복 체크를 하지 않았거나, 이미 가입된 이메일입니다.
+                  </Red>
+                ) : (
+                  <Red>올바르지 않은 이메일 형식입니다.</Red>
                 )}
               </div>
             </FormBox>
