@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Layout from "../Components/Layout";
 import Next from "../Images/next.png";
 import Next2 from "../Images/next2.png";
 
-const SignUpTwo = () => {
+
+const SignUpTwo = (props: any) => {
   const [id, setId] = useState("");
   const [pw1, setPw1] = useState("");
   const [pw2, setPw2] = useState("");
@@ -13,7 +14,40 @@ const SignUpTwo = () => {
   const [address, setAddress] = useState("");
   const [idError, setIdError] = useState(false);
   const [emailError, setEmailError] = useState(false);
+  const [dupIdCheck, setDupIdCheck] = useState(false);
+  const [dupEmailCheck, setDupEmailCheck] = useState(false);
+
   const onSignUpButtonClick = () => {
+
+    // 체크1. 작성하지 않은 칸이 있는가?
+    if (!((id.length > 0)
+      && pw1.length > 0
+      && pw2.length > 0
+      && email.length > 0
+      && address.length > 0)){
+        alert("작성하지 않은 항목이 존재합니다.");
+        return;
+    }
+      
+    // 체크2. pw2와 pw1은 같은가?
+    if (!(pw1 === pw2)){
+      alert("두 비밀번호의 내용이 다릅니다.");
+      return;
+    }
+
+    // 체크3. 입력 형식에서 벗어난 칸이 있는가?
+    if (!((!idError && id.length > 2)
+      && (!emailError && email.length > 4))){
+        alert("입력 형식에서 벗어난 항목이 존재합니다.");
+        return;
+    }
+
+    // 체크4. 중복체크는 모두 통과했는가?
+    if (!(dupIdCheck && dupEmailCheck)){
+      alert("중복체크가 되지 않은 항목이 존재합니다.");
+      return;
+    }
+
     const xhr = new XMLHttpRequest();
     const data = {
       id: id,
@@ -26,6 +60,8 @@ const SignUpTwo = () => {
       if (xhr.status === 201) {
         let tests = JSON.parse(xhr.responseText);
         console.log("회원가입 성공", xhr.responseText);
+        alert("회원가입이 완료되었습니다.");
+        props.history.push("./");
       } else {
         console.log("회원가입 실패", xhr.responseText);
       }
@@ -38,9 +74,10 @@ const SignUpTwo = () => {
   const onInputChanged = (e: any) => {
     switch (e.target.id) {
       case "idBox":
-        const nickName = /^[가-힣,a-zA-Z]{2,15}|[a-zA-Z]{2,15}\s[a-zA-Z]{2,15}$/;
+        const input_id = /^[a-zA-Z]{2,15}|[a-zA-Z]{2,15}\s[a-zA-Z]{2,15}$/;
         setId(e.target.value);
-        setIdError(nickName.test(e.target.value) === false);
+        setIdError(input_id.test(e.target.value) === false);
+        setDupIdCheck(false);
         break;
 
       case "pwBox1":
@@ -52,15 +89,63 @@ const SignUpTwo = () => {
         break;
 
       case "emailBox":
-        const emailtest = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+        const input_email = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
         setEmail(e.target.value);
-        setEmailError(emailtest.test(e.target.value) === false);
+        setEmailError(input_email.test(e.target.value) === false);
+        setDupEmailCheck(false);
         break;
 
       case "addressBox":
         setAddress(e.target.value);
         break;
     }
+  };
+
+  const onDupCheck = (e: any) => {
+
+    switch(e.target.id){
+      case "dupIdCheckButton":
+        if (!(!idError && id.length > 2)) return;
+        break;
+      case "dupEmailCheckButton":
+        if (!(!emailError && email.length > 4)) return;
+        break;
+    }
+
+    const xhr = new XMLHttpRequest();
+    const componentId = e.target.id;
+    const data = {
+      id: id,
+      email: email,
+    };
+
+    xhr.onload = function () {
+      if (xhr.status === 201) {
+        const result : boolean = xhr.response === "true" ? true : false;
+        switch(componentId){
+          case "dupIdCheckButton":
+            setDupIdCheck(result);
+            break;
+          case "dupEmailCheckButton":
+            setDupEmailCheck(result);
+            break;
+        }
+      }
+    };
+
+    switch(e.target.id){
+      case "dupIdCheckButton":
+        xhr.open("POST", "http://172.30.1.43:8999/accounts/dupIdCheck");
+        break;
+      case "dupEmailCheckButton":
+        xhr.open("POST", "http://172.30.1.43:8999/accounts/dupEmailCheck");
+        break;
+      default:
+        return;
+    }
+
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify(data));
   };
 
   return (
@@ -101,13 +186,16 @@ const SignUpTwo = () => {
                   onChange={onInputChanged}
                   value={id}
                 />
-                <Btn type="button">중복체크</Btn>
-                {!idError && id.length > 2 ? (
-                  <div className="blue" id="isPossibleIdDiv">
-                    사용가능한 아이디입니다.
-                  </div>
-                ) : (
-                  <Red>사용불가능한 아이디입니다.</Red>
+                <Btn type="button" onClick={onDupCheck} id="dupIdCheckButton">중복체크</Btn>
+                { dupIdCheck ? (
+                  <div className="blue">
+                  사용할 수 있는 아이디입니다.
+                </div>
+                ) : ((!idError && id.length > 2) ? (
+                      <Red>아이디 중복 체크를 하지 않았거나, 이미 가입된 아이디입니다.</Red>
+                    ) : (
+                      <Red>올바르지 않은 아이디 형식입니다.</Red>
+                    )
                 )}
               </div>
             </FormBox>
@@ -122,7 +210,7 @@ const SignUpTwo = () => {
                   onChange={onInputChanged}
                   value={pw1}
                 />
-                <div className="blue" id="isPossiblePwDiv">
+                <div className="blue">
                   사용가능한 패스워드입니다.
                 </div>
               </div>
@@ -156,10 +244,17 @@ const SignUpTwo = () => {
                   onChange={onInputChanged}
                   value={email}
                 />
-                <Btn type="button">형식체크</Btn>
-                <div className="blue" id="isPossibleEmailDiv">
-                  사용가능한 이메일입니다.
-                </div>
+                <Btn type="button" onClick={onDupCheck} id="dupEmailCheckButton">중복체크</Btn>
+                { dupEmailCheck ? (
+                  <div className="blue">
+                  사용할 수 있는 이메일입니다.
+                  </div>
+                ) : ((!emailError && email.length > 4) ? (
+                      <Red>이메일 중복 체크를 하지 않았거나, 이미 가입된 이메일입니다.</Red>
+                    ) : (
+                      <Red>올바르지 않은 이메일 형식입니다.</Red>
+                    )
+                )}
               </div>
             </FormBox>
             <FormBox>
@@ -183,9 +278,7 @@ const SignUpTwo = () => {
                   취소
                 </button>
               </Link>
-              <Link to="/">
-                <NextBtn onClick={onSignUpButtonClick}>회원가입</NextBtn>
-              </Link>
+              <NextBtn onClick={onSignUpButtonClick}>회원가입</NextBtn>
             </ButtonBox>
           </SignUpForm>
         </TOS>
@@ -355,4 +448,4 @@ const NextBtn = styled.button`
   background-color: #dd3d42;
 `;
 const Address = styled.input``;
-export default SignUpTwo;
+export default withRouter(SignUpTwo);
