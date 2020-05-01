@@ -5,10 +5,20 @@ import Img from "../Images/testing.jpg";
 import Info from "../Components/ProductInfo/Info";
 import ExChange from "../Components/ProductInfo/ExChange";
 import Review from "../Components/ProductInfo/Review";
-
+import Delivery from "../Components/ProductInfo/Delivery";
 const ProductDetail = () => {
   const [changeNum, setChangeNum] = useState<string>("1");
-
+  const pageChange = () => {
+    if (changeNum === "1") {
+      return <Info />;
+    } else if (changeNum === "2") {
+      return <ExChange />;
+    } else if (changeNum === "3") {
+      return <Delivery />;
+    } else if (changeNum === "4") {
+      return <Review />;
+    }
+  };
   return (
     <Layout>
       <PdBlock>
@@ -104,7 +114,7 @@ const ProductDetail = () => {
                 <li></li>
               </ul>
             </BtnDiv>
-            <Review />
+            {pageChange()}
           </InfoDiv>
         </PdInfo>
       </PdBlock>
@@ -307,7 +317,7 @@ const BtnDiv = styled.div`
     height: 58px;
 
     margin-top: auto;
-
+    cursor: pointer;
     li {
       display: flex;
       align-items: center;
@@ -318,7 +328,7 @@ const BtnDiv = styled.div`
       margin-top: auto;
       font-size: 13px;
       color: #999999;
-
+      cursor: pointer;
       font-weight: bold;
       &:first-child {
         border: none;
