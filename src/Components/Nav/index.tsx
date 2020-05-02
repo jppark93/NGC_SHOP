@@ -2,7 +2,26 @@ import * as React from "react";
 import styled from "styled-components";
 import Logo from "../../Images/Logo.png";
 import { Link } from "react-router-dom";
+
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from "../../Redux/index"; 
+import { setLogOut } from "../../Redux/login"; 
+
 const Nav = () => {
+
+  const {loginState, userId} = useSelector((redux: RootState) => redux.login);
+  const dispatch = useDispatch();
+
+  const onLogOutEvent = () => {
+    dispatch(setLogOut());
+  };
+
+  const onLogInComponent = () => {
+    return <Link to="/signin" style={{ textDecoration: "none" }}><Li>LOGIN</Li></Link>;
+  }
+  const onLogOutComponent = () => {
+    return <Link to="./" style={{ textDecoration: "none" }}><Li onClick={onLogOutEvent}>LOGOUT</Li></Link>;
+  }
   return (
     <NavBlock>
       <ItemBlock>
@@ -17,9 +36,8 @@ const Nav = () => {
         </NavSearch>
         <NavRight>
           <RightItem>
-            <Link to="/signin" style={{ textDecoration: "none" }}>
-              <Li>LOGIN</Li>
-            </Link>
+            {console.log(`loginState : ${loginState}`)}
+            {loginState ? onLogOutComponent() : onLogInComponent()}
             <Li>JOIN</Li>
             <Li>MYPAGE</Li>
             <Link to="/cart" style={{ textDecoration: "none" }}>
