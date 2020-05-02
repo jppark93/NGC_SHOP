@@ -171,7 +171,7 @@ export const IMGS = [
   },
   {
     img: "http://www.naturestore.co.kr/data/main_thum/surf_interview.jpg",
-    title: "파도를 통해 배우는 삶 ㅣ 서퍼 신수현",
+    title: "파도를 통해 배우는 삶 서퍼 신수현",
     contents:
       "예측할 수 없는 파도 속에 몸을 맡기는 서핑은 불확실한 미래를 향해 한 발자국씩 내딛는 우리의 삶과도 닮았습니다. 그 불확실성을 두려워하지 않고 정면으로 맞서 파도 위에서 삶을 즐기는 서퍼 신수현을 만났습니다.",
   },

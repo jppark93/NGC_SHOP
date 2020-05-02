@@ -52,10 +52,15 @@ const ExpBlock = styled.div`
   h1 {
     display: flex;
     justify-content: center;
-    font-size: 30px;
-    margin-left: 10px;
+    width: 420px;
+    padding: 0px 5px 0px 5px;
+    display: flex;
+    justify-content: center;
+    font-size: 28px;
+    padding-left: 30px;
     margin-top: 20px;
     font-weight: 800;
+    margin: 30px 0px 15px;
   }
   span {
     font-size: 15px;
