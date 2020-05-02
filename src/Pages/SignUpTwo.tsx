@@ -148,24 +148,64 @@ const SignUpTwo = (props: any) => {
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(data));
   };
-  const pw = () => {
+  const id_InputInfo = () => {
+    if (id.length === 0){
+      return <div className="blue"> &nbsp; </div>;
+    }
+    else if (dupIdCheck){
+      return <div className="blue">사용할 수 있는 아이디입니다.</div>;
+    }
+    else if (!idError && id.length > 4){
+      return <Red> 아이디 중복 체크를 하지 않았거나, 이미 가입된 아이디입니다. </Red>;
+    }
+    else {
+      return <Red>올바르지 않은 아이디 형식입니다.</Red>;
+    }
+  }
+  const pw_InputInfo = () => {
     if (pw1.length === 0) {
-      return <div className="blue"></div>;
+      return <div className="blue">&nbsp;</div>;
     } else if (pw1.length >= 0 && pw1.length < 3) {
       return <Red>사용불가능한 패스워드입니다.</Red>;
     } else {
       return <div className="blue">"사용가능한 패스워드입니다."</div>;
     }
   };
-  const rePw = () => {
+  const rePw_InputInfo = () => {
     if (pw1.length === 0) {
-      return <div className="blue"></div>;
+      return <div className="blue">&nbsp; </div>;
     } else if (pw1.length !== pw2.length) {
       return <Red>"두 비밀번호가 일치하지 않습니다."</Red>;
     } else {
       return <div className="blue">"두 비밀번호가 일치합니다."</div>;
     }
   };
+  const email_InputInfo = () => {
+    if (email.length === 0){
+      return <div className="blue"> &nbsp; </div>;
+    }
+    else if (dupEmailCheck){
+      return <div className="blue">사용할 수 있는 이메일입니다.</div>;
+    }
+    else if (!emailError && email.length > 4){
+      return <Red> 이메일 중복 체크를 하지 않았거나, 이미 가입된 이메일입니다. </Red>;
+    }
+    else {
+      return <Red>올바르지 않은 이메일 형식입니다.</Red>;
+    }
+    /*
+    {dupEmailCheck ? (
+      
+    ) : !emailError && email.length > 4 ? (
+      <Red>
+        이메일 중복 체크를 하지 않았거나, 이미 가입된 이메일입니다.
+      </Red>
+    ) : (
+      <Red>올바르지 않은 이메일 형식입니다.</Red>
+    )}
+    */
+  }
+
   return (
     <Layout>
       <SignUpBlock>
@@ -207,15 +247,7 @@ const SignUpTwo = (props: any) => {
                 <Btn type="button" onClick={onDupCheck} id="dupIdCheckButton">
                   중복체크
                 </Btn>
-                {dupIdCheck ? (
-                  <div className="blue">사용할 수 있는 아이디입니다.</div>
-                ) : !idError && id.length > 2 ? (
-                  <Red>
-                    아이디 중복 체크를 하지 않았거나, 이미 가입된 아이디입니다.
-                  </Red>
-                ) : (
-                  <Red>올바르지 않은 아이디 형식입니다.</Red>
-                )}
+                {id_InputInfo()}
               </div>
             </FormBox>
             <FormBox>
@@ -229,7 +261,7 @@ const SignUpTwo = (props: any) => {
                   onChange={onInputChanged}
                   value={pw1}
                 />
-                {pw()}
+                {pw_InputInfo()}
               </div>
             </FormBox>
             <FormBox>
@@ -244,7 +276,7 @@ const SignUpTwo = (props: any) => {
                   value={pw2}
                 />
 
-                {rePw()}
+                {rePw_InputInfo()}
               </div>
             </FormBox>
             <FormBox>
@@ -265,15 +297,7 @@ const SignUpTwo = (props: any) => {
                 >
                   중복체크
                 </Btn>
-                {dupEmailCheck ? (
-                  <div className="blue">사용할 수 있는 이메일입니다.</div>
-                ) : !emailError && email.length > 4 ? (
-                  <Red>
-                    이메일 중복 체크를 하지 않았거나, 이미 가입된 이메일입니다.
-                  </Red>
-                ) : (
-                  <Red>올바르지 않은 이메일 형식입니다.</Red>
-                )}
+                {email_InputInfo()}
               </div>
             </FormBox>
             <FormBox>
