@@ -1,18 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const MainImg = () => {
+const MainImg = (props: any) => {
   return (
     <MainInfoCp>
       <ImgBlock>
-        <Img src="http://thenature.speedgabia.com/event/20ss_lookbook.gif" />
+        <Img src={props.image} />
       </ImgBlock>
       <ExpBlock>
-        <h1>20S/S LOOK BOOK</h1>
-        <span>
-          내셔널지오그래픽 어패럴의 새로운 얼굴이 된 모델 정혁과 함께한 20S/S
-          컬렉션, 지금 바로 만나보세요!
-        </span>
+        <h1>{props.title}</h1>
+        <span>{props.contents}</span>
       </ExpBlock>
     </MainInfoCp>
   );
@@ -22,14 +19,14 @@ const MainInfoCp = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   width: 450px;
-  height: 574px;
+
   border: 1px solid pink;
   margin-left: 23px;
 `;
 const ImgBlock = styled.div`
   position: relative;
   width: 450px;
-  height: 450px;
+
   border: 1px solid pink;
   overflow: hidden;
 `;

@@ -1,39 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import MainImg from "./MainImg";
+import { IMGS } from "../../data/data";
 const MainInfo = () => {
   return (
     <MainInfoBlock>
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
-      <MainImg />
+      {IMGS.map((el) => {
+        return (
+          <MainImg image={el.img} title={el.title} contents={el.contents} />
+        );
+      })}
     </MainInfoBlock>
   );
 };

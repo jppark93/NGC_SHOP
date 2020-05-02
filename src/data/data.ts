@@ -1,4 +1,4 @@
-export const mainImg = [
+export const IMGS = [
   {
     img: "http://www.naturestore.co.kr/data/main_thum/20ss_windjacket.jpg",
     title: "봄철 쇼핑 리스트에 항상 오르는 아이템, 바람막이",
