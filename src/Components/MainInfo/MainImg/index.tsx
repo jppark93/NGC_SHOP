@@ -34,7 +34,7 @@ const ImgBlock = styled.div`
 const Img = styled.img`
   width: 450px;
   height: 450px;
-  background-size: 100%;
+  background-size: 80%;
   object-fit: cover;
   transform: scale(1);
   transition: transform 0.5s;
@@ -50,8 +50,10 @@ const ExpBlock = styled.div`
   font-family: "Noto Regular";
   color: #333333;
   h1 {
+    display: flex;
+    justify-content: center;
     font-size: 30px;
-    margin-left: 20px;
+    margin-left: 10px;
     margin-top: 20px;
     font-weight: 800;
   }
