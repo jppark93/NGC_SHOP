@@ -4,6 +4,7 @@ export const IMGS = [
     title: "봄철 쇼핑 리스트에 항상 오르는 아이템, 바람막이",
     contents:
       "일교차가 매우 큰 요즘, 바람막이만큼 실용적인 아이템은 없죠. 가볍고 보온성이 좋아 봄철 쇼핑 리스트에 항상 오르는 아이템, 바람막이! 내셔널지오그래픽이 추천하는 바람막이, 지금 만나보세요.",
+    border: "1px solid blue",
   },
   {
     img: "http://www.naturestore.co.kr/data/main_thum/20ss_kidsouter.jpg",

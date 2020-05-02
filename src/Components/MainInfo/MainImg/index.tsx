@@ -22,6 +22,7 @@ const MainInfoCp = styled.div`
 
   border: 1px solid pink;
   margin-left: 23px;
+  margin-bottom: 10px;
 `;
 const ImgBlock = styled.div`
   position: relative;
@@ -59,6 +60,8 @@ const ExpBlock = styled.div`
     margin-left: 20px;
     margin-top: 15px;
     font-weight: bold;
+    color: #999999;
+    line-height: 1.3;
   }
 `;
 
