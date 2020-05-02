@@ -7,6 +7,7 @@ import Face from "../Images/fb.png";
 import Youtube from "../Images/youtube.png";
 import Insta from "../Images/insta.png";
 import Naver from "../Images/naver.jpg";
+
 const Main = () => {
   return (
     <Layout>

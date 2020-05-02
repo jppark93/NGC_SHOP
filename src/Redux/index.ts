@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
-import reduce from "./reducer";
+import pageNation from "./pageNation";
 import login from "./login";
 
 const rootReducer = combineReducers({
-  reduce, login, 
+  pageNation,
+  login,
 });
 export default rootReducer;
 export type RootState = ReturnType<typeof rootReducer>;

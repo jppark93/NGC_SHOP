@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Layout from "../Components/Layout";
 import Img from "../Images/testing.jpg";
 import Info from "../Components/ProductInfo/Info";
@@ -98,20 +98,20 @@ const ProductDetail = () => {
           <InfoDiv>
             <BtnDiv>
               <ul>
-                <li></li>
-                <li className={changeNum} onClick={() => setChangeNum("1")}>
+                <InfoLi></InfoLi>
+                <InfoLi className={changeNum} onClick={() => setChangeNum("1")}>
                   상품상세정보
-                </li>
-                <li className={changeNum} onClick={() => setChangeNum("2")}>
+                </InfoLi>
+                <InfoLi className={changeNum} onClick={() => setChangeNum("2")}>
                   배송안내
-                </li>
-                <li className={changeNum} onClick={() => setChangeNum("3")}>
+                </InfoLi>
+                <InfoLi className={changeNum} onClick={() => setChangeNum("3")}>
                   교환 및 반품안내
-                </li>
-                <li className={changeNum} onClick={() => setChangeNum("4")}>
+                </InfoLi>
+                <InfoLi className={changeNum} onClick={() => setChangeNum("4")}>
                   상품후기
-                </li>
-                <li></li>
+                </InfoLi>
+                <InfoLi></InfoLi>
               </ul>
             </BtnDiv>
             {pageChange()}
@@ -318,32 +318,91 @@ const BtnDiv = styled.div`
 
     margin-top: auto;
     cursor: pointer;
-    li {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 25%;
-      height: 43px;
-      border: 1px solid #dadada;
-      margin-top: auto;
-      font-size: 13px;
-      color: #999999;
-      cursor: pointer;
-      font-weight: bold;
-      &:first-child {
-        border: none;
-        border-bottom: 1px solid #dadada;
+  }
+`;
+const InfoLi = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  height: 43px;
+  margin-top: auto;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #999999;
+  border: 1px solid #dadada;
+  &:first-child {
+    border: none;
+    border-bottom: 1px solid #dadada;
+  }
+  :nth-child(2) {
+    ${(props) => {
+      if (props.className === "1") {
+        return css`
+          border-bottom: 1px solid white;
+          color: #111111;
+          height: 100%;
+        `;
+      } else {
+        return css`
+          border-bottom: 1px solid #dadada;
+          color: #999999;
+        `;
       }
-      &:nth-child(2) {
-        height: 100%;
-        border-bottom: 1px solid white;
-        color: #111111;
+    }}
+  }
+  :nth-child(3) {
+    ${(props) => {
+      if (props.className === "2") {
+        return css`
+          border-bottom: 1px solid white;
+          color: #111111;
+          height: 100%;
+        `;
+      } else {
+        return css`
+          border-bottom: 1px solid #dadada;
+          color: #999999;
+        `;
       }
-      :last-child {
-        border: none;
-        border-bottom: 1px solid #dadada;
+    }}
+  }
+  :nth-child(4) {
+    ${(props) => {
+      if (props.className === "3") {
+        return css`
+          border-bottom: 1px solid white;
+          color: #111111;
+          height: 100%;
+        `;
+      } else {
+        return css`
+          border-bottom: 1px solid #dadada;
+          color: #999999;
+        `;
       }
-    }
+    }}
+  }
+  :nth-child(5) {
+    ${(props) => {
+      if (props.className === "4") {
+        return css`
+          border-bottom: 1px solid white;
+          color: #111111;
+          height: 100%;
+        `;
+      } else {
+        return css`
+          border-bottom: 1px solid #dadada;
+          color: #999999;
+        `;
+      }
+    }}
+  }
+  :last-child {
+    border: none;
+    border-bottom: 1px solid #dadada;
   }
 `;
 export default ProductDetail;
