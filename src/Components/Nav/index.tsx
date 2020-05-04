@@ -36,7 +36,6 @@ const Nav = () => {
         </NavSearch>
         <NavRight>
           <RightItem>
-            {console.log(`loginState : ${loginState}`)}
             {loginState ? onLogOutComponent() : onLogInComponent()}
             <Li>JOIN</Li>
             <Li>MYPAGE</Li>
