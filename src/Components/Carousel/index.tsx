@@ -88,7 +88,7 @@ const BtnDiv = styled.div`
   left: 1px;
   width: 100px;
   height: 100px;
-  z-index: 100;
+  z-index: 98;
   cursor: pointer;
   img {
     width: 100px;
@@ -102,7 +102,7 @@ const BtnDiv2 = styled.div`
   right: 1px;
   width: 100px;
   height: 100px;
-  z-index: 100;
+  z-index: 98;
   cursor: pointer;
   img {
     width: 100px;

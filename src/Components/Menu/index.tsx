@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import MenuImg from "../../Images/menu.png";
+import MenuModal from "../MenuModal";
+import close from "../../Images/close.png";
 import { Link } from "react-router-dom";
-const Menu = () => {
+
+const Menu = (props: any) => {
+  const [modal, setModal] = useState<boolean>(false);
+  const closeModal = () => {
+    setModal(false);
+  };
+  const openModal = () => {
+    setModal(true);
+  };
+
+  const openClose = () => {
+    if (modal === false) {
+      return <MenuCategory src={MenuImg} onClick={openModal} />;
+    } else if (modal === true) {
+      return <MenuCategory src={close} onClick={closeModal} />;
+    }
+  };
   return (
     <MenuBlock>
-      <MenuCategory src={MenuImg}></MenuCategory>
+      {openClose()}
 
       <MenuList>
         <MenuItem>
@@ -66,6 +84,7 @@ const Menu = () => {
           </ul>
         </MenuItem>
       </MenuList>
+      <MenuModal isOpen={modal} />
     </MenuBlock>
   );
 };
@@ -74,6 +93,7 @@ export default Menu;
 
 const MenuBlock = styled.div`
   display: flex;
+
   position: relative;
   width: 100%;
   height: 51px;
@@ -107,12 +127,20 @@ const MenuItem = styled.li`
   font-weight: 800;
   border-right: 1px solid #333;
   span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 100%;
     :hover {
       color: #ffdb00;
     }
   }
-  ul {
+  :hover ul {
     display: block;
+  }
+  ul {
+    display: none;
     position: absolute;
     top: 40px;
     width: 100%;
@@ -126,6 +154,7 @@ const MenuItem = styled.li`
       color: #e7e7e7;
       :hover {
         background-color: gray;
+        color: white;
       }
     }
   }
