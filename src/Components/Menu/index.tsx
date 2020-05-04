@@ -8,16 +8,63 @@ const Menu = () => {
       <MenuCategory src={MenuImg}></MenuCategory>
 
       <MenuList>
-        <Link to="/shop" style={{ textDecoration: "none" }}>
-          <MenuItem>NEW ARRIVAL</MenuItem>
-        </Link>
-        <MenuItem>MAN</MenuItem>
-        <MenuItem>WOMAN</MenuItem>
-        <MenuItem>KIDS</MenuItem>
-        <MenuItem>BAG</MenuItem>
-        <MenuItem>HEAD WEAR</MenuItem>
-        <MenuItem>FOOT WEAR</MenuItem>
-        <MenuItem>SKIN CARE</MenuItem>
+        <MenuItem>
+          <span>NEW ARRIVAL</span>
+          <ul>
+            <li>HOT SUMMER</li>
+            <li>20SS APPAREL</li>
+          </ul>
+        </MenuItem>
+
+        <MenuItem>
+          <span>MAN</span>
+          <ul>
+            <li>HOT SUMMER</li>
+            <li>20SS APPAREL</li>
+          </ul>
+        </MenuItem>
+        <MenuItem>
+          <span>WOMAN</span>
+          <ul>
+            <li>HOT SUMMER</li>
+            <li>20SS APPAREL</li>
+          </ul>
+        </MenuItem>
+        <MenuItem>
+          <span>KIDS</span>
+          <ul>
+            <li>HOT SUMMER</li>
+            <li>20SS APPAREL</li>
+          </ul>
+        </MenuItem>
+        <MenuItem>
+          <span>BAG</span>
+          <ul>
+            <li>HOT SUMMER</li>
+            <li>20SS APPAREL</li>
+          </ul>
+        </MenuItem>
+        <MenuItem>
+          <span>HEAD WEAR</span>
+          <ul>
+            <li>HOT SUMMER</li>
+            <li>20SS APPAREL</li>
+          </ul>
+        </MenuItem>
+        <MenuItem>
+          <span>FOOT WEAR</span>
+          <ul>
+            <li>HOT SUMMER</li>
+            <li>20SS APPAREL</li>
+          </ul>
+        </MenuItem>
+        <MenuItem>
+          <span>SKIN CARE</span>
+          <ul>
+            <li>HOT SUMMER</li>
+            <li>20SS APPAREL</li>
+          </ul>
+        </MenuItem>
       </MenuList>
     </MenuBlock>
   );
@@ -40,16 +87,17 @@ const MenuCategory = styled.img`
 `;
 const MenuList = styled.ul`
   display: flex;
-  position: relative;
   align-items: center;
   justify-content: center;
-  margin-left: 50px;
+  margin-left: 70px;
   width: 99%;
   height: 51px;
 `;
 const MenuItem = styled.li`
   display: flex;
+  position: relative;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
   cursor: pointer;
   width: 160px;
@@ -58,8 +106,27 @@ const MenuItem = styled.li`
   font-size: 13px;
   font-weight: 800;
   border-right: 1px solid #333;
+  span {
+    :hover {
+      color: #ffdb00;
+    }
+  }
+  ul {
+    display: block;
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    background-color: #111111;
+    opacity: 0.8;
+    z-index: 100;
 
-  :hover {
-    color: yellow;
+    li {
+      padding: 5px 10px 7px 19px;
+      font-size: 12px;
+      color: #e7e7e7;
+      :hover {
+        background-color: gray;
+      }
+    }
   }
 `;

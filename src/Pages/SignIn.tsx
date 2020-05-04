@@ -1,22 +1,20 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Layout from "../Components/Layout";
 import FacebookLogin from "../Images/fblogin.png";
-import crypto from 'crypto';
+import crypto from "crypto";
 
 import { Link } from "react-router-dom";
 import { stringify } from "querystring";
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from "../Redux/index"; 
-import { setLogIn, setLogOut, changeId } from "../Redux/login"; 
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../Redux/index";
+import { setLogIn, setLogOut, changeId } from "../Redux/login";
 
-
-const SignIn = (props : any) => {
-
+const SignIn = (props: any) => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const {loginState, userId} = useSelector((redux: RootState) => redux.login);
-  const dispatch = useDispatch(); 
+  const { loginState, userId } = useSelector((redux: RootState) => redux.login);
+  const dispatch = useDispatch();
 
   const onLogIn = () => {
     dispatch(setLogIn());
@@ -24,22 +22,18 @@ const SignIn = (props : any) => {
   const onLogOut = () => {
     dispatch(setLogOut());
   };
-  const onChangeId = (id : string) => {
+  const onChangeId = (id: string) => {
     dispatch(changeId(id));
   };
 
   const onChangeInput = (e: any) => {
-
     console.log(loginState, userId);
-    
-    if (e.target.id === 'idBox')
-      setId(e.target.value);
-    else
-      setPassword(e.target.value);
-  };
-  
-  const tryLogin = () => {
 
+    if (e.target.id === "idBox") setId(e.target.value);
+    else setPassword(e.target.value);
+  };
+
+  const tryLogin = () => {
     /* // 비밀번호 암호화 아이디어 (SHA256에서 한층 더 보안을 강화한 HMAC SHA256방식)
 const crypto = require('crypto');
 
@@ -51,33 +45,29 @@ const hashed = crypto.createHmac('sha256', secret).update(password).digest('hex'
 console.log(hashed);
     */
 
-
     const xhr = new XMLHttpRequest();
     const data = {
       id: id,
       password: password,
     };
 
-    
-
     xhr.onload = function () {
       if (xhr.status === 200 || xhr.status === 304) {
         var tests = JSON.parse(xhr.responseText);
-        console.log('로그인 성공', xhr.responseText);
+        console.log("로그인 성공", xhr.responseText);
         onChangeId(id);
         onLogIn();
         props.history.push("./");
-
       } else {
-        console.log('로그인 실패', xhr.responseText);
+        console.log("로그인 실패", xhr.responseText);
         onLogOut();
       }
     };
-    xhr.open('POST', 'http://220.73.54.64:8999/accounts/login');
-    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.open("POST", "http://220.73.54.64:8999/accounts/login");
+    xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(data));
-  }
-  
+  };
+
   return (
     <Layout>
       <LoginBlock>
@@ -88,8 +78,18 @@ console.log(hashed);
               <FormTop>회원 로그인</FormTop>
               <IdPassForm>
                 <LoginInput>
-                  <input type="text" placeholder="아이디" onChange={onChangeInput} id='idBox'/>
-                  <input type="password" placeholder="비밀번호" onChange={onChangeInput} id='pwBox'/>
+                  <input
+                    type="text"
+                    placeholder="아이디"
+                    onChange={onChangeInput}
+                    id="idBox"
+                  />
+                  <input
+                    type="password"
+                    placeholder="비밀번호"
+                    onChange={onChangeInput}
+                    id="pwBox"
+                  />
                 </LoginInput>
                 <LoginBtn onClick={tryLogin}>로그인</LoginBtn>
               </IdPassForm>
@@ -109,10 +109,7 @@ console.log(hashed);
     </Layout>
   );
 };
-const Wrap = styled.div`
-  display: flex;
-  width: 100%;
-`;
+
 const LoginBlock = styled.div`
   display: flex;
   justify-content: center;
@@ -195,7 +192,7 @@ const LoginBtn = styled.button`
   font-size: 15px;
   font-weight: bold;
   &:hover {
-    background-color: #ffff00;
+    background-color: #ffdb00;
     color: black;
   }
 `;

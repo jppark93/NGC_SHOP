@@ -270,7 +270,7 @@ const BtnChoice = styled.div`
       border: none;
       margin: 0px;
       &:hover {
-        background-color: yellow;
+        background-color: #ffdb00;
         color: black;
       }
     }

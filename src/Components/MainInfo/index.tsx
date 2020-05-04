@@ -19,7 +19,7 @@ const MainInfoBlock = styled.div`
   width: 1440px;
   margin-right: auto;
   margin-left: auto;
-  border: 1px solid pink;
+
   margin-top: 80px;
 `;
 
