@@ -7,6 +7,7 @@ import SignUpTwo from "./Pages/SignUpTwo";
 import Cart from "./Pages/Cart";
 import Shop from "./Pages/Shop";
 import Product from "./Pages/ProductDetail";
+import AddressSearch from "./Pages/AddressSearch";
 const Routes = () => {
   return (
     <Router>
@@ -15,11 +16,14 @@ const Routes = () => {
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Route path="/signup2" component={SignUpTwo} />
+        <Route path="/addresssearch" component={AddressSearch} />
         <Route path="/cart" component={Cart} />
         <Route path="/shop" component={Shop} />
         <Route path="/product" component={Product} />
       </Switch>
+      
     </Router>
+    
   );
 };
 

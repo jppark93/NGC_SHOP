@@ -5,18 +5,26 @@ import Layout from "../Components/Layout";
 import Next from "../Images/next.png";
 import Next2 from "../Images/next2.png";
 import crypto from "crypto";
+import DaumPostcode from 'react-daum-postcode';
+
 
 const SignUpTwo = (props: any) => {
   const [id, setId] = useState("");
   const [pw1, setPw1] = useState("");
   const [pw2, setPw2] = useState("");
   const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
+  const [bigAddress, setBigAddress] = useState("");
+  const [smallAddress, setSmallAddress] = useState("");
   const [idError, setIdError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [dupIdCheck, setDupIdCheck] = useState(false);
   const [dupEmailCheck, setDupEmailCheck] = useState(false);
 
+  const onAddressSearchButtonClick = () => {
+    window.open("/addresssearch", "PopupWin", "width=500,height=600");
+  }
+
+  // 회원가입 버튼 클릭시 실행되는 함수
   const onSignUpButtonClick = () => {
     // 체크1. 작성하지 않은 칸이 있는가?
     if (
@@ -25,7 +33,8 @@ const SignUpTwo = (props: any) => {
         pw1.length > 0 &&
         pw2.length > 0 &&
         email.length > 0 &&
-        address.length > 0
+        bigAddress.length > 0 &&
+        smallAddress.length > 0
       )
     ) {
       alert("작성하지 않은 항목이 존재합니다.");
@@ -55,7 +64,7 @@ const SignUpTwo = (props: any) => {
       id: id,
       password: pw1,
       email: email,
-      address: address,
+      address: bigAddress + " " + smallAddress,
     };
 
     xhr.onload = function () {
@@ -74,6 +83,7 @@ const SignUpTwo = (props: any) => {
   };
 
   const onInputChanged = (e: any) => {
+    
     switch (e.target.id) {
       case "idBox":
         const input_id = /^[a-zA-Z]{2,15}|[a-zA-Z]{2,15}\s[a-zA-Z]{2,15}$/;
@@ -97,8 +107,10 @@ const SignUpTwo = (props: any) => {
         setDupEmailCheck(false);
         break;
 
-      case "addressBox":
-        setAddress(e.target.value);
+      case "smallAddressBox":
+        let big : any = document.getElementById("bigAddressBox");
+        setBigAddress(big ? big.value : "");
+        setSmallAddress(e.target.value);
         break;
     }
   };
@@ -166,18 +178,18 @@ const SignUpTwo = (props: any) => {
     if (pw1.length === 0) {
       return <div className="blue">&nbsp;</div>;
     } else if (pw1.length >= 0 && pw1.length < 3) {
-      return <Red>사용불가능한 패스워드입니다.</Red>;
+      return <Red>사용 불가능한 패스워드입니다.</Red>;
     } else {
-      return <div className="blue">"사용가능한 패스워드입니다."</div>;
+      return <div className="blue">사용 가능한 패스워드입니다.</div>;
     }
   };
   const rePw_InputInfo = () => {
     if (pw1.length === 0) {
       return <div className="blue">&nbsp; </div>;
     } else if (pw1.length !== pw2.length) {
-      return <Red>"두 비밀번호가 일치하지 않습니다."</Red>;
+      return <Red>두 비밀번호가 일치하지 않습니다.</Red>;
     } else {
-      return <div className="blue">"두 비밀번호가 일치합니다."</div>;
+      return <div className="blue">두 비밀번호가 일치합니다.</div>;
     }
   };
   const email_InputInfo = () => {
@@ -188,7 +200,7 @@ const SignUpTwo = (props: any) => {
       return <div className="blue">사용할 수 있는 이메일입니다.</div>;
     }
     else if (!emailError && email.length > 4){
-      return <Red> 이메일 중복 체크를 하지 않았거나, 이미 가입된 이메일입니다. </Red>;
+      return <Red>이메일 중복 체크를 하지 않았거나, 이미 가입된 이메일입니다.</Red>;
     }
     else {
       return <Red>올바르지 않은 이메일 형식입니다.</Red>;
@@ -306,13 +318,14 @@ const SignUpTwo = (props: any) => {
                 <div>
                   <input
                     type="text"
-                    id="addressBox"
+                    id="bigAddressBox"
                     onChange={onInputChanged}
-                    value={address}
+                    value={bigAddress}
+                    readOnly
                   />
-                  <Btn>우편번호검색</Btn>
+                  <Btn type="button" onClick={onAddressSearchButtonClick}>우편번호검색</Btn>
                 </div>
-                <input type="text" />
+                <input type="text" id="smallAddressBox" onChange={onInputChanged} value={smallAddress}/>
               </div>
             </FormBox>
             <ButtonBox>
