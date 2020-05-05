@@ -4,16 +4,7 @@ import MenuImg from "../../Images/menu.png";
 import MenuModal from "../MenuModal";
 import close from "../../Images/close.png";
 import { Link } from "react-router-dom";
-const MenuName = [
-  { ul: "NEW ARRIVAL", one: "HOT SUMMER", two: "20SS APPAREL" },
-  { ul: "MAN", one: "OUTER", two: "TOP", three: "Bottom" },
-  { ul: "WOMAN", one: "HOT SUMMER", two: "20SS APPAREL" },
-  { ul: "KIDS", one: "HOT SUMMER", two: "20SS APPAREL" },
-  { ul: "BAG", one: "HOT SUMMER", two: "20SS APPAREL" },
-  { ul: "HEAD WEAR", one: "HOT SUMMER", two: "20SS APPAREL" },
-  { ul: "FOOT WEAR", one: "HOT SUMMER", two: "20SS APPAREL" },
-  { ul: "SKIN CARE", one: "HOT SUMMER", two: "20SS APPAREL" },
-];
+
 const Menu = (props: any) => {
   const [modal, setModal] = useState<boolean>(false);
   const closeModal = () => {
@@ -154,9 +145,11 @@ const MenuItem = styled.li`
       color: #ffdb00;
     }
   }
-
-  ul {
+  :hover ul {
     display: block;
+  }
+  ul {
+    display: none;
     position: absolute;
     top: 50px;
     width: 100%;
