@@ -139,7 +139,7 @@ const MenuItem = styled.li`
   justify-content: center;
   cursor: pointer;
   width: 160px;
-  height: 30px;
+  height: 50px;
   color: #ffffff;
   font-size: 13px;
   font-weight: 800;
@@ -148,7 +148,7 @@ const MenuItem = styled.li`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30px;
+    height: 50px;
     width: 100%;
     :hover {
       color: #ffdb00;
@@ -158,7 +158,7 @@ const MenuItem = styled.li`
   ul {
     display: block;
     position: absolute;
-    top: 40px;
+    top: 50px;
     width: 100%;
     background-color: #111111;
     opacity: 0.8;
