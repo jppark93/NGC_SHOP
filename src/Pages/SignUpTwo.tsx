@@ -324,16 +324,14 @@ const SignUpTwo = (props: any) => {
                     우편번호검색
                   </Btn>
                 </div>
-<<<<<<< HEAD
+
                 <input
                   type="text"
                   id="smallAddressBox"
                   onChange={onInputChanged}
                   value={smallAddress}
+                  readOnly
                 />
-=======
-                <input type="text" id="smallAddressBox" onChange={onInputChanged} value={smallAddress} readOnly/>
->>>>>>> ef376c5923c97dddb996b71db59040d8e6a72fb6
               </div>
             </FormBox>
             <ButtonBox>
