@@ -22,6 +22,7 @@ const AddressSearch = (props: any) => {
     }
 
     window.opener.bigAddressBox.value = fullAddress;
+    window.opener.smallAddressBox.readOnly = false;
     window.close();
   }
 

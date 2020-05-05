@@ -21,6 +21,7 @@ const SignUpTwo = (props: any) => {
   const [dupEmailCheck, setDupEmailCheck] = useState(false);
 
   const onAddressSearchButtonClick = () => {
+    setSmallAddress("");
     window.open("/addresssearch", "PopupWin", "width=500,height=600");
   }
 
@@ -325,7 +326,7 @@ const SignUpTwo = (props: any) => {
                   />
                   <Btn type="button" onClick={onAddressSearchButtonClick}>우편번호검색</Btn>
                 </div>
-                <input type="text" id="smallAddressBox" onChange={onInputChanged} value={smallAddress}/>
+                <input type="text" id="smallAddressBox" onChange={onInputChanged} value={smallAddress} readOnly/>
               </div>
             </FormBox>
             <ButtonBox>
