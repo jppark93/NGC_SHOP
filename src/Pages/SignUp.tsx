@@ -6,9 +6,9 @@ import Next2 from "../Images/next2.png";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
-  const [checkAll, setCheckAll] = useState(false);
-  const [check1, setCheck1] = useState(false);
-  const [check2, setCheck2] = useState(false);
+  const [checkAll, setCheckAll] = useState<boolean>(false);
+  const [check1, setCheck1] = useState<boolean>(false);
+  const [check2, setCheck2] = useState<boolean>(false);
   let checkAll_temp = checkAll;
   let check1_temp = check1;
   let check2_temp = check2;

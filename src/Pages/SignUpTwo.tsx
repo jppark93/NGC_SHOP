@@ -5,24 +5,23 @@ import Layout from "../Components/Layout";
 import Next from "../Images/next.png";
 import Next2 from "../Images/next2.png";
 import crypto from "crypto";
-import DaumPostcode from 'react-daum-postcode';
-
+import DaumPostcode from "react-daum-postcode";
 
 const SignUpTwo = (props: any) => {
-  const [id, setId] = useState("");
-  const [pw1, setPw1] = useState("");
-  const [pw2, setPw2] = useState("");
-  const [email, setEmail] = useState("");
-  const [bigAddress, setBigAddress] = useState("");
-  const [smallAddress, setSmallAddress] = useState("");
-  const [idError, setIdError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
-  const [dupIdCheck, setDupIdCheck] = useState(false);
-  const [dupEmailCheck, setDupEmailCheck] = useState(false);
+  const [id, setId] = useState<string>("");
+  const [pw1, setPw1] = useState<string>("");
+  const [pw2, setPw2] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [bigAddress, setBigAddress] = useState<string>("");
+  const [smallAddress, setSmallAddress] = useState<string>("");
+  const [idError, setIdError] = useState<boolean>(false);
+  const [emailError, setEmailError] = useState<boolean>(false);
+  const [dupIdCheck, setDupIdCheck] = useState<boolean>(false);
+  const [dupEmailCheck, setDupEmailCheck] = useState<boolean>(false);
 
   const onAddressSearchButtonClick = () => {
     window.open("/addresssearch", "PopupWin", "width=500,height=600");
-  }
+  };
 
   // 회원가입 버튼 클릭시 실행되는 함수
   const onSignUpButtonClick = () => {
@@ -83,7 +82,6 @@ const SignUpTwo = (props: any) => {
   };
 
   const onInputChanged = (e: any) => {
-    
     switch (e.target.id) {
       case "idBox":
         const input_id = /^[a-zA-Z]{2,15}|[a-zA-Z]{2,15}\s[a-zA-Z]{2,15}$/;
@@ -108,7 +106,7 @@ const SignUpTwo = (props: any) => {
         break;
 
       case "smallAddressBox":
-        let big : any = document.getElementById("bigAddressBox");
+        let big: any = document.getElementById("bigAddressBox");
         setBigAddress(big ? big.value : "");
         setSmallAddress(e.target.value);
         break;
@@ -161,19 +159,18 @@ const SignUpTwo = (props: any) => {
     xhr.send(JSON.stringify(data));
   };
   const id_InputInfo = () => {
-    if (id.length === 0){
+    if (id.length === 0) {
       return <div className="blue"> &nbsp; </div>;
-    }
-    else if (dupIdCheck){
+    } else if (dupIdCheck) {
       return <div className="blue">사용할 수 있는 아이디입니다.</div>;
-    }
-    else if (!idError && id.length > 4){
-      return <Red> 아이디 중복 체크를 하지 않았거나, 이미 가입된 아이디입니다. </Red>;
-    }
-    else {
+    } else if (!idError && id.length > 4) {
+      return (
+        <Red> 아이디 중복 체크를 하지 않았거나, 이미 가입된 아이디입니다. </Red>
+      );
+    } else {
       return <Red>올바르지 않은 아이디 형식입니다.</Red>;
     }
-  }
+  };
   const pw_InputInfo = () => {
     if (pw1.length === 0) {
       return <div className="blue">&nbsp;</div>;
@@ -193,16 +190,15 @@ const SignUpTwo = (props: any) => {
     }
   };
   const email_InputInfo = () => {
-    if (email.length === 0){
+    if (email.length === 0) {
       return <div className="blue"> &nbsp; </div>;
-    }
-    else if (dupEmailCheck){
+    } else if (dupEmailCheck) {
       return <div className="blue">사용할 수 있는 이메일입니다.</div>;
-    }
-    else if (!emailError && email.length > 4){
-      return <Red>이메일 중복 체크를 하지 않았거나, 이미 가입된 이메일입니다.</Red>;
-    }
-    else {
+    } else if (!emailError && email.length > 4) {
+      return (
+        <Red>이메일 중복 체크를 하지 않았거나, 이미 가입된 이메일입니다.</Red>
+      );
+    } else {
       return <Red>올바르지 않은 이메일 형식입니다.</Red>;
     }
     /*
@@ -216,7 +212,7 @@ const SignUpTwo = (props: any) => {
       <Red>올바르지 않은 이메일 형식입니다.</Red>
     )}
     */
-  }
+  };
 
   return (
     <Layout>
@@ -323,9 +319,16 @@ const SignUpTwo = (props: any) => {
                     value={bigAddress}
                     readOnly
                   />
-                  <Btn type="button" onClick={onAddressSearchButtonClick}>우편번호검색</Btn>
+                  <Btn type="button" onClick={onAddressSearchButtonClick}>
+                    우편번호검색
+                  </Btn>
                 </div>
-                <input type="text" id="smallAddressBox" onChange={onInputChanged} value={smallAddress}/>
+                <input
+                  type="text"
+                  id="smallAddressBox"
+                  onChange={onInputChanged}
+                  value={smallAddress}
+                />
               </div>
             </FormBox>
             <ButtonBox>

@@ -8,7 +8,15 @@ const MenuModal = ({ isOpen }: Bool) => {
     <React.Fragment>
       {isOpen ? (
         <React.Fragment>
-          <ModalDiv>모달 시발</ModalDiv>
+          <ModalDiv>
+            <ul>
+              <li>
+                <div>
+                  <ul></ul>
+                </div>
+              </li>
+            </ul>
+          </ModalDiv>
         </React.Fragment>
       ) : null}
     </React.Fragment>
@@ -22,5 +30,14 @@ const ModalDiv = styled.div`
   border: 1px solid pink;
   background-color: white;
   z-index: 99;
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: -30px 0px 0px 0px;
+    li {
+      display: block;
+    }
+  }
 `;
 export default MenuModal;

@@ -11,8 +11,8 @@ import { RootState } from "../Redux/index";
 import { setLogIn, setLogOut, changeId } from "../Redux/login";
 
 const SignIn = (props: any) => {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
+  const [id, setId] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const { loginState, userId } = useSelector((redux: RootState) => redux.login);
   const dispatch = useDispatch();
 
