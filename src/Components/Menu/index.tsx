@@ -121,7 +121,7 @@ const MenuItem = styled.li`
   justify-content: center;
   cursor: pointer;
   width: 160px;
-  height: 50px;
+  height: 100%;
   color: #ffffff;
   font-size: 13px;
   font-weight: 800;
@@ -130,7 +130,7 @@ const MenuItem = styled.li`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
+    height: 100%;
     width: 100%;
     :hover {
       color: #ffdb00;
