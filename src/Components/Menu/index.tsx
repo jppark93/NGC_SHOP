@@ -92,6 +92,26 @@ const Menu = (props: any) => {
             <li>SKIN CARE</li>
           </ul>
         </MenuItem>
+        <MenuItem>
+          <span>SUITCASE</span>
+          <ul>
+            <li>케리어</li>
+            <li>케리어 세트</li>
+            <li>기내용</li>
+            <li>화물용</li>
+            <li>액세서리</li>
+          </ul>
+        </MenuItem>
+        <MenuItem>
+          <span>CAMPING</span>
+          <ul>
+            <li>텐트</li>
+            <li>타프</li>
+            <li>테이블&의자</li>
+            <li>코펠/주방</li>
+            <li>액세서리</li>
+          </ul>
+        </MenuItem>
       </MenuList>
       <MenuModal isOpen={modal} />
     </MenuBlock>
@@ -129,12 +149,15 @@ const MenuItem = styled.li`
   flex-direction: column;
   justify-content: center;
   cursor: pointer;
-  width: 160px;
+  width: 10%;
   height: 100%;
   color: #ffffff;
   font-size: 13px;
   font-weight: 800;
   border-right: 1px solid #333;
+  :first-child {
+    border-left: 1px solid #333;
+  }
   span {
     display: flex;
     justify-content: center;

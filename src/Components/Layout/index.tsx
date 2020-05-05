@@ -17,6 +17,7 @@ const Layout = (props: any) => {
     </MainBlock>
   );
 };
+
 const MainBlock = styled.div`
   display: flex;
   position: relative;
