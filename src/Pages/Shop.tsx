@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Layout from "../Components/Layout";
 import ShopBar from "../Components/ShopBar";
 import Product from "../Components/Product";
-import Empty from "../Components/Empty";
+import { ShopMenus } from "../data/data";
 const Shop = () => {
   return (
     <Layout>
@@ -12,11 +12,25 @@ const Shop = () => {
         <div>
           <ShopMenu>
             <MenuBar>TOP</MenuBar>
-            <ShopBar />
-            <ShopBar />
-            <ShopBar />
-            <ShopBar />
-            <ShopBar />
+            {ShopMenus.map((el, index) => {
+              return (
+                <ShopBar
+                  key={index}
+                  title={el.title}
+                  one={el.one}
+                  two={el.two}
+                  three={el.three}
+                  four={el.four}
+                  five={el.five}
+                  six={el.six}
+                  seven={el.seven}
+                  eight={el.eight}
+                  nine={el.nine}
+                  ten={el.ten}
+                  eleven={el.eleven}
+                />
+              );
+            })}
           </ShopMenu>
         </div>
         <ShopProduct>
@@ -73,7 +87,6 @@ const ShopMenu = styled.div`
   display: flex;
   flex-direction: column;
   width: 277.88px;
-  height: 541px;
 
   margin-top: 50px;
   margin-left: 20px;

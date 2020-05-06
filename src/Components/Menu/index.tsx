@@ -185,6 +185,7 @@ const MenuItem = styled.li`
       padding: 5px 10px 7px 19px;
       font-size: 12px;
       color: #e7e7e7;
+
       :hover {
         background-color: gray;
         color: white;

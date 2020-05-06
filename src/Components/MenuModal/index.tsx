@@ -172,6 +172,18 @@ const MenuModal = ({ isOpen }: Bool) => {
               </ParentsLi>
               <ParentsLi>
                 <MenuContDiv>
+                  <span>SUITCASE</span>
+                  <UlOne>
+                    <LiOne>케리어</LiOne>
+                    <LiOne>케리어 세트</LiOne>
+                    <LiOne>기내용</LiOne>
+                    <LiOne>화물용</LiOne>
+                    <LiOne>액세서리</LiOne>
+                  </UlOne>
+                </MenuContDiv>
+              </ParentsLi>
+              <ParentsLi>
+                <MenuContDiv>
                   <span>CAMPING</span>
                   <UlOne>
                     <LiOne>텐트</LiOne>
@@ -194,7 +206,7 @@ const ModalDiv = styled.div`
   display: flex;
   top: 50px;
   width: 100%;
-  height: 500px;
+  border-bottom: 1px solid gray;
   background-color: white;
   z-index: 99;
 `;
@@ -203,6 +215,8 @@ const ParentsUl = styled.ul`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  height: 600px;
+  overflow-y: auto;
   padding: 20px 20px 0px 20px;
   margin-top: 30px;
 `;
