@@ -142,6 +142,7 @@ const PickList = styled.ul`
     width: 73.13px;
     height: 22.6px;
     font-size: 12px;
+    cursor: pointer;
   }
 `;
 const ProductDiv = styled.div`

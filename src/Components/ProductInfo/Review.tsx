@@ -213,7 +213,7 @@ const ReviewBtn = styled.div`
     font-size: 15px;
     font-weight: bold;
     &:hover {
-      background-color: yellow;
+      background-color: #ffdb00;
       color: black;
     }
   }
