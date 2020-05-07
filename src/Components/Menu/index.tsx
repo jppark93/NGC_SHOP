@@ -3,7 +3,7 @@ import styled from "styled-components";
 import MenuImg from "../../Images/menu.png";
 import MenuModal from "../MenuModal";
 import close from "../../Images/close.png";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 const Menu = (props: any) => {
   const [modal, setModal] = useState<boolean>(false);
@@ -21,6 +21,9 @@ const Menu = (props: any) => {
       return <MenuCategory src={close} onClick={closeModal} />;
     }
   };
+  const goShop = () => {
+    props.history.push("./shop");
+  };
   return (
     <MenuBlock>
       {openClose()}
@@ -29,7 +32,7 @@ const Menu = (props: any) => {
         <MenuItem>
           <span>NEW ARRIVAL</span>
           <ul>
-            <li>HOT SUMMER</li>
+            <li onClick={goShop}>HOT SUMMER</li>
             <li>20SS APPAREL</li>
           </ul>
         </MenuItem>
@@ -118,7 +121,7 @@ const Menu = (props: any) => {
   );
 };
 
-export default Menu;
+export default withRouter(Menu);
 
 const MenuBlock = styled.div`
   display: flex;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 const Product = () => {
   return (
     <ProductLi>
@@ -77,4 +77,4 @@ const EX = styled.div`
     margin-top: 5px;
   }
 `;
-export default Product;
+export default withRouter(Product);

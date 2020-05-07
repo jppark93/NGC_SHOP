@@ -103,5 +103,5 @@ const Span = styled.span`
       }
     }}
   }
-}`;
+`;
 export default ShopBar;

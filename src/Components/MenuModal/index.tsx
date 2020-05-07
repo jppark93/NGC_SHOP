@@ -289,6 +289,8 @@ const LowestLi = styled.li`
   font-weight: bold;
   margin-bottom: 15px;
   cursor: pointer;
+  @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap");
+  font-family: "Raleway", sans-serif;
   :hover {
     text-decoration: underline;
   }

@@ -6,6 +6,8 @@ import Info from "../Components/ProductInfo/Info";
 import ExChange from "../Components/ProductInfo/ExChange";
 import Review from "../Components/ProductInfo/Review";
 import Delivery from "../Components/ProductInfo/Delivery";
+import ItemList from "../Components/Item";
+import Item from "../Components/Item";
 const ProductDetail = () => {
   const [changeNum, setChangeNum] = useState<string>("1");
   const pageChange = () => {
@@ -43,36 +45,36 @@ const ProductDetail = () => {
                 </h1>
               </PdName>
               <ItemDetail>
-                <dl>
-                  <dt>정가</dt>
-                  <dd>69,000원</dd>
-                </dl>
-                <dl>
-                  <dt>판매가</dt>
-                  <dd>
+                <ProductDl>
+                  <ProductDt>정가</ProductDt>
+                  <ProductDd>69,000원</ProductDd>
+                </ProductDl>
+                <ProductDl>
+                  <ProductDt>판매가</ProductDt>
+                  <ProductDd>
                     <h1>69,000원</h1>
-                  </dd>
-                </dl>
-                <dl>
-                  <dt>모델명</dt>
-                  <dd>N202MRG640905</dd>
-                </dl>
-                <dl>
-                  <dt>원산지</dt>
-                  <dd>한국</dd>
-                </dl>
-                <dl>
-                  <dt>제조사</dt>
-                  <dd>(주)더네이쳐홀딩스</dd>
-                </dl>
-                <dl>
-                  <dt>브랜드</dt>
-                  <dd>내셔널지오그래픽</dd>
-                </dl>
-                <dl>
-                  <dt>출시일</dt>
-                  <dd>2020-04-17</dd>
-                </dl>
+                  </ProductDd>
+                </ProductDl>
+                <ProductDl>
+                  <ProductDt>모델명</ProductDt>
+                  <ProductDd>N202MRG640905</ProductDd>
+                </ProductDl>
+                <ProductDl>
+                  <ProductDt>원산지</ProductDt>
+                  <ProductDd>한국</ProductDd>
+                </ProductDl>
+                <ProductDl>
+                  <ProductDt>제조사</ProductDt>
+                  <ProductDd>(주)더네이쳐홀딩스</ProductDd>
+                </ProductDl>
+                <ProductDl>
+                  <ProductDt>브랜드</ProductDt>
+                  <ProductDd>내셔널지오그래픽</ProductDd>
+                </ProductDl>
+                <ProductDl>
+                  <ProductDt>출시일</ProductDt>
+                  <ProductDd>2020-04-17</ProductDd>
+                </ProductDl>
                 <Size>
                   <dl>
                     <dt>SIZE</dt>
@@ -87,6 +89,24 @@ const ProductDetail = () => {
                     </dd>
                   </dl>
                 </Size>
+                <ItemChoice>
+                  <tr>
+                    <ItemList />
+                    <ItemList />
+                    <ItemList />
+                    <ItemList />
+                  </tr>
+                  <ItemPrice>
+                    <Price>
+                      <PriceDt>총 상품금액</PriceDt>
+                      <PriceDd>159,000원</PriceDd>
+                    </Price>
+                    <Price>
+                      <PriceDt>총 상품금액</PriceDt>
+                      <PriceDd>159,000원</PriceDd>
+                    </Price>
+                  </ItemPrice>
+                </ItemChoice>
                 <BtnChoice>
                   <button type="button">장바구니</button>
                   <button type="button">찜하기</button>
@@ -130,12 +150,12 @@ const PdInfo = styled.div`
   display: block;
   width: 1200px;
   margin-top: 60px;
-  border: 1px solid pink;
 `;
 const Pd = styled.div`
   display: flex;
+  position: relative;
   width: 100%;
-  height: 700px;
+  height: 1000px;
   border: 1px solid pink;
 `;
 const PdBox = styled.div`
@@ -150,7 +170,7 @@ const PdImg = styled.div`
   justify-content: center;
   width: 602px;
   height: 602px;
-  border: 1px solid pink;
+  border: 1px solid #ebebeb;
 
   img {
     width: 500px;
@@ -158,16 +178,15 @@ const PdImg = styled.div`
   }
 `;
 const PdItemInfo = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: block;
+  position: relative;
   width: 556px;
-  height: 671px;
-  border: 1px solid black;
+
   margin-left: auto;
 `;
 const PdName = styled.div`
   width: 100%;
-  height: 56px;
+  height: 65px;
   font-size: 18px;
   color: #111111;
   font-weight: bold;
@@ -175,6 +194,7 @@ const PdName = styled.div`
   border-bottom: 1px solid #e6e6e6;
   h1 {
     width: 405px;
+    line-height: 1.5;
   }
 `;
 
@@ -184,56 +204,66 @@ const ItemDetail = styled.div`
   width: 100%;
   height: 326px;
   margin-top: 10px;
-  border: 1px solid pink;
+
+  @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap");
+  font-family: "Raleway", sans-serif;
+
+  h1 {
+    font-size: 16px;
+    color: #111111;
+    font-weight: bold;
+  }
+`;
+const ProductDl = styled.dl`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 37px;
+`;
+const ProductDt = styled.dt`
+  display: flex;
+  align-items: center;
+  width: 70px;
+  height: 18px;
+  color: #888888;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 20px;
+`;
+const ProductDd = styled.dd`
+  display: flex;
+  align-items: center;
+  width: 470px;
+  height: 18px;
+  font-size: 12px;
+  color: #111111;
+  margin-bottom: 20px;
+`;
+const Size = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  padding: 15px 0 5px 0;
+  border-top: 1px solid #dbdbdb;
   dl {
     display: flex;
     align-items: center;
     width: 100%;
-    height: 37px;
-    dt {
-      display: flex;
-      align-items: center;
-      width: 70px;
-      height: 18px;
-      color: #888888;
-      font-size: 12px;
-      font-weight: bold;
-    }
-    dd {
-      display: flex;
-      align-items: center;
-      width: 470px;
-      height: 18px;
-      font-size: 12px;
-      color: #111111;
-      h1 {
-        font-size: 16px;
-        color: #111111;
-        font-weight: bold;
-      }
-    }
-  }
-`;
-const Size = styled.div`
-  display: flex;
-  width: 550px;
-  height: 61px;
-  padding: 10px 0 5px 0;
-  border-top: 1px solid #dbdbdb;
-  dl {
-    display: flex;
-    width: 100%;
-    height: 45px;
+    height: 100%;
+
     dt {
       display: flex;
       align-items: center;
       font-size: 13px;
       color: #888888;
+      margin-right: 10px;
     }
     dd {
-      width: 470px;
+      width: 88%;
       height: 31px;
       border: #dbdbdb;
+      margin-left: auto;
       select {
         width: 100%;
         height: 100%;
@@ -243,12 +273,42 @@ const Size = styled.div`
     }
   }
 `;
+const ItemChoice = styled.div`
+  display: block;
+  width: 100%;
+  border: 1px solid pink;
+  tr {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #999;
+  }
+`;
+const ItemPrice = styled.div`
+  display: block;
+  width: 225px;
+  height: 107px;
+  margin-left: auto;
+`;
+const Price = styled.dl`
+  display: flex;
+  align-items: center;
+  width: 100%;
+`;
+const PriceDt = styled.dt`
+  display: flex;
+  align-items: center;
+  width: 100px;
+`;
+const PriceDd = styled.dd`
+  display: flex;
+  align-items: center;
+  width: 125px;
+`;
 const BtnChoice = styled.div`
   display: flex;
   width: 100%;
   height: 72px;
   padding-top: 20px;
-  border-top: 1px solid #111111;
   button {
     width: 170px;
     height: 52px;
@@ -299,9 +359,6 @@ const InfoDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 1200px;
-
-  margin-top: 100px;
-  border: 1px solid red;
 `;
 
 const BtnDiv = styled.div`

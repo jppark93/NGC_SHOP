@@ -227,7 +227,11 @@ const CommentBox = styled.div`
 `;
 const Pagination = styled.div`
   display: flex;
-
+  @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap");
+  font-family: "Raleway", sans-serif;
+  font-size: 12px;
+  color: #111111;
+  font-weight: bold;
   width: 100%;
   height: 48px;
   margin-top: 20px;

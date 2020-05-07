@@ -76,6 +76,9 @@ const ItemDiv = styled.div`
       font-size: 13px;
       color: #111111;
       padding-bottom: 3px;
+      @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap");
+      font-family: "Raleway", sans-serif;
+      line-height: 1.5;
     }
   }
 `;
