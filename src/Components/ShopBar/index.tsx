@@ -98,7 +98,7 @@ const Span = styled.span`
     ${(props) => {
       if (props.className === "true") {
         return css`
-          transform: rotate(140deg);
+          transform: rotate(135deg);
         `;
       }
     }}

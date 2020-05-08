@@ -19,16 +19,12 @@ const MainInfoCp = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   width: 450px;
-
-  border: 1px solid pink;
   margin-left: 23px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 `;
 const ImgBlock = styled.div`
   position: relative;
   width: 450px;
-
-  border: 1px solid pink;
   overflow: hidden;
 `;
 const Img = styled.img`
@@ -64,7 +60,8 @@ const ExpBlock = styled.div`
   }
   span {
     font-size: 15px;
-    margin-left: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     margin-top: 15px;
     font-weight: bold;
     color: #999999;

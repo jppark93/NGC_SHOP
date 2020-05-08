@@ -32,8 +32,8 @@ const Info = () => {
   );
 };
 const ItemDiv = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: block;
+
   width: 100%;
   h3 {
     font-size: 18px;

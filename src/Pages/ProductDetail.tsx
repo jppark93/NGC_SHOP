@@ -7,7 +7,7 @@ import ExChange from "../Components/ProductInfo/ExChange";
 import Review from "../Components/ProductInfo/Review";
 import Delivery from "../Components/ProductInfo/Delivery";
 import ItemList from "../Components/Item";
-import Item from "../Components/Item";
+
 const ProductDetail = () => {
   const [changeNum, setChangeNum] = useState<string>("1");
   const pageChange = () => {
@@ -89,30 +89,32 @@ const ProductDetail = () => {
                     </dd>
                   </dl>
                 </Size>
-                <ItemChoice>
-                  <tr>
-                    <ItemList />
-                    <ItemList />
-                    <ItemList />
-                    <ItemList />
-                  </tr>
-                  <ItemPrice>
-                    <Price>
-                      <PriceDt>총 상품금액</PriceDt>
-                      <PriceDd>159,000원</PriceDd>
-                    </Price>
-                    <Price>
-                      <PriceDt>총 상품금액</PriceDt>
-                      <PriceDd>159,000원</PriceDd>
-                    </Price>
-                  </ItemPrice>
-                </ItemChoice>
-                <BtnChoice>
-                  <button type="button">장바구니</button>
-                  <button type="button">찜하기</button>
-                  <button type="button">바로구매</button>
-                </BtnChoice>
               </ItemDetail>
+              <ItemChoice>
+                <ItemChoiceDiv>
+                  <ItemList />
+                  <ItemList />
+                  <ItemList />
+                  <ItemList />
+                </ItemChoiceDiv>
+                <ItemPrice>
+                  <Price>
+                    <PriceDt style={{ fontSize: "12px" }}>총 상품금액</PriceDt>
+                    <PriceDd style={{ fontSize: "14px" }}>159,000원</PriceDd>
+                  </Price>
+                  <Price style={{ borderTop: "1px solid #dbdbdb" }}>
+                    <PriceDt>총 상품금액</PriceDt>
+                    <PriceDd style={{ fontSize: "20px", color: "#dd3d42" }}>
+                      159,000원
+                    </PriceDd>
+                  </Price>
+                </ItemPrice>
+              </ItemChoice>
+              <BtnChoice>
+                <button type="button">장바구니</button>
+                <button type="button">찜하기</button>
+                <button type="button">바로구매</button>
+              </BtnChoice>
             </PdItemInfo>
           </Pd>
           <InfoDiv>
@@ -155,8 +157,6 @@ const Pd = styled.div`
   display: flex;
   position: relative;
   width: 100%;
-  height: 1000px;
-  border: 1px solid pink;
 `;
 const PdBox = styled.div`
   display: flex;
@@ -202,9 +202,7 @@ const ItemDetail = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 326px;
   margin-top: 10px;
-
   @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap");
   font-family: "Raleway", sans-serif;
 
@@ -276,12 +274,12 @@ const Size = styled.div`
 const ItemChoice = styled.div`
   display: block;
   width: 100%;
-  border: 1px solid pink;
-  tr {
-    display: block;
-    width: 100%;
-    border-bottom: 1px solid #999;
-  }
+  border-top: 1px solid #999;
+`;
+const ItemChoiceDiv = styled.div`
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid #999;
 `;
 const ItemPrice = styled.div`
   display: block;
@@ -293,15 +291,16 @@ const Price = styled.dl`
   display: flex;
   align-items: center;
   width: 100%;
+  height: 50%;
 `;
 const PriceDt = styled.dt`
-  display: flex;
-  align-items: center;
+  position: relative;
+  text-align: right;
   width: 100px;
 `;
 const PriceDd = styled.dd`
-  display: flex;
-  align-items: center;
+  position: relative;
+  text-align: right;
   width: 125px;
 `;
 const BtnChoice = styled.div`
@@ -359,6 +358,7 @@ const InfoDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 1200px;
+  margin-top: 30px;
 `;
 
 const BtnDiv = styled.div`
