@@ -5,6 +5,7 @@ import Layout from "../Components/Layout";
 import ShopBar from "../Components/ShopBar";
 import Product from "../Components/Product";
 import { ShopMenus } from "../data/data";
+import { ShopData } from "../data/data";
 const Shop = () => {
   return (
     <Layout>
@@ -47,24 +48,16 @@ const Shop = () => {
           </ListNum>
           <div>
             <ProductDiv>
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
+              {ShopData.map((el) => {
+                return (
+                  <Product
+                    img={el.img}
+                    name={el.name}
+                    sale={el.sale}
+                    price={el.price}
+                  />
+                );
+              })}
             </ProductDiv>
           </div>
           <Pagination>
@@ -105,7 +98,6 @@ const ShopProduct = styled.div`
   width: 80%;
   margin-left: 30px;
   margin-top: 50px;
-  border: 1px solid black;
 `;
 const ListNum = styled.div`
   width: 100%;
