@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Camera from "../../Images/camera.png";
 import Comment from "../../Components/Comment";
-const Review = () => {
+const Review = (props: any) => {
+  const [size, setSize] = useState<string>("");
+  const [ment, setMent] = useState<string>("");
+  const [arr, setArr] = useState([
+    { size: "90", ment: "옷이 이쁘고 마음에들어요" },
+  ]);
+  const [review, setReview] = useState({ size: "", ment: "" });
+  const SIZE = (e: any) => {
+    setSize(e.target.value);
+    console.log(size);
+  };
+  const MENT = (e: any) => {
+    setMent(e.target.value);
+    console.log(ment);
+  };
+
   return (
     <ItemDiv>
       <h3>플러스리뷰(0)</h3>
@@ -14,7 +29,7 @@ const Review = () => {
           </GradeNum>
           <Ul>
             <li>
-              리뷰등록 <h4>0건</h4>
+              리뷰등록 <h4>{arr.length}건</h4>
             </li>
             <li>
               포토리뷰 <h4>0건</h4>
@@ -25,12 +40,12 @@ const Review = () => {
           </Ul>
         </ReviewNum>
       </Grade>
-      <Ment method="post">
+      <Ment method="post" onSubmit={() => {}}>
         <Size>
-          <h4>SIZE</h4> <input type="text" />
+          <h4>SIZE</h4> <input type="text" value={size} onChange={SIZE} />
         </Size>
         <TextDiv>
-          <input type="textarea" />
+          <input type="textarea" value={ment} onChange={MENT} />
         </TextDiv>
         <BtnDiv>
           <BtnBox>
@@ -45,8 +60,9 @@ const Review = () => {
         </BtnDiv>
       </Ment>
       <CommentBox>
-        <Comment />
-        <Comment />
+        {arr.map((el, index) => {
+          return <Comment key={index} size={el.size} ment={el.ment} />;
+        })}
         <Pagination>
           <ul>
             <li>

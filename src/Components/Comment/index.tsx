@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-const Comment = () => {
+const Comment = (props: any) => {
+  const [like, setLike] = useState<number>(0);
+  const newDate = new Date();
+  const likeBtn = () => {
+    if (like === 0) {
+      return setLike(1);
+    } else if (like === 1) {
+      return setLike(0);
+    }
+  };
   return (
-    <BuyerReview>
+    <BuyerReview key={props.key}>
       <DayName>
-        <span>2020.04.21</span>
+        <span>
+          {newDate.getFullYear()}.{newDate.getMonth() + 1}.{newDate.getDate()}
+        </span>
         <span>로그인닉네임</span>
       </DayName>
       <TextBox>
-        <TbTop></TbTop>
-        <TbMid></TbMid>
-        <TbBot></TbBot>
+        <TbTop>
+          <Size>
+            <dt>SIZE</dt>
+            <dd>{props.size}</dd>
+          </Size>
+        </TbTop>
+        <TbMid>{props.ment}</TbMid>
+        <TbBot>
+          <span>추천하기&nbsp;&nbsp;:&nbsp;{like}</span>
+          <button type="button" onClick={likeBtn}>
+            추천하기
+          </button>
+        </TbBot>
       </TextBox>
     </BuyerReview>
   );
@@ -50,15 +71,53 @@ const TextBox = styled.div`
   padding: 0px 20px 0px 20px;
 `;
 const TbTop = styled.div`
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 72px;
   background-color: #f8f8f8;
   padding: 20px;
 `;
+const Size = styled.dl`
+  display: flex;
+  width: 100%;
+  height: 31px;
+  font-size: 12px;
+  dt {
+    display: flex;
+    align-items: center;
+    width: 108px;
+    height: 100%;
+  }
+  dd {
+    display: flex;
+    align-items: center;
+    @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap");
+    font-family: "Raleway", sans-serif;
+  }
+`;
 const TbMid = styled.div`
   width: 1000px;
   height: 50px;
   font-size: 12px;
+  margin: 15px 0 15px 0;
 `;
-const TbBot = styled.div``;
+const TbBot = styled.div`
+  display: flex;
+  align-items: center;
+  width: 1000px;
+  height: 40px;
+  span {
+    font-size: 12px;
+    color: #fa2828;
+    margin-right: 20px;
+  }
+  button {
+    width: 61px;
+    height: 21px;
+    background-color: #fa2828;
+    color: white;
+    font-size: 11px;
+  }
+`;
 export default Comment;

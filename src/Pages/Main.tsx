@@ -12,6 +12,7 @@ const Main = () => {
   return (
     <Layout>
       <Carousel />
+
       <MainInfo />
       <Social>INSTAGRAM</Social>
       <SNS>
