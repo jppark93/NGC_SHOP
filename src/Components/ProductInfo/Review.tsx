@@ -5,11 +5,8 @@ import Comment from "../../Components/Comment";
 const Review = (props: any) => {
   const [size, setSize] = useState<string>("");
   const [ment, setMent] = useState<string>("");
-  const [arr, setArr] = useState([
-    { size: "90", ment: "옷이 이쁘고 마음에들어요" },
-    { size: "90", ment: "옷이 이쁘고 마음에들어요" },
-  ]);
-  const [review, setReview] = useState({ size: "", ment: "" });
+  const [arr, setArr] = useState([{ size: "", ment: "" }]);
+
   const SIZE = (e: any) => {
     setSize(e.target.value);
     console.log(size);
@@ -17,11 +14,12 @@ const Review = (props: any) => {
   const MENT = (e: any) => {
     setMent(e.target.value);
     console.log(ment);
+    console.log(ment.length);
   };
 
   return (
     <ItemDiv>
-      <h3>플러스리뷰(0)</h3>
+      <h3>플러스리뷰({arr.length - 1})</h3>
       <Grade>
         <ReviewNum>
           <GradeNum>
@@ -30,7 +28,7 @@ const Review = (props: any) => {
           </GradeNum>
           <Ul>
             <li>
-              리뷰등록 <h4>{arr.length}건</h4>
+              리뷰등록 <h4>{arr.length - 1}건</h4>
             </li>
             <li>
               포토리뷰 <h4>0건</h4>
@@ -41,7 +39,19 @@ const Review = (props: any) => {
           </Ul>
         </ReviewNum>
       </Grade>
-      <Ment method="post" onSubmit={() => {}}>
+      <Ment
+        method="post"
+        onSubmit={(e) => {
+          e.preventDefault();
+          setMent("");
+          setSize("");
+          if (size.length === 0 && ment.length === 0) {
+            alert("글을 작성해주세요");
+          } else {
+            setArr(arr.concat({ size: size, ment: ment }));
+          }
+        }}
+      >
         <Size>
           <h4>SIZE</h4> <input type="text" value={size} onChange={SIZE} />
         </Size>
@@ -62,7 +72,11 @@ const Review = (props: any) => {
       </Ment>
       <CommentBox>
         {arr.map((el, index) => {
-          return <Comment key={index} size={el.size} ment={el.ment} />;
+          if (el.size === "" && el.ment === "") {
+            return <div />;
+          } else {
+            return <Comment key={index} size={el.size} ment={el.ment} />;
+          }
         })}
 
         <Pagination>

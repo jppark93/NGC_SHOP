@@ -3,23 +3,29 @@ import React, { useState } from "react";
 import countUpBtn from "../../Images/countup.png";
 import countDownBtn from "../../Images/countdown.png";
 import deleteBtn from "../../Images/closeBtn.png";
-const Item = () => {
+const Item = (props: any) => {
+  console.log(props);
   const [count, setCount] = useState<number>(1);
+  const [price, setPrice] = useState<number>(169000);
   const countUp = () => {
     setCount(count + 1);
+    setPrice(price + 169000);
   };
   const countDown = () => {
-    setCount(count - 1);
-    if (count === 1) {
-      setCount(1);
+    if (count <= 1) {
+      setCount(count);
+      setPrice(price);
+    } else {
+      setCount(count - 1);
+      setPrice(price - 169000);
     }
   };
   return (
     <ItemBox>
-      <Size>095</Size>
+      <Size>{props.outerSize}</Size>
       <CountBox>
         <Count>
-          <input type="text" value={count} />
+          <input type="text" value={count.toString()} />
           <BtnBox>
             <button type="button" onClick={countUp}>
               <img src={countUpBtn} alt="up" />
@@ -35,7 +41,8 @@ const Item = () => {
         </Count>
       </CountBox>
       <ChoicePrice>
-        359,000<h1>원</h1>
+        {price.toString()}
+        <h1>원</h1>
       </ChoicePrice>
       <DeleteBox>
         <button type="button">

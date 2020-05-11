@@ -8,8 +8,18 @@ import Review from "../Components/ProductInfo/Review";
 import Delivery from "../Components/ProductInfo/Delivery";
 import ItemList from "../Components/Item";
 
-const ProductDetail = () => {
+const ProductDetail = (count: number, price: number) => {
   const [changeNum, setChangeNum] = useState<string>("1");
+  const [imgIndex, setImgIndex] = useState<number>(0);
+  const [sizeIndex, setSizeIndex] = useState<number>(0);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const sizeArr = [
+    { outerSize: "090" },
+    { outerSize: "095" },
+    { outerSize: "100" },
+    { outerSize: "105" },
+  ];
+
   const pageChange = () => {
     if (changeNum === "1") {
       return <Info />;
@@ -21,6 +31,26 @@ const ProductDetail = () => {
       return <Review />;
     }
   };
+
+  const Func = () => {};
+  const OuterIMG = [
+    {
+      img:
+        "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg",
+    },
+    {
+      img:
+        "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg",
+    },
+    {
+      img:
+        "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg",
+    },
+    {
+      img:
+        "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg",
+    },
+  ];
   return (
     <Layout>
       <PdBlock>
@@ -31,10 +61,9 @@ const ProductDetail = () => {
                 <img src={Img} alt="pd"></img>
               </PdImg>
               <Imgs>
-                <img src="http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg"></img>
-                <img src="http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg"></img>
-                <img src="http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg"></img>
-                <img src="http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg"></img>
+                {OuterIMG.map((el, index) => {
+                  return <img src={el.img} key={index} />;
+                })}
               </Imgs>
             </PdBox>
             <PdItemInfo>
@@ -79,12 +108,11 @@ const ProductDetail = () => {
                   <dl>
                     <dt>SIZE</dt>
                     <dd>
-                      <select>
+                      <select onClick={Func}>
                         <option>= 옵션 : 가격 =</option>
-                        <option>095</option>
-                        <option>100</option>
-                        <option>105</option>
-                        <option>110</option>
+                        {sizeArr.map((el, index) => {
+                          return <option key={index}>{el.outerSize}</option>;
+                        })}
                       </select>
                     </dd>
                   </dl>
@@ -92,20 +120,19 @@ const ProductDetail = () => {
               </ItemDetail>
               <ItemChoice>
                 <ItemChoiceDiv>
-                  <ItemList />
-                  <ItemList />
-                  <ItemList />
-                  <ItemList />
+                  <ItemList totalPrice={totalPrice} outerSize={"095"} />
                 </ItemChoiceDiv>
                 <ItemPrice>
                   <Price>
                     <PriceDt style={{ fontSize: "12px" }}>총 상품금액</PriceDt>
-                    <PriceDd style={{ fontSize: "14px" }}>159,000원</PriceDd>
+                    <PriceDd style={{ fontSize: "14px" }}>
+                      {totalPrice}원
+                    </PriceDd>
                   </Price>
                   <Price style={{ borderTop: "1px solid #dbdbdb" }}>
-                    <PriceDt>총 상품금액</PriceDt>
+                    <PriceDt>총 합계금액</PriceDt>
                     <PriceDd style={{ fontSize: "20px", color: "#dd3d42" }}>
-                      159,000원
+                      {totalPrice.toString()}원
                     </PriceDd>
                   </Price>
                 </ItemPrice>
@@ -146,8 +173,7 @@ const ProductDetail = () => {
 const PdBlock = styled.div`
   display: flex;
   justify-content: center;
-  width: 1440px;
-  margin-left: 50px;
+  width: 100%;
 `;
 const PdInfo = styled.div`
   display: block;
@@ -340,7 +366,7 @@ const Imgs = styled.div`
   display: flex;
   width: 100%;
   height: 84px;
-  border: 1px solid blue;
+  margin-top: 10px;
 
   img {
     display: flex;

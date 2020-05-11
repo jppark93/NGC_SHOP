@@ -120,7 +120,7 @@ const SearchButton = styled.div`
 
 const NavRight = styled.div`
   display: flex;
-  width: 100%;
+  width: 1000px;
   height: 40px;
   margin-left: auto;
   margin-right: 1%;

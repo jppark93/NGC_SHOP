@@ -9,8 +9,8 @@ import { ShopData } from "../data/data";
 const Shop = () => {
   return (
     <Layout>
-      <ShopDiv>
-        <div>
+      <div>
+        <ShopDiv>
           <ShopMenu>
             <MenuBar>TOP</MenuBar>
             {ShopMenus.map((el, index) => {
@@ -33,20 +33,20 @@ const Shop = () => {
               );
             })}
           </ShopMenu>
-        </div>
-        <ShopProduct>
-          <ListNum>
-            <span>
-              상품&nbsp;<h1>54</h1>&nbsp;개
-            </span>
-            <div>
-              <PickList>
-                <li>낮은가격순</li>
-                <li>높은가격순</li>
-              </PickList>
-            </div>
-          </ListNum>
-          <div>
+
+          <ShopProduct>
+            <ListNum>
+              <span>
+                상품&nbsp;<h1>54</h1>&nbsp;개
+              </span>
+              <div>
+                <PickList>
+                  <li>낮은가격순</li>
+                  <li>높은가격순</li>
+                </PickList>
+              </div>
+            </ListNum>
+
             <ProductDiv>
               {ShopData.map((el) => {
                 return (
@@ -59,33 +59,35 @@ const Shop = () => {
                 );
               })}
             </ProductDiv>
-          </div>
-          <Pagination>
-            <ul>
-              <span>1</span>
-              <span>2</span>
-            </ul>
-          </Pagination>
-        </ShopProduct>
-      </ShopDiv>
+
+            <Pagination>
+              <ul>
+                <span>1</span>
+                <span>2</span>
+              </ul>
+            </Pagination>
+          </ShopProduct>
+        </ShopDiv>
+      </div>
     </Layout>
   );
 };
 
 const ShopDiv = styled.div`
   display: flex;
-  width: 1440px;
+  width: 100%;
 `;
 const ShopMenu = styled.div`
   display: flex;
   flex-direction: column;
-  width: 277.88px;
-
+  width: 15%;
+  min-width: 277px;
   margin-top: 50px;
   margin-left: 20px;
 `;
 const MenuBar = styled.div`
   width: 100%;
+
   height: 41px;
   color: #111111;
   font-size: 18px;
@@ -96,7 +98,8 @@ const ShopProduct = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-left: 50px;
+  min-width: 1100px;
+  margin-left: 30px;
   margin-top: 50px;
 `;
 const ListNum = styled.div`

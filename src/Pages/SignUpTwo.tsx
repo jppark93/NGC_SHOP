@@ -353,8 +353,7 @@ const SignUpTwo = (props: any) => {
 const DIV = styled.div`
   display: flex;
   justify-content: center;
-  width: 1440px;
-  margin-left: 50px;
+  width: 100%;
 `;
 const SignUpBlock = styled.div`
   display: flex;

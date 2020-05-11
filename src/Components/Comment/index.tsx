@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-
+import React, { useState, Props } from "react";
+import styled, { css } from "styled-components";
+import deleteBtn from "../../Images/reviewDel.png";
 const Comment = (props: any) => {
   const [like, setLike] = useState<number>(0);
   const newDate = new Date();
@@ -11,8 +11,9 @@ const Comment = (props: any) => {
       return setLike(0);
     }
   };
+  const DeleteBtn = () => {};
   return (
-    <BuyerReview key={props.key}>
+    <BuyerReview>
       <DayName>
         <span>
           {newDate.getFullYear()}.{newDate.getMonth() + 1}.{newDate.getDate()}
@@ -29,9 +30,14 @@ const Comment = (props: any) => {
         <TbMid>{props.ment}</TbMid>
         <TbBot>
           <span>추천하기&nbsp;&nbsp;:&nbsp;{like}</span>
-          <button type="button" onClick={likeBtn}>
+          <button className="likeBtn" type="button" onClick={likeBtn}>
             추천하기
           </button>
+          <DeleteDiv>
+            <button type="button" key={props.key} onClick={DeleteBtn}>
+              <img src={deleteBtn} />
+            </button>
+          </DeleteDiv>
         </TbBot>
       </TextBox>
     </BuyerReview>
@@ -112,12 +118,35 @@ const TbBot = styled.div`
     color: #fa2828;
     margin-right: 20px;
   }
-  button {
+  .likeBtn {
     width: 61px;
     height: 21px;
     background-color: #fa2828;
     color: white;
     font-size: 11px;
+  }
+`;
+const DeleteDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: 20px;
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: #fcfcfc;
+    img {
+      width: 30px;
+      height: 30px;
+      background-size: 100%;
+    }
   }
 `;
 export default Comment;

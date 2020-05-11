@@ -7,7 +7,7 @@ import Empty from "../Empty";
 const Layout = (props: any) => {
   return (
     <MainBlock>
-      <div>
+      <BOX>
         <DIV>
           <Nav />
           <Menu />
@@ -15,7 +15,7 @@ const Layout = (props: any) => {
         </DIV>
         {props.children}
         <Footer />
-      </div>
+      </BOX>
     </MainBlock>
   );
 };
@@ -29,4 +29,5 @@ const DIV = styled.div`
   display: block;
   width: 100%;
 `;
+const BOX = styled.div``;
 export default Layout;

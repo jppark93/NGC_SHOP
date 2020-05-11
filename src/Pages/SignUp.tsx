@@ -476,8 +476,7 @@ const SignUp = () => {
 const DIV = styled.div`
   display: flex;
   justify-content: center;
-  width: 1440px;
-  margin-left: 50px;
+  width: 100%;
 `;
 const SignUpBlock = styled.div`
   display: flex;
@@ -485,7 +484,8 @@ const SignUpBlock = styled.div`
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  width: 1200px;
+  width: 80%;
+  min-width: 700px;
   height: 810px;
 
   margin-top: 85px;
