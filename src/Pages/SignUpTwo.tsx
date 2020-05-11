@@ -217,137 +217,145 @@ const SignUpTwo = (props: any) => {
 
   return (
     <Layout>
-      <SignUpBlock>
-        <TOP>
-          <h3>회원가입</h3>
-          <ol>
-            <li>
-              <h1>01</h1>&nbsp;약관동의&nbsp;&nbsp;
-              <img src={Next2} />
-            </li>
+      <DIV>
+        <SignUpBlock>
+          <TOP>
+            <h3>회원가입</h3>
+            <ol>
+              <li>
+                <h1>01</h1>&nbsp;약관동의&nbsp;&nbsp;
+                <img src={Next2} />
+              </li>
 
-            <li>
-              <h1>02</h1>&nbsp;정보입력&nbsp;&nbsp;
-              <img src={Next} />
-            </li>
+              <li>
+                <h1>02</h1>&nbsp;정보입력&nbsp;&nbsp;
+                <img src={Next} />
+              </li>
 
-            <li>
-              <h1>03</h1>&nbsp;가입완료
-            </li>
-          </ol>
-        </TOP>
-        <TOS>
-          <span className="Top">
-            기본정보
-            <h2>* 표시는 반드시 입력하셔야 하는 항목입니다</h2>
-          </span>
-          <SignUpForm>
-            <FormBox>
-              <div className="left">
-                <h1>*</h1>아이디
-              </div>
-              <div className="right">
-                <input
-                  type="text"
-                  id="idBox"
-                  onChange={onInputChanged}
-                  value={id}
-                />
-                <Btn type="button" onClick={onDupCheck} id="dupIdCheckButton">
-                  중복체크
-                </Btn>
-                {id_InputInfo()}
-              </div>
-            </FormBox>
-            <FormBox>
-              <div className="left">
-                <h1>*</h1>비밀번호
-              </div>
-              <div className="right">
-                <input
-                  type="password"
-                  id="pwBox1"
-                  onChange={onInputChanged}
-                  value={pw1}
-                />
-                {pw_InputInfo()}
-              </div>
-            </FormBox>
-            <FormBox>
-              <div className="left">
-                <h1>*</h1>비밀번호 확인
-              </div>
-              <div className="right">
-                <input
-                  type="password"
-                  id="pwBox2"
-                  onChange={onInputChanged}
-                  value={pw2}
-                />
-
-                {rePw_InputInfo()}
-              </div>
-            </FormBox>
-            <FormBox>
-              <div className="left">
-                <h1>*</h1>이메일
-              </div>
-              <div className="right">
-                <input
-                  type="text"
-                  id="emailBox"
-                  onChange={onInputChanged}
-                  value={email}
-                />
-                <Btn
-                  type="button"
-                  onClick={onDupCheck}
-                  id="dupEmailCheckButton"
-                >
-                  중복체크
-                </Btn>
-                {email_InputInfo()}
-              </div>
-            </FormBox>
-            <FormBox>
-              <div className="left">&nbsp;주소</div>
-              <div className="right">
-                <div>
+              <li>
+                <h1>03</h1>&nbsp;가입완료
+              </li>
+            </ol>
+          </TOP>
+          <TOS>
+            <span className="Top">
+              기본정보
+              <h2>* 표시는 반드시 입력하셔야 하는 항목입니다</h2>
+            </span>
+            <SignUpForm>
+              <FormBox>
+                <div className="left">
+                  <h1>*</h1>아이디
+                </div>
+                <div className="right">
                   <input
                     type="text"
-                    id="bigAddressBox"
+                    id="idBox"
                     onChange={onInputChanged}
-                    value={bigAddress}
+                    value={id}
+                  />
+                  <Btn type="button" onClick={onDupCheck} id="dupIdCheckButton">
+                    중복체크
+                  </Btn>
+                  {id_InputInfo()}
+                </div>
+              </FormBox>
+              <FormBox>
+                <div className="left">
+                  <h1>*</h1>비밀번호
+                </div>
+                <div className="right">
+                  <input
+                    type="password"
+                    id="pwBox1"
+                    onChange={onInputChanged}
+                    value={pw1}
+                  />
+                  {pw_InputInfo()}
+                </div>
+              </FormBox>
+              <FormBox>
+                <div className="left">
+                  <h1>*</h1>비밀번호 확인
+                </div>
+                <div className="right">
+                  <input
+                    type="password"
+                    id="pwBox2"
+                    onChange={onInputChanged}
+                    value={pw2}
+                  />
+
+                  {rePw_InputInfo()}
+                </div>
+              </FormBox>
+              <FormBox>
+                <div className="left">
+                  <h1>*</h1>이메일
+                </div>
+                <div className="right">
+                  <input
+                    type="text"
+                    id="emailBox"
+                    onChange={onInputChanged}
+                    value={email}
+                  />
+                  <Btn
+                    type="button"
+                    onClick={onDupCheck}
+                    id="dupEmailCheckButton"
+                  >
+                    중복체크
+                  </Btn>
+                  {email_InputInfo()}
+                </div>
+              </FormBox>
+              <FormBox>
+                <div className="left">&nbsp;주소</div>
+                <div className="right">
+                  <div>
+                    <input
+                      type="text"
+                      id="bigAddressBox"
+                      onChange={onInputChanged}
+                      value={bigAddress}
+                      readOnly
+                    />
+                    <Btn type="button" onClick={onAddressSearchButtonClick}>
+                      우편번호검색
+                    </Btn>
+                  </div>
+
+                  <input
+                    type="text"
+                    id="smallAddressBox"
+                    onChange={onInputChanged}
+                    value={smallAddress}
                     readOnly
                   />
-                  <Btn type="button" onClick={onAddressSearchButtonClick}>
-                    우편번호검색
-                  </Btn>
                 </div>
-
-                <input
-                  type="text"
-                  id="smallAddressBox"
-                  onChange={onInputChanged}
-                  value={smallAddress}
-                  readOnly
-                />
-              </div>
-            </FormBox>
-            <ButtonBox>
-              <Link to="/signin">
-                <button type="button" className="bt">
-                  취소
-                </button>
-              </Link>
-              <NextBtn onClick={onSignUpButtonClick}>회원가입</NextBtn>
-            </ButtonBox>
-          </SignUpForm>
-        </TOS>
-      </SignUpBlock>
+              </FormBox>
+              <ButtonBox>
+                <Link to="/signin">
+                  <button type="button" className="bt">
+                    취소
+                  </button>
+                </Link>
+                <NextBtn onClick={onSignUpButtonClick}>회원가입</NextBtn>
+              </ButtonBox>
+            </SignUpForm>
+          </TOS>
+        </SignUpBlock>
+      </DIV>
     </Layout>
   );
 };
+const DIV = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 1440px;
+  margin-left: 50px;
+`;
 const SignUpBlock = styled.div`
   display: flex;
   flex-direction: column;

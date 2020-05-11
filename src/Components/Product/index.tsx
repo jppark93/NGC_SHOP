@@ -25,7 +25,7 @@ const Product = (props: any) => {
 const ProductLi = styled.li`
   display: flex;
   justify-content: center;
-
+  cursor: pointer;
   width: 25%;
   height: 384.6px;
   margin-top: 40px;

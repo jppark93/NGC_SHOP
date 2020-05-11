@@ -74,7 +74,7 @@ const Shop = () => {
 
 const ShopDiv = styled.div`
   display: flex;
-  width: 100%;
+  width: 1440px;
 `;
 const ShopMenu = styled.div`
   display: flex;
@@ -95,8 +95,8 @@ const MenuBar = styled.div`
 const ShopProduct = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80%;
-  margin-left: 30px;
+  width: 100%;
+  margin-left: 50px;
   margin-top: 50px;
 `;
 const ListNum = styled.div`

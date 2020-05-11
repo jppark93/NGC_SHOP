@@ -7,6 +7,7 @@ const Review = (props: any) => {
   const [ment, setMent] = useState<string>("");
   const [arr, setArr] = useState([
     { size: "90", ment: "옷이 이쁘고 마음에들어요" },
+    { size: "90", ment: "옷이 이쁘고 마음에들어요" },
   ]);
   const [review, setReview] = useState({ size: "", ment: "" });
   const SIZE = (e: any) => {
@@ -63,6 +64,7 @@ const Review = (props: any) => {
         {arr.map((el, index) => {
           return <Comment key={index} size={el.size} ment={el.ment} />;
         })}
+
         <Pagination>
           <ul>
             <li>

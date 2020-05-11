@@ -8,9 +8,11 @@ const Layout = (props: any) => {
   return (
     <MainBlock>
       <div>
-        <Nav />
-        <Menu />
-        <Empty />
+        <DIV>
+          <Nav />
+          <Menu />
+          <Empty />
+        </DIV>
         {props.children}
         <Footer />
       </div>
@@ -23,5 +25,8 @@ const MainBlock = styled.div`
   position: relative;
   width: 100%;
 `;
-
+const DIV = styled.div`
+  display: block;
+  width: 100%;
+`;
 export default Layout;

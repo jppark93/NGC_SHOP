@@ -3,13 +3,12 @@ import styled from "styled-components";
 import Logo from "../../Images/Logo.png";
 import { Link } from "react-router-dom";
 
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from "../../Redux/index"; 
-import { setLogOut } from "../../Redux/login"; 
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../Redux/index";
+import { setLogOut } from "../../Redux/login";
 
 const Nav = () => {
-
-  const {loginState, userId} = useSelector((redux: RootState) => redux.login);
+  const { loginState, userId } = useSelector((redux: RootState) => redux.login);
   const dispatch = useDispatch();
 
   const onLogOutEvent = () => {
@@ -17,11 +16,19 @@ const Nav = () => {
   };
 
   const onLogInComponent = () => {
-    return <Link to="/signin" style={{ textDecoration: "none" }}><Li>LOGIN</Li></Link>;
-  }
+    return (
+      <Link to="/signin" style={{ textDecoration: "none" }}>
+        <Li>LOGIN</Li>
+      </Link>
+    );
+  };
   const onLogOutComponent = () => {
-    return <Link to="./" style={{ textDecoration: "none" }}><Li onClick={onLogOutEvent}>LOGOUT</Li></Link>;
-  }
+    return (
+      <Link to="./" style={{ textDecoration: "none" }}>
+        <Li onClick={onLogOutEvent}>LOGOUT</Li>
+      </Link>
+    );
+  };
   return (
     <NavBlock>
       <ItemBlock>
@@ -34,22 +41,25 @@ const Nav = () => {
           <TextArea />
           <SearchButton />
         </NavSearch>
+
         <NavRight>
-          <RightItem>
-            {loginState ? onLogOutComponent() : onLogInComponent()}
-            <Li>JOIN</Li>
-            <Li>MYPAGE</Li>
-            <Link to="/cart" style={{ textDecoration: "none" }}>
-              <Li>
-                CART(<Strong>0</Strong>)
-              </Li>
-            </Link>
-            <Li>CS CENTER</Li>
-            <Li>매장개설문의</Li>
-            <Li>매장찾기</Li>
-            <Li>고객의 소리</Li>
-            <Li>B2B</Li>
-          </RightItem>
+          <div>
+            <RightItem>
+              {loginState ? onLogOutComponent() : onLogInComponent()}
+              <Li>JOIN</Li>
+              <Li>MYPAGE</Li>
+              <Link to="/cart" style={{ textDecoration: "none" }}>
+                <Li>
+                  CART(<Strong>0</Strong>)
+                </Li>
+              </Link>
+              <Li>CS CENTER</Li>
+              <Li>매장개설문의</Li>
+              <Li>매장찾기</Li>
+              <Li>고객의 소리</Li>
+              <Li>B2B</Li>
+            </RightItem>
+          </div>
         </NavRight>
       </ItemBlock>
     </NavBlock>
@@ -110,16 +120,21 @@ const SearchButton = styled.div`
 
 const NavRight = styled.div`
   display: flex;
-  width: 650px;
+  width: 100%;
   height: 40px;
   margin-left: auto;
   margin-right: 1%;
+  div {
+    display: flex;
+    margin-left: auto;
+  }
 `;
 const RightItem = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 630px;
+
+  width: 100%;
   height: 40px;
   li {
     text-decoration: none;

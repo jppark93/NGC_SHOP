@@ -146,7 +146,8 @@ const ProductDetail = () => {
 const PdBlock = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 1440px;
+  margin-left: 50px;
 `;
 const PdInfo = styled.div`
   display: block;

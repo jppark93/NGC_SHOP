@@ -6,66 +6,68 @@ import Foot3 from "../../Images/footer3.png";
 const Footer = () => {
   return (
     <FooterBlock>
-      <InfoTop>
-        <TopFirst>
-          <ImgBlock>
-            <FootImg1 src={Foot1} alt="footer1"></FootImg1>
-          </ImgBlock>
-          <ContactInfo>
-            <ContactInfoChild>
-              <Num>
-                <Bold>고객센터</Bold>1588-2906
-              </Num>
-              <Num2>
-                <Bold2>평일 :</Bold2>10:00(AM) ~ 5:00(PM)
-              </Num2>
-              <Num2>토/일, 공휴일은 휴무입니다.</Num2>
-            </ContactInfoChild>
-            <ContactInfoChild>
-              <Num>
-                <Bold>계좌번호</Bold>568-028379-04-026
-              </Num>
-              <Num2>
-                <Bold2>은행 :</Bold2>기업은행
-              </Num2>
-              <Num2>예금주 : (주)더네이쳐홀딩스</Num2>
-            </ContactInfoChild>
-          </ContactInfo>
-        </TopFirst>
-        <TopSecond>
-          <ImgBlock>
-            <FootImg1 src={Foot2} alt="footer2"></FootImg1>
-          </ImgBlock>
-          <NoticeInfo>
-            <NoticeInfoChild>
-              내셔널지오그래픽 어페럴 스마트앱 출시!
-            </NoticeInfoChild>
-            <NoticeInfoChild>
-              [내셔널지오그래픽] 더 오리지널6 텐트설치 영상
-            </NoticeInfoChild>
-            <NoticeInfoChild>
-              [내셔널지오그래픽] 더 오리지널 텐트4 설치 영상
-            </NoticeInfoChild>
-          </NoticeInfo>
-        </TopSecond>
-        <TopThird>
-          <ImgBlock>
-            <FootImg1 src={Foot3} alt="footer3"></FootImg1>
-          </ImgBlock>
-          <ThirdInfoBlock>
-            <InfomationInfo>
-              <InfomationLi>회사소개</InfomationLi>
-              <InfomationLi>이용안내</InfomationLi>
-              <InfomationLi>개인정보처리방침</InfomationLi>
-            </InfomationInfo>
-            <InfomationInfo>
-              <InfomationLi>브랜드 사이트</InfomationLi>
-              <InfomationLi>이용약관</InfomationLi>
-              <InfomationLi>매장안내</InfomationLi>
-            </InfomationInfo>
-          </ThirdInfoBlock>
-        </TopThird>
-      </InfoTop>
+      <TOP>
+        <InfoTop>
+          <TopFirst>
+            <ImgBlock>
+              <FootImg1 src={Foot1} alt="footer1"></FootImg1>
+            </ImgBlock>
+            <ContactInfo>
+              <ContactInfoChild>
+                <Num>
+                  <Bold>고객센터</Bold>1588-2906
+                </Num>
+                <Num2>
+                  <Bold2>평일 :</Bold2>10:00(AM) ~ 5:00(PM)
+                </Num2>
+                <Num2>토/일, 공휴일은 휴무입니다.</Num2>
+              </ContactInfoChild>
+              <ContactInfoChild>
+                <Num>
+                  <Bold>계좌번호</Bold>568-028379-04-026
+                </Num>
+                <Num2>
+                  <Bold2>은행 :</Bold2>기업은행
+                </Num2>
+                <Num2>예금주 : (주)더네이쳐홀딩스</Num2>
+              </ContactInfoChild>
+            </ContactInfo>
+          </TopFirst>
+          <TopSecond>
+            <ImgBlock>
+              <FootImg1 src={Foot2} alt="footer2"></FootImg1>
+            </ImgBlock>
+            <NoticeInfo>
+              <NoticeInfoChild>
+                내셔널지오그래픽 어페럴 스마트앱 출시!
+              </NoticeInfoChild>
+              <NoticeInfoChild>
+                [내셔널지오그래픽] 더 오리지널6 텐트설치 영상
+              </NoticeInfoChild>
+              <NoticeInfoChild>
+                [내셔널지오그래픽] 더 오리지널 텐트4 설치 영상
+              </NoticeInfoChild>
+            </NoticeInfo>
+          </TopSecond>
+          <TopThird>
+            <ImgBlock>
+              <FootImg1 src={Foot3} alt="footer3"></FootImg1>
+            </ImgBlock>
+            <ThirdInfoBlock>
+              <InfomationInfo>
+                <InfomationLi>회사소개</InfomationLi>
+                <InfomationLi>이용안내</InfomationLi>
+                <InfomationLi>개인정보처리방침</InfomationLi>
+              </InfomationInfo>
+              <InfomationInfo>
+                <InfomationLi>브랜드 사이트</InfomationLi>
+                <InfomationLi>이용약관</InfomationLi>
+                <InfomationLi>매장안내</InfomationLi>
+              </InfomationInfo>
+            </ThirdInfoBlock>
+          </TopThird>
+        </InfoTop>
+      </TOP>
       <InfoBottom>
         <FooterBottomBlock>
           <span>
@@ -99,7 +101,12 @@ const FooterBlock = styled.div`
   height: 443px;
   background-color: #2d2d2d;
 `;
-
+const TOP = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+`;
 const InfoTop = styled.div`
   display: flex;
   align-items: center;
