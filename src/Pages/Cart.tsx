@@ -72,8 +72,7 @@ const Cart = () => {
 const ParenDiv = styled.div`
   display: flex;
   justify-content: center;
-  width: 1440px;
-  margin-left: 50px;
+  width: 100%;
 `;
 const DIV = styled.div`
   display: flex;
