@@ -99,6 +99,8 @@ const Span = styled.span`
       if (props.className === "true") {
         return css`
           transform: rotate(135deg);
+          width: 13px;
+          height: 13px;
         `;
       }
     }}
