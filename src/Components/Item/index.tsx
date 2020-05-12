@@ -3,11 +3,17 @@ import React, { useState } from "react";
 import countUpBtn from "../../Images/countup.png";
 import countDownBtn from "../../Images/countdown.png";
 import deleteBtn from "../../Images/closeBtn.png";
+/* type Linked = {
+  total: number;
+  outerSize: string;
+  onClick: (total: number) => void;
+}; */
+
 const Item = (props: any) => {
   console.log(props);
   const [count, setCount] = useState<number>(1);
   const [price, setPrice] = useState<number>(169000);
-  const countUp = () => {
+  const countUp = (e: any) => {
     setCount(count + 1);
     setPrice(price + 169000);
   };
@@ -27,7 +33,7 @@ const Item = (props: any) => {
         <Count>
           <input type="text" value={count.toString()} />
           <BtnBox>
-            <button type="button" onClick={countUp}>
+            <button type="button" onClick={() => countUp(price)}>
               <img src={countUpBtn} alt="up" />
             </button>
             <button

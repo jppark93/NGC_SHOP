@@ -7,12 +7,14 @@ import ExChange from "../Components/ProductInfo/ExChange";
 import Review from "../Components/ProductInfo/Review";
 import Delivery from "../Components/ProductInfo/Delivery";
 import ItemList from "../Components/Item";
-
-const ProductDetail = (count: number, price: number) => {
+import { OuterIMG } from "../data/data";
+const ProductDetail = () => {
   const [changeNum, setChangeNum] = useState<string>("1");
   const [imgIndex, setImgIndex] = useState<number>(0);
   const [sizeIndex, setSizeIndex] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [selectValue, setSelectValue] = useState({ value: "" });
+  const [priceArr, setPriceArr] = useState([]);
   const sizeArr = [
     { outerSize: "090" },
     { outerSize: "095" },
@@ -31,26 +33,46 @@ const ProductDetail = (count: number, price: number) => {
       return <Review />;
     }
   };
+  const priceChange = (e: any) => {
+    setTotalPrice(e);
+  };
 
-  const Func = () => {};
-  const OuterIMG = [
-    {
-      img:
-        "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg",
-    },
-    {
-      img:
-        "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg",
-    },
-    {
-      img:
-        "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg",
-    },
-    {
-      img:
-        "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg",
-    },
-  ];
+  const Func = (e: any) => {
+    setSelectValue({ value: e.target.value });
+  };
+  const selectChange = () => {
+    console.log(selectValue.value.length);
+    if (selectValue.value.length > 3) {
+      return <div />;
+    } else {
+      if (selectValue.value.length > 0 && selectValue.value.length <= 3) {
+        return <ItemList price={priceChange} outerSize={selectValue.value} />;
+      }
+    }
+  };
+  const totalPriceChange = () => {
+    if (selectValue.value.length > 3) {
+      return <div />;
+    } else {
+      if (selectValue.value.length > 0 && selectValue.value.length <= 3) {
+        return (
+          <ItemPrice>
+            <Price>
+              <PriceDt style={{ fontSize: "12px" }}>총 상품금액</PriceDt>
+              <PriceDd style={{ fontSize: "14px" }}>{totalPrice}원</PriceDd>
+            </Price>
+            <Price style={{ borderTop: "1px solid #dbdbdb" }}>
+              <PriceDt>총 합계금액</PriceDt>
+              <PriceDd style={{ fontSize: "20px", color: "#dd3d42" }}>
+                {totalPrice.toString()}원
+              </PriceDd>
+            </Price>
+          </ItemPrice>
+        );
+      }
+    }
+  };
+
   return (
     <Layout>
       <PdBlock>
@@ -108,10 +130,12 @@ const ProductDetail = (count: number, price: number) => {
                   <dl>
                     <dt>SIZE</dt>
                     <dd>
-                      <select onClick={Func}>
+                      <select value={selectValue.value} onChange={Func}>
                         <option>= 옵션 : 가격 =</option>
-                        {sizeArr.map((el, index) => {
-                          return <option key={index}>{el.outerSize}</option>;
+                        {sizeArr.map((el) => {
+                          return (
+                            <option value={el.outerSize}>{el.outerSize}</option>
+                          );
                         })}
                       </select>
                     </dd>
@@ -119,23 +143,8 @@ const ProductDetail = (count: number, price: number) => {
                 </Size>
               </ItemDetail>
               <ItemChoice>
-                <ItemChoiceDiv>
-                  <ItemList totalPrice={totalPrice} outerSize={"095"} />
-                </ItemChoiceDiv>
-                <ItemPrice>
-                  <Price>
-                    <PriceDt style={{ fontSize: "12px" }}>총 상품금액</PriceDt>
-                    <PriceDd style={{ fontSize: "14px" }}>
-                      {totalPrice}원
-                    </PriceDd>
-                  </Price>
-                  <Price style={{ borderTop: "1px solid #dbdbdb" }}>
-                    <PriceDt>총 합계금액</PriceDt>
-                    <PriceDd style={{ fontSize: "20px", color: "#dd3d42" }}>
-                      {totalPrice.toString()}원
-                    </PriceDd>
-                  </Price>
-                </ItemPrice>
+                <ItemChoiceDiv>{selectChange()}</ItemChoiceDiv>
+                {totalPriceChange()}
               </ItemChoice>
               <BtnChoice>
                 <button type="button">장바구니</button>

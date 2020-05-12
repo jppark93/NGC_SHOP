@@ -564,3 +564,22 @@ export const ShopData = [
     price: "59,000원",
   },
 ];
+
+export const OuterIMG = [
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg",
+  },
+];
