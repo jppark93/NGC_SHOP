@@ -8,13 +8,14 @@ import Review from "../Components/ProductInfo/Review";
 import Delivery from "../Components/ProductInfo/Delivery";
 import ItemList from "../Components/Item";
 import { OuterIMG } from "../data/data";
+
 const ProductDetail = () => {
   const [changeNum, setChangeNum] = useState<string>("1");
   const [imgIndex, setImgIndex] = useState<number>(0);
   const [sizeIndex, setSizeIndex] = useState<number>(0);
-  const [totalPrice, setTotalPrice] = useState<number>(169000);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
   const [selectValue, setSelectValue] = useState({ value: "" });
-  const [priceArr, setPriceArr] = useState<Array<{ Size: string }>>([]);
+  const [priceArr, setPriceArr] = useState<Array<{ Size: string, EA: number }>>([]);
   const sizeArr = [
     { outerSize: "090" },
     { outerSize: "095" },
@@ -33,9 +34,18 @@ const ProductDetail = () => {
       return <Review />;
     }
   };
-  const priceChange = (e: any) => {
-    setTotalPrice(e);
+  const totalPriceChangeHandler = (fluctuation: number) => {
+    setTotalPrice(totalPrice + fluctuation);
   };
+
+  const changeEAHandler = (size: string, ea: number) => {
+    priceArr.map((el) => {
+      if (el.Size === size){
+        el.EA = ea;
+        return;
+      }
+    }); 
+  }
 
   const Func = (e: any) => {
     setSelectValue({ value: e.target.value });
@@ -47,18 +57,19 @@ const ProductDetail = () => {
       alert("이미 추가한 사이즈입니다.");
       return;
     }
-    let new_Arr = priceArr.concat({ Size: e.target.value });
+    let new_Arr = priceArr.concat({ Size: e.target.value, EA: 1 });
     setPriceArr(new_Arr);
+    setTotalPrice(totalPrice + 169000);
   };
 
   const selectChange = () => {
     if (priceArr.length > 0) {
       return priceArr.map((el) => {
-        return <ItemList price={priceChange} outerSize={el.Size} />;
+        return <ItemList changeTotal={totalPriceChangeHandler} changeEA={changeEAHandler} price={169000} ea={el.EA} outerSize={el.Size} />;
       });
     }
   };
-  const totalPriceChange = () => {
+  const onTotalPriceChanged = () => {
     if (priceArr.length > 0) {
       return (
         <ItemPrice>
@@ -148,7 +159,7 @@ const ProductDetail = () => {
               </ItemDetail>
               <ItemChoice>
                 <ItemChoiceDiv>{selectChange()}</ItemChoiceDiv>
-                {totalPriceChange()}
+                {onTotalPriceChanged()}
               </ItemChoice>
               <BtnChoice>
                 <button type="button">장바구니</button>

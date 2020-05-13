@@ -11,23 +11,20 @@ import deleteBtn from "../../Images/closeBtn.png";
 
 const Item = (props: any) => {
   console.log(props);
-  const [count, setCount] = useState<number>(1);
-  const [price, setPrice] = useState<number>(169000);
-  //setState 실행순서 문제
-  const countUp = (e: any) => {
+  const [count, setCount] = useState<number>(props.ea);
+  const [price, setPrice] = useState<number>(props.ea * props.price);
+  const countUp = () => {
+    props.changeEA(props.outerSize, count + 1);
     setCount(count + 1);
-    setPrice(price + 169000);
-    props.price(price + 169000);
+    props.changeTotal(props.price);
+    setPrice(price + props.price);
   };
   const countDown = () => {
-    if (count <= 1) {
-      setCount(count);
-      setPrice(price);
-      props.price(price);
-    } else {
+    if (count > 1) {
+      props.changeEA(props.outerSize, count - 1);
       setCount(count - 1);
-      setPrice(price - 169000);
-      props.price(price - 169000);
+      props.changeTotal(-1 * props.price);
+      setPrice(price - props.price);
     }
   };
   return (
@@ -37,7 +34,7 @@ const Item = (props: any) => {
         <Count>
           <input type="text" value={count.toString()} />
           <BtnBox>
-            <button type="button" onClick={() => countUp(props.price)}>
+            <button type="button" onClick={countUp}>
               <img src={countUpBtn} alt="up" />
             </button>
             <button
