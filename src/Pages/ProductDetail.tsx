@@ -38,19 +38,22 @@ const ProductDetail = () => {
   };
 
   const Func = (e: any) => {
-    setSelectValue({ value: e.target.value });
-    if (selectValue.value.length < 4) {
-      setPriceArr(priceArr.concat({ Size: selectValue.value }));
+    setSelectValue({ value: e.target.value });   
+    if (e.target.value.length !== 3){
+      setPriceArr(priceArr);
+      return;
     }
-    console.log(selectValue);
-    console.log(priceArr);
+    if (priceArr.findIndex(el => el.Size === e.target.value) !== -1){
+      alert("이미 추가한 사이즈입니다.");
+      return;
+    }
+    let new_Arr = priceArr.concat({ Size: e.target.value });
+      setPriceArr(new_Arr);
   };
+  
   const selectChange = () => {
     if (priceArr.length > 0) {
       return priceArr.map((el) => {
-        if (el.Size === "") {
-          return <div />;
-        }
         return <ItemList price={priceChange} outerSize={el.Size} />;
       });
     }
