@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useState, Component } from "react";
 import countUpBtn from "../../Images/countup.png";
 import countDownBtn from "../../Images/countdown.png";
 import deleteBtn from "../../Images/closeBtn.png";
+import ReactDOM from "react-dom";
 /* type Linked = {
   total: number;
   outerSize: string;
@@ -13,12 +14,14 @@ const Item = (props: any) => {
   console.log(props);
   const [count, setCount] = useState<number>(props.ea);
   const [price, setPrice] = useState<number>(props.ea * props.price);
+
   const countUp = () => {
     props.changeEA(props.outerSize, count + 1);
     setCount(count + 1);
     props.changeTotal(props.price);
     setPrice(price + props.price);
   };
+
   const countDown = () => {
     if (count > 1) {
       props.changeEA(props.outerSize, count - 1);
@@ -27,12 +30,18 @@ const Item = (props: any) => {
       setPrice(price - props.price);
     }
   };
+
+  const onComponentDelete = () => {
+    props.changeTotal(-1 * count * props.price);
+    props.exitComponent(props.outerSize);
+  }
+
   return (
     <ItemBox>
       <Size>{props.outerSize}</Size>
       <CountBox>
         <Count>
-          <input type="text" value={count.toString()} />
+          <input type="text" value={props.ea} />
           <BtnBox>
             <button type="button" onClick={countUp}>
               <img src={countUpBtn} alt="up" />
@@ -49,10 +58,10 @@ const Item = (props: any) => {
       </CountBox>
       <ChoicePrice>
         {price.toString()}
-        <h1>원</h1>
+        <h1>?</h1>
       </ChoicePrice>
       <DeleteBox>
-        <button type="button">
+        <button type="button" onClick={onComponentDelete}>
           <img src={deleteBtn} alt="delete" />
         </button>
       </DeleteBox>
