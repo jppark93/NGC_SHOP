@@ -5,7 +5,7 @@ import Comment from "../../Components/Comment";
 const Review = (props: any) => {
   const [size, setSize] = useState<string>("");
   const [ment, setMent] = useState<string>("");
-  const [arr, setArr] = useState([{ size: "", ment: "" }]);
+  const [arr, setArr] = useState<Array<{ size: string; ment: string }>>([]);
 
   const SIZE = (e: any) => {
     setSize(e.target.value);
@@ -19,7 +19,7 @@ const Review = (props: any) => {
 
   return (
     <ItemDiv>
-      <h3>플러스리뷰({arr.length - 1})</h3>
+      <h3>플러스리뷰({arr.length})</h3>
       <Grade>
         <ReviewNum>
           <GradeNum>
@@ -28,7 +28,7 @@ const Review = (props: any) => {
           </GradeNum>
           <Ul>
             <li>
-              리뷰등록 <h4>{arr.length - 1}건</h4>
+              리뷰등록 <h4>{arr.length}건</h4>
             </li>
             <li>
               포토리뷰 <h4>0건</h4>

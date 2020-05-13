@@ -14,7 +14,7 @@ const ProductDetail = () => {
   const [sizeIndex, setSizeIndex] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(169000);
   const [selectValue, setSelectValue] = useState({ value: "" });
-  const [priceArr, setPriceArr] = useState([{ Size: "" }]);
+  const [priceArr, setPriceArr] = useState<Array<{ Size: string }>>([]);
   const sizeArr = [
     { outerSize: "090" },
     { outerSize: "095" },
@@ -39,37 +39,38 @@ const ProductDetail = () => {
 
   const Func = (e: any) => {
     setSelectValue({ value: e.target.value });
+    if (selectValue.value.length < 4) {
+      setPriceArr(priceArr.concat({ Size: selectValue.value }));
+    }
+    console.log(selectValue);
+    console.log(priceArr);
   };
   const selectChange = () => {
-    console.log(selectValue.value.length);
-    if (selectValue.value.length > 3) {
-      return <div />;
-    } else {
-      if (selectValue.value.length > 0 && selectValue.value.length <= 3) {
-        return <ItemList price={priceChange} outerSize={selectValue.value} />;
-      }
+    if (priceArr.length > 0) {
+      return priceArr.map((el) => {
+        if (el.Size === "") {
+          return <div />;
+        }
+        return <ItemList price={priceChange} outerSize={el.Size} />;
+      });
     }
   };
   const totalPriceChange = () => {
-    if (selectValue.value.length > 3) {
-      return <div />;
-    } else {
-      if (selectValue.value.length > 0 && selectValue.value.length <= 3) {
-        return (
-          <ItemPrice>
-            <Price>
-              <PriceDt style={{ fontSize: "12px" }}>총 상품금액</PriceDt>
-              <PriceDd style={{ fontSize: "14px" }}>{totalPrice}원</PriceDd>
-            </Price>
-            <Price style={{ borderTop: "1px solid #dbdbdb" }}>
-              <PriceDt>총 합계금액</PriceDt>
-              <PriceDd style={{ fontSize: "20px", color: "#dd3d42" }}>
-                {totalPrice.toString()}원
-              </PriceDd>
-            </Price>
-          </ItemPrice>
-        );
-      }
+    if (priceArr.length > 0) {
+      return (
+        <ItemPrice>
+          <Price>
+            <PriceDt style={{ fontSize: "12px" }}>총 상품금액</PriceDt>
+            <PriceDd style={{ fontSize: "14px" }}>{totalPrice}원</PriceDd>
+          </Price>
+          <Price style={{ borderTop: "1px solid #dbdbdb" }}>
+            <PriceDt>총 합계금액</PriceDt>
+            <PriceDd style={{ fontSize: "20px", color: "#dd3d42" }}>
+              {totalPrice.toString()}원
+            </PriceDd>
+          </Price>
+        </ItemPrice>
+      );
     }
   };
 

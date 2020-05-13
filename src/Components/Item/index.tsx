@@ -13,10 +13,11 @@ const Item = (props: any) => {
   console.log(props);
   const [count, setCount] = useState<number>(1);
   const [price, setPrice] = useState<number>(169000);
+  //setState 실행순서 문제
   const countUp = (e: any) => {
     setCount(count + 1);
     setPrice(price + 169000);
-    props.price(price);
+    props.price(price + 169000);
   };
   const countDown = () => {
     if (count <= 1) {
