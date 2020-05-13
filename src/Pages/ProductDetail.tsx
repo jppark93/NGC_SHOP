@@ -12,9 +12,9 @@ const ProductDetail = () => {
   const [changeNum, setChangeNum] = useState<string>("1");
   const [imgIndex, setImgIndex] = useState<number>(0);
   const [sizeIndex, setSizeIndex] = useState<number>(0);
-  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [totalPrice, setTotalPrice] = useState<number>(169000);
   const [selectValue, setSelectValue] = useState({ value: "" });
-  const [priceArr, setPriceArr] = useState([]);
+  const [priceArr, setPriceArr] = useState([{ Size: "" }]);
   const sizeArr = [
     { outerSize: "090" },
     { outerSize: "095" },

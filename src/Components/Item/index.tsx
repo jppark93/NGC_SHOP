@@ -16,14 +16,17 @@ const Item = (props: any) => {
   const countUp = (e: any) => {
     setCount(count + 1);
     setPrice(price + 169000);
+    props.price(price);
   };
   const countDown = () => {
     if (count <= 1) {
       setCount(count);
       setPrice(price);
+      props.price(price);
     } else {
       setCount(count - 1);
       setPrice(price - 169000);
+      props.price(price - 169000);
     }
   };
   return (
@@ -33,7 +36,7 @@ const Item = (props: any) => {
         <Count>
           <input type="text" value={count.toString()} />
           <BtnBox>
-            <button type="button" onClick={() => countUp(price)}>
+            <button type="button" onClick={() => countUp(props.price)}>
               <img src={countUpBtn} alt="up" />
             </button>
             <button
