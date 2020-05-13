@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import deleteBtn from "../../Images/reviewDel.png";
 const Comment = (props: any) => {
   const [like, setLike] = useState<number>(0);
+  console.log(props);
   const newDate = new Date();
   const likeBtn = () => {
     if (like === 0) {
@@ -11,7 +12,9 @@ const Comment = (props: any) => {
       return setLike(0);
     }
   };
-  const DeleteBtn = () => {};
+  const DeleteBtn = () => {
+    props.delete(props.num);
+  };
   return (
     <BuyerReview>
       <DayName>
@@ -34,7 +37,7 @@ const Comment = (props: any) => {
             추천하기
           </button>
           <DeleteDiv>
-            <button type="button" key={props.key} onClick={() => DeleteBtn()}>
+            <button type="button" onClick={DeleteBtn}>
               <img src={deleteBtn} />
             </button>
           </DeleteDiv>

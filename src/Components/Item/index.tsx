@@ -34,7 +34,7 @@ const Item = (props: any) => {
   const onComponentDelete = () => {
     props.changeTotal(-1 * count * props.price);
     props.exitComponent(props.outerSize);
-  }
+  };
 
   return (
     <ItemBox>
@@ -58,7 +58,7 @@ const Item = (props: any) => {
       </CountBox>
       <ChoicePrice>
         {price.toString()}
-        <h1>?</h1>
+        <h1>원</h1>
       </ChoicePrice>
       <DeleteBox>
         <button type="button" onClick={onComponentDelete}>

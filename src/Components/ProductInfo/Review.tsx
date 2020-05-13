@@ -5,16 +5,26 @@ import Comment from "../../Components/Comment";
 const Review = (props: any) => {
   const [size, setSize] = useState<string>("");
   const [ment, setMent] = useState<string>("");
-  const [arr, setArr] = useState<Array<{ size: string; ment: string }>>([]);
-
+  const [num, setNum] = useState<number>(0);
+  const [arr, setArr] = useState<
+    Array<{ size: string; ment: string; indexKey: number }>
+  >([]);
+  let sibal = num;
+  console.log(arr);
+  console.log(num + "현재숫자");
   const SIZE = (e: any) => {
     setSize(e.target.value);
-    console.log(size);
   };
   const MENT = (e: any) => {
     setMent(e.target.value);
-    console.log(ment);
-    console.log(ment.length);
+  };
+
+  const ReviewDel = (k: number) => {
+    setArr(
+      arr.filter((el) => {
+        return el.indexKey !== k;
+      })
+    );
   };
 
   return (
@@ -45,10 +55,12 @@ const Review = (props: any) => {
           e.preventDefault();
           setMent("");
           setSize("");
+
           if (size.length === 0 && ment.length === 0) {
             alert("글을 작성해주세요");
           } else {
-            setArr(arr.concat({ size: size, ment: ment }));
+            setArr(arr.concat({ size: size, ment: ment, indexKey: num }));
+            setNum(num + 1);
           }
         }}
       >
@@ -72,7 +84,14 @@ const Review = (props: any) => {
       </Ment>
       <CommentBox>
         {arr.map((el, index) => {
-          return <Comment key={index} size={el.size} ment={el.ment} />;
+          return (
+            <Comment
+              num={el.indexKey}
+              size={el.size}
+              ment={el.ment}
+              delete={ReviewDel}
+            />
+          );
         })}
 
         <Pagination>
