@@ -72,11 +72,7 @@ const Review = (props: any) => {
       </Ment>
       <CommentBox>
         {arr.map((el, index) => {
-          if (el.size === "" && el.ment === "") {
-            return <div />;
-          } else {
-            return <Comment key={index} size={el.size} ment={el.ment} />;
-          }
+          return <Comment key={index} size={el.size} ment={el.ment} />;
         })}
 
         <Pagination>

@@ -34,7 +34,7 @@ const Comment = (props: any) => {
             추천하기
           </button>
           <DeleteDiv>
-            <button type="button" key={props.key} onClick={DeleteBtn}>
+            <button type="button" key={props.key} onClick={() => DeleteBtn()}>
               <img src={deleteBtn} />
             </button>
           </DeleteDiv>

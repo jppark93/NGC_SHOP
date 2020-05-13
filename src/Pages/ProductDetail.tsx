@@ -14,7 +14,7 @@ const ProductDetail = () => {
   const [sizeIndex, setSizeIndex] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(169000);
   const [selectValue, setSelectValue] = useState({ value: "" });
-  const [priceArr, setPriceArr] = useState<Array<{ Size: string }>>([]);
+  const [priceArr, setPriceArr] = useState<Array<{ Size: string; EA: number }>>([]);
   const sizeArr = [
     { outerSize: "090" },
     { outerSize: "095" },
@@ -47,7 +47,7 @@ const ProductDetail = () => {
       alert("이미 추가한 사이즈입니다.");
       return;
     }
-    let new_Arr = priceArr.concat({ Size: e.target.value });
+    let new_Arr = priceArr.concat({ Size: e.target.value, EA: 1 });
     setPriceArr(new_Arr);
   };
 
