@@ -38,19 +38,17 @@ const ProductDetail = () => {
   };
 
   const Func = (e: any) => {
-    setSelectValue({ value: e.target.value });
+    let new_value = e.target.value;
+    setSelectValue({ value: new_value });
     if (selectValue.value.length < 4) {
-      setPriceArr(priceArr.concat({ Size: selectValue.value }));
+      setPriceArr(priceArr.concat({ Size: new_value }));
     }
-    console.log(selectValue);
+    console.log(selectValue.value);
     console.log(priceArr);
   };
   const selectChange = () => {
     if (priceArr.length > 0) {
       return priceArr.map((el) => {
-        if (el.Size === "") {
-          return <div />;
-        }
         return <ItemList price={priceChange} outerSize={el.Size} />;
       });
     }
