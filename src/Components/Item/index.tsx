@@ -52,7 +52,7 @@ const Item = (props: any) => {
       </CountBox>
       <ChoicePrice>
         {props.ea * props.price}
-        <h1>웝</h1>
+        <h1>원</h1>
       </ChoicePrice>
       <DeleteBox>
         <button type="button" onClick={onComponentDelete}>

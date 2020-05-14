@@ -197,7 +197,6 @@ export const IMGS = [
   },
 ];
 export const ShopMenus = [
-  { title: "NEW ARRIVAL", one: "19FW ARRAREL", two: "19FW BAG&SHOES" },
   { title: "MAN", one: "OUTER", two: "TOP", three: "BOTTOM" },
   { title: "WOMAN", one: "OUTER", two: "TOP", three: "BOTTOM" },
   { title: "KIDS", one: "OUTER", two: "TOP", three: "BOTTOM" },

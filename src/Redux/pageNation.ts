@@ -1,10 +1,21 @@
 //초기화
 export const initialState: State = {
+  pageArray: [],
   startIndex: 0,
   endPage: 10,
   currentPage: 1,
 };
+export interface State {
+  pageArray: Array<INote>;
+  startIndex: number;
+  endPage: number;
+  currentPage: number;
+}
 
+export interface INote {
+  id: string;
+  inBasket: boolean;
+}
 //액션 타입
 export const CURRENT_PAGE = "CURRENT_PAGE" as const;
 export const UPDATE_START_END = "UPDATE_START_END" as const;

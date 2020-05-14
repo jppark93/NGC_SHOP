@@ -30,17 +30,9 @@ const Menu = (props: any) => {
 
       <MenuList>
         <MenuItem>
-          <span>NEW ARRIVAL</span>
-          <ul>
-            <li onClick={goShop}>HOT SUMMER</li>
-            <li>20SS APPAREL</li>
-          </ul>
-        </MenuItem>
-
-        <MenuItem>
           <span>MAN</span>
           <ul>
-            <li>OUTER</li>
+            <li onClick={goShop}>OUTER</li>
             <li>TOP</li>
             <li>BOTTOM</li>
           </ul>
@@ -147,6 +139,7 @@ const MenuList = styled.ul`
 `;
 const MenuItem = styled.li`
   display: flex;
+  margin-left: auto;
   position: relative;
   align-items: center;
   flex-direction: column;

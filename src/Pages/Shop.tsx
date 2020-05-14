@@ -50,10 +50,9 @@ const Shop = () => {
         <ShopDiv>
           <ShopMenu>
             <MenuBar>TOP</MenuBar>
-            {ShopMenus.map((el, index) => {
+            {ShopMenus.map((el) => {
               return (
                 <ShopBar
-                  key={index}
                   title={el.title}
                   one={el.one}
                   two={el.two}

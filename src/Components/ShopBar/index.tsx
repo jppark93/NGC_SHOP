@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import XBTN from "../../Images/X.png";
+import { Z_BLOCK } from "zlib";
 const ShopBar = (props: any) => {
   const [boolean, setBoolean] = useState<string>("false");
   const On = () => {
@@ -9,13 +10,7 @@ const ShopBar = (props: any) => {
   const Off = () => {
     setBoolean("false");
   };
-  const func = () => {
-    for (let i = 0; i < 11; i++) {
-      if ($(`li`).length === 0) {
-        return $("li").remove(); //태그삭제하고 싶어
-      }
-    }
-  };
+
   const Btn = () => {
     if (boolean === "false") {
       return (
@@ -31,14 +26,23 @@ const ShopBar = (props: any) => {
       );
     }
   };
+  const qksqhrans = () => {};
   return (
     <BarLi>
       {Btn()}
-      <UL key={props.key} className={boolean}>
+      <UL className={boolean}>
         <li>{props.one}</li>
         <li>{props.two}</li>
         <li>{props.three}</li>
-        <li>{props.four}</li>
+        <li
+          style={
+            props.four === undefined
+              ? { display: "none" }
+              : { display: "block" }
+          }
+        >
+          {props.four}
+        </li>
         <li>{props.five}</li>
         <li>{props.six}</li>
         <li>{props.seven}</li>
@@ -81,6 +85,7 @@ const UL = styled.ul`
     padding-left: 15px;
     padding-bottom: 5px;
     cursor: pointer;
+    line-height: 2;
   }
 `;
 const Span = styled.span`
