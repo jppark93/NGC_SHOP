@@ -3,34 +3,42 @@ import styled, { css } from "styled-components";
 import XBTN from "../../Images/X.png";
 import { Z_BLOCK } from "zlib";
 const ShopBar = (props: any) => {
-  const [boolean, setBoolean] = useState<string>("false");
+  const [bool, setBool] = useState<boolean>(false);
   const On = () => {
-    setBoolean("true");
+    setBool(true);
   };
   const Off = () => {
-    setBoolean("false");
+    setBool(false);
   };
 
   const Btn = () => {
-    if (boolean === "false") {
+    if (bool === false) {
       return (
-        <Span className={boolean} onClick={On}>
+        <Span onClick={On}>
           {props.title} <img src={XBTN} />
         </Span>
       );
-    } else if (boolean === "true") {
+    } else {
       return (
-        <Span className={boolean} onClick={Off}>
-          {props.title} <img src={XBTN} />
+        <Span onClick={Off}>
+          {props.title}{" "}
+          <img
+            style={{
+              transform: "rotate(135deg)",
+              width: "13px",
+              height: "13px",
+            }}
+            src={XBTN}
+          />
         </Span>
       );
     }
   };
-  const qksqhrans = () => {};
+
   return (
     <BarLi>
       {Btn()}
-      <UL className={boolean}>
+      <UL style={bool ? { display: "block" } : { display: "none" }}>
         <li>{props.one}</li>
         <li>{props.two}</li>
         <li>{props.three}</li>
@@ -114,17 +122,6 @@ const BarLi = styled.li`
   font-size: 15px;
 `;
 const UL = styled.ul`
-  ${(props) => {
-    if (props.className === "false") {
-      return css`
-        display: none;
-      `;
-    } else {
-      return css`
-        display: block;
-      `;
-    }
-  }}
   width: 100%;
   li {
     @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap");
@@ -152,15 +149,6 @@ const Span = styled.span`
     height: 12px;
     margin-left: auto;
     margin-right: 15px;
-    ${(props) => {
-      if (props.className === "true") {
-        return css`
-          transform: rotate(135deg);
-          width: 13px;
-          height: 13px;
-        `;
-      }
-    }}
   }
 `;
 export default ShopBar;

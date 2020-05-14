@@ -5,7 +5,7 @@ import Layout from "../Components/Layout";
 import ShopBar from "../Components/ShopBar";
 import Product from "../Components/Product";
 import { ShopMenus } from "../data/data";
-import { ShopData } from "../data/data";
+import { FrontData } from "../data/data";
 const Shop = () => {
   const [boolOne, setBoolOne] = useState<boolean>(false);
   const [boolTwo, setBoolTwo] = useState<boolean>(false);
@@ -14,15 +14,15 @@ const Shop = () => {
     setBoolOne(e);
     setBoolTwo(false);
     if (boolOne === true) {
-      ShopData.sort((a: any, b: any) => {
+      FrontData.sort((a: any, b: any) => {
         return parseInt(b.price) - parseInt(a.price);
       });
     } else {
-      ShopData.sort((a: any, b: any) => {
+      FrontData.sort((a: any, b: any) => {
         return parseInt(a.price) - parseInt(b.price);
       });
     }
-    console.log(ShopData);
+    console.log(FrontData);
     console.log(e + "인자값");
     console.log(boolOne + "첫번째");
     console.log(boolTwo + "두번째");
@@ -31,15 +31,15 @@ const Shop = () => {
     setBoolTwo(e);
     setBoolOne(false);
     if (boolTwo === true) {
-      ShopData.sort((a: any, b: any) => {
+      FrontData.sort((a: any, b: any) => {
         return parseInt(a.price) - parseInt(b.price);
       });
     } else {
-      ShopData.sort((a: any, b: any) => {
+      FrontData.sort((a: any, b: any) => {
         return parseInt(b.price) - parseInt(a.price);
       });
     }
-    console.log(ShopData);
+    console.log(FrontData);
     console.log(e + "인자값");
     console.log(boolOne + "첫번째");
     console.log(boolTwo + "두번째");
@@ -73,7 +73,7 @@ const Shop = () => {
           <ShopProduct>
             <ListNum>
               <span>
-                상품&nbsp;<h1>{ShopData.length}</h1>&nbsp;개
+                상품&nbsp;<h1>{FrontData.length}</h1>&nbsp;개
               </span>
               <div>
                 <PickList>
@@ -95,7 +95,7 @@ const Shop = () => {
             </ListNum>
 
             <ProductDiv>
-              {ShopData.map((el: any) => {
+              {FrontData.map((el: any) => {
                 return (
                   <Product
                     img={el.img}

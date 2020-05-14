@@ -15,8 +15,8 @@ const Product = (props: any) => {
           <h1>
             <span>{props.name}</span>
           </h1>
-          <h2>{props.sale}</h2>
-          <h3>{props.price}</h3>
+          <h2>{props.sale}원</h2>
+          <h3>{props.price}원</h3>
         </EX>
       </ProductDiv>
     </ProductLi>

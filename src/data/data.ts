@@ -1,18 +1,18 @@
 const dataRequest = () => {
   let goods: any;
   const xhr = new XMLHttpRequest();
-    xhr.onload = function () {
-      if (xhr.status === 200 || xhr.status === 304) {
-        goods = JSON.parse(xhr.responseText);
-        console.log(goods.length);
-      } else {
-        console.log("굿즈 데이터 얻어오기 실패", xhr.responseText);
-      }
-    };
-    xhr.open("GET", "http://220.73.54.64:8999/resources/goods/man/outer", false);
-    xhr.send();
-    return goods;
-}
+  xhr.onload = function () {
+    if (xhr.status === 200 || xhr.status === 304) {
+      goods = JSON.parse(xhr.responseText);
+      console.log(goods.length);
+    } else {
+      console.log("굿즈 데이터 얻어오기 실패", xhr.responseText);
+    }
+  };
+  xhr.open("GET", "http://220.73.54.64:8999/resources/goods/man/outer", false);
+  xhr.send();
+  return goods;
+};
 
 export const IMGS = [
   {
@@ -252,7 +252,7 @@ export const ShopMenus = [
   },
 ];
 
-export const ShopData = dataRequest();
+/* export const ShopData = dataRequest(); */
 
 export const OuterIMG = [
   {
@@ -272,5 +272,293 @@ export const OuterIMG = [
       "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg",
   },
 ];
-
-console.log(ShopData);
+export const FrontData = [
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/1000002246_main_041.jpg",
+    name: "내셔널지오그래픽 N202UJP910 월리스 바람막이 점퍼 CARBON BLACK",
+    sale: "159000",
+    price: "159000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002245/1000002245_main_050.jpg",
+    name: "내셔널지오그래픽 N202UJP910 월리스 바람막이 점퍼 BURGUNDY",
+    sale: "159000",
+    price: "159000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002247/1000002247_main_099.jpg",
+    name: "내셔널지오그래픽 N202UJP910 월리스 바람막이 점퍼 HARBOR BLUE",
+    sale: "159000",
+    price: "159000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002248/1000002248_main_063.jpg",
+    name: "내셔널지오그래픽 N202UJP910 월리스 바람막이 점퍼 HAVANA KHAKI",
+    sale: "159000",
+    price: "159000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002249/1000002249_main_03.jpg",
+    name: "내셔널지오그래픽 N202UJP910 월리스 바람막이 점퍼 INCENSE BEIGE",
+    sale: "159000",
+    price: "159000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002251/1000002251_main_0100.jpg",
+    name: "내셔널지오그래픽 N202UJP910 월리스 바람막이 점퍼 WHITE",
+    sale: "159000",
+    price: "159000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/01/05/1000002219/1000002219_main_026.jpg",
+    name: "내셔널지오그래픽 N202MJP920 카니스 홑겹 스탠카라 점퍼 CARBON BLACK",
+    sale: "159000",
+    price: "159000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/01/05/1000002218/1000002218_main_010.jpg",
+    name: "내셔널지오그래픽 N202MJP920 카니스 홑겹 스탠카라 점퍼 BURGUNDY",
+    sale: "159000",
+    price: "159000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/01/05/1000002220/1000002220_main_035.jpg",
+    name:
+      "내셔널지오그래픽 N202MJP920 카니스 홑겹 스탠카라 점퍼 PLAZA TAUPE BEIGE",
+    sale: "159000",
+    price: "159000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/01/05/1000002221/1000002221_main_086.jpg",
+    name: "내셔널지오그래픽 N202MJP920 카니스 홑겹 스탠카라 점퍼 STEEL GREY",
+    sale: "159000",
+    price: "159000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/01/03/1000002175/1000002175_main_039.jpg",
+    name:
+      "내셔널지오그래픽 N202UJP830 트리톤 후드일체형 바람막이 점퍼 CARBON BLACK",
+    sale: "109000",
+    price: "89000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/01/03/1000002199/1000002199_main_010.jpg",
+    name:
+      "내셔널지오그래픽 N202UJP830 트리톤 후드일체형 바람막이 점퍼 EARTH KHAKI",
+    sale: "109000",
+    price: "89000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/01/03/1000002200/1000002200_main_081.jpg",
+    name:
+      "내셔널지오그래픽 N202UJP830 트리톤 후드일체형 바람막이 점퍼 GLACIER GRAY",
+    sale: "109000",
+    price: "89000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/01/02/1000002103/1000002103_main_025.jpg",
+    name: "내셔널지오그래픽 N201MJP910 타슬란 배색 바람막이 점퍼 CARBON BLACK",
+    sale: "199000",
+    price: "199000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/01/02/1000002102/1000002102_main_048.jpg",
+    name: "내셔널지오그래픽 N201MJP910 타슬란 배색 바람막이 점퍼 HAVANA KHAKI",
+    sale: "199000",
+    price: "199000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/09/1000002398/1000002398_main_010.jpg",
+    name: "내셔널지오그래픽 N201MJP820 에리스 코치 자켓 BLACK",
+    sale: "139000",
+    price: "119000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/01/03/1000002165/1000002165_main_02.jpg",
+    name: "내셔널지오그래픽 N201MJP820 에리스 코치 자켓 CARBON BLACK",
+    sale: "139000",
+    price: "119000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/01/03/1000002166/1000002166_main_072.jpg",
+    name: "내셔널지오그래픽 N201MJP830 디오네 어반 스타디움 점퍼 CARBON BLACK",
+    sale: "139000",
+    price: "139000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/09/1000002406/1000002406_main_09.jpg",
+    name: "내셔널지오그래픽 N201MJP830 디오네 어반 스타디움 점퍼 GLACIER GRAY",
+    sale: "139000",
+    price: "139000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/01/05/1000002224/1000002224_main_055.jpg",
+    name: "내셔널지오그래픽 N201MJP940 오리타 아노락 점퍼 GREEN SHEEN",
+    sale: "219000",
+    price: "189000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/01/05/1000002225/1000002225_main_096.jpg",
+    name: "내셔널지오그래픽 N201MJP940 오리타 아노락 점퍼 HAVANA KHAKI",
+    sale: "219000",
+    price: "189000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/01/05/1000002226/1000002226_main_025.jpg",
+    name: "내셔널지오그래픽 N201MJP940 오리타 아노락 점퍼 INCENSE BEIGE",
+    sale: "219000",
+    price: "189000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002236/1000002236_main_084.jpg",
+    name:
+      "내셔널지오그래픽 N201MJP920 로우머스 플라이트 블루종 점퍼 CARBON BLACK",
+    sale: "219000",
+    price: "219000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002237/1000002237_main_036.jpg",
+    name:
+      "내셔널지오그래픽 N201MJP920 로우머스 플라이트 블루종 점퍼 HAVANA KHAKI",
+    sale: "219000",
+    price: "219000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002238/1000002238_main_054.jpg",
+    name:
+      "내셔널지오그래픽 N201MJP920 로우머스 플라이트 블루종 점퍼 INCENSE BEIGE",
+    sale: "219000",
+    price: "219000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002239/1000002239_main_081.jpg",
+    name: "내셔널지오그래픽 N201MJP990 포켓 홑겹 셔츠형 자켓 CARBON BLACK",
+    sale: "109000",
+    price: "89000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002240/1000002240_main_020.jpg",
+    name: "내셔널지오그래픽 N201MJP990 포켓 홑겹 셔츠형 자켓 GREEN SHEEN",
+    sale: "109000",
+    price: "89000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002241/1000002241_main_082.jpg",
+    name: "내셔널지오그래픽 N201MJP990 포켓 홑겹 셔츠형 자켓 PLAZA TAUPE BEIGE",
+    sale: "109000",
+    price: "89000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/09/1000002424/1000002424_main_013.jpg",
+    name: "내셔널지오그래픽 N202MJP930 홑겹 블루종 점퍼 BURGUNDY",
+    sale: "159000",
+    price: "159000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002271/1000002271_main_083.jpg",
+    name: "내셔널지오그래픽 N202MJP930 홑겹 블루종 점퍼 HAVANA KHAKI",
+    sale: "159000",
+    price: "159000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002272/1000002272_main_077.jpg",
+    name: "내셔널지오그래픽 N202MJP930 홑겹 블루종 점퍼 PLAZA TAUPE BEIGE",
+    sale: "159000",
+    price: "159000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/01/05/1000002222/1000002222_main_035.jpg",
+    name:
+      "내셔널지오그래픽 N202MJP940 홑겹 시보리 하이넥 포인트 점퍼 HARBOR BLUE",
+    sale: "179000",
+    price: "159000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/01/05/1000002223/1000002223_main_058.jpg",
+    name: "내셔널지오그래픽 N202MJP940 홑겹 시보리 하이넥 포인트 점퍼 L TQ",
+    sale: "179000",
+    price: "159000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/08/1000002336/1000002336_main_047.jpg",
+    name: "내셔널지오그래픽 N202MVT920 메쉬 베스트 STEEL GREY",
+    sale: "99000",
+    price: "99000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/08/1000002335/1000002335_main_057.jpg",
+    name: "내셔널지오그래픽 N202MVT920 메쉬 베스트 CARBON BLACK",
+    sale: "99000",
+    price: "99000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/09/1000002371/1000002370_main_02.jpg",
+    name: "내셔널지오그래픽 N201MJP050 유틸리티 롱 점퍼 STEEL GREY",
+    sale: "219000",
+    price: "189000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/02/09/1000002370/1000002370_main_073.jpg",
+    name: "내셔널지오그래픽 N201MJP050 유틸리티 롱 점퍼 PLAZA TAUPE BEIGE",
+    sale: "219000",
+    price: "189000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/03/10/1000002569/1000002569_main_064.jpg",
+    name: "내셔널지오그래픽 N202MVT210 세드나 메쉬 베스트 CARBON BLACK",
+    sale: "129000",
+    price: "129000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/03/10/1000002568/1000002568_main_074.jpg",
+    name: "내셔널지오그래픽 N202MVT010 하이넥 베스트 HAVANA KHAKI",
+    sale: "109000",
+    price: "109000",
+  },
+  {
+    img:
+      "http://www.naturestore.co.kr/data/goods/20/03/10/1000002567/1000002567_main_089.jpg",
+    name: "내셔널지오그래픽 N202MVT010 하이넥 베스트 CARBON BLACK",
+    sale: "109000",
+    price: "109000",
+  },
+];

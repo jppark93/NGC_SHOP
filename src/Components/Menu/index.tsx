@@ -17,7 +17,7 @@ const Menu = (props: any) => {
   const openClose = () => {
     if (modal === false) {
       return <MenuCategory src={MenuImg} onClick={openModal} />;
-    } else if (modal === true) {
+    } else {
       return <MenuCategory src={close} onClick={closeModal} />;
     }
   };
@@ -139,7 +139,7 @@ const MenuList = styled.ul`
 `;
 const MenuItem = styled.li`
   display: flex;
-  margin-left: auto;
+
   position: relative;
   align-items: center;
   flex-direction: column;
