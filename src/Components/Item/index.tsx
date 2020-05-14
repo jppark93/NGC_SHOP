@@ -12,27 +12,21 @@ import ReactDOM from "react-dom";
 
 const Item = (props: any) => {
   console.log(props);
-  const [count, setCount] = useState<number>(props.ea);
-  const [price, setPrice] = useState<number>(props.ea * props.price);
 
   const countUp = () => {
-    props.changeEA(props.outerSize, count + 1);
-    setCount(count + 1);
+    props.changeEA(props.outerSize, 1);
     props.changeTotal(props.price);
-    setPrice(price + props.price);
   };
 
   const countDown = () => {
-    if (count > 1) {
-      props.changeEA(props.outerSize, count - 1);
-      setCount(count - 1);
+    if (props.ea > 1) {
+      props.changeEA(props.outerSize, -1);
       props.changeTotal(-1 * props.price);
-      setPrice(price - props.price);
     }
   };
 
   const onComponentDelete = () => {
-    props.changeTotal(-1 * count * props.price);
+    props.changeTotal(-1 * props.ea * props.price);
     props.exitComponent(props.outerSize);
   };
 
@@ -57,8 +51,8 @@ const Item = (props: any) => {
         </Count>
       </CountBox>
       <ChoicePrice>
-        {price.toString()}
-        <h1>원</h1>
+        {props.ea * props.price}
+        <h1>웝</h1>
       </ChoicePrice>
       <DeleteBox>
         <button type="button" onClick={onComponentDelete}>

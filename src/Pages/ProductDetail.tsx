@@ -49,7 +49,7 @@ const ProductDetail = () => {
   const changeEAHandler = (size: string, ea: number) => {
     productArr.map((el) => {
       if (el.Size === size) {
-        el.EA = ea;
+        el.EA += ea;
         return;
       }
     });
