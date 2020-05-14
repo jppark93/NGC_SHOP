@@ -43,13 +43,65 @@ const ShopBar = (props: any) => {
         >
           {props.four}
         </li>
-        <li>{props.five}</li>
-        <li>{props.six}</li>
-        <li>{props.seven}</li>
-        <li>{props.eight}</li>
-        <li>{props.nine}</li>
-        <li>{props.ten}</li>
-        <li>{props.eleven}</li>
+        <li
+          style={
+            props.five === undefined
+              ? { display: "none" }
+              : { display: "block" }
+          }
+        >
+          {props.five}
+        </li>
+        <li
+          style={
+            props.six === undefined ? { display: "none" } : { display: "block" }
+          }
+        >
+          {props.six}
+        </li>
+        <li
+          style={
+            props.seven === undefined
+              ? { display: "none" }
+              : { display: "block" }
+          }
+        >
+          {props.seven}
+        </li>
+        <li
+          style={
+            props.eight === undefined
+              ? { display: "none" }
+              : { display: "block" }
+          }
+        >
+          {props.eight}
+        </li>
+        <li
+          style={
+            props.nine === undefined
+              ? { display: "none" }
+              : { display: "block" }
+          }
+        >
+          {props.nine}
+        </li>
+        <li
+          style={
+            props.ten === undefined ? { display: "none" } : { display: "block" }
+          }
+        >
+          {props.ten}
+        </li>
+        <li
+          style={
+            props.eleven === undefined
+              ? { display: "none" }
+              : { display: "block" }
+          }
+        >
+          {props.eleven}
+        </li>
       </UL>
     </BarLi>
   );
