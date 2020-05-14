@@ -164,7 +164,7 @@ const SignUpTwo = (props: any) => {
       return <div className="blue"> &nbsp; </div>;
     } else if (dupIdCheck) {
       return <div className="blue">사용할 수 있는 아이디입니다.</div>;
-    } else if (!idError && id.length > 4) {
+    } else if (!idError && id.length > 3) {
       return (
         <Red> 아이디 중복 체크를 하지 않았거나, 이미 가입된 아이디입니다. </Red>
       );
@@ -195,7 +195,7 @@ const SignUpTwo = (props: any) => {
       return <div className="blue"> &nbsp; </div>;
     } else if (dupEmailCheck) {
       return <div className="blue">사용할 수 있는 이메일입니다.</div>;
-    } else if (!emailError && email.length > 4) {
+    } else if (!emailError && email.length > 3) {
       return (
         <Red>이메일 중복 체크를 하지 않았거나, 이미 가입된 이메일입니다.</Red>
       );

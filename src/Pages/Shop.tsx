@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Layout from "../Components/Layout";
@@ -7,6 +7,43 @@ import Product from "../Components/Product";
 import { ShopMenus } from "../data/data";
 import { ShopData } from "../data/data";
 const Shop = () => {
+  const [boolOne, setBoolOne] = useState<boolean>(false);
+  const [boolTwo, setBoolTwo] = useState<boolean>(false);
+
+  const lowPrice = (e: boolean) => {
+    setBoolOne(e);
+    setBoolTwo(false);
+    if (boolOne === true) {
+      ShopData.sort((a, b) => {
+        return parseInt(b.price) - parseInt(a.price);
+      });
+    } else {
+      ShopData.sort((a, b) => {
+        return parseInt(a.price) - parseInt(b.price);
+      });
+    }
+    console.log(ShopData);
+    console.log(e + "인자값");
+    console.log(boolOne + "첫번째");
+    console.log(boolTwo + "두번째");
+  };
+  const highPrice = (e: boolean) => {
+    setBoolTwo(e);
+    setBoolOne(false);
+    if (boolTwo === true) {
+      ShopData.sort((a, b) => {
+        return parseInt(a.price) - parseInt(b.price);
+      });
+    } else {
+      ShopData.sort((a, b) => {
+        return parseInt(b.price) - parseInt(a.price);
+      });
+    }
+    console.log(ShopData);
+    console.log(e + "인자값");
+    console.log(boolOne + "첫번째");
+    console.log(boolTwo + "두번째");
+  };
   return (
     <Layout>
       <div>
@@ -37,12 +74,23 @@ const Shop = () => {
           <ShopProduct>
             <ListNum>
               <span>
-                상품&nbsp;<h1>54</h1>&nbsp;개
+                상품&nbsp;<h1>{ShopData.length}</h1>&nbsp;개
               </span>
               <div>
                 <PickList>
-                  <li>낮은가격순</li>
-                  <li>높은가격순</li>
+                  <li
+                    style={boolOne ? { color: "red" } : { color: "#111" }}
+                    onClick={() => lowPrice(true)}
+                  >
+                    낮은가격순
+                  </li>
+
+                  <li
+                    style={boolTwo ? { color: "red" } : { color: "#111" }}
+                    onClick={() => highPrice(true)}
+                  >
+                    높은가격순
+                  </li>
                 </PickList>
               </div>
             </ListNum>

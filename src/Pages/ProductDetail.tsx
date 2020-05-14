@@ -12,13 +12,13 @@ import { OuterIMG } from "../data/data";
 const ProductDetail = () => {
   const [changeNum, setChangeNum] = useState<string>("1");
   const [imgIndex, setImgIndex] = useState<number>(0);
-  const [sizeIndex, setSizeIndex] = useState<number>(0);
+
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [selectValue, setSelectValue] = useState({ value: "" });
 
-  const [productArr, setProductArr] = useState<Array<{ Size: string; EA: number }>>(
-    []
-  );
+  const [productArr, setProductArr] = useState<
+    Array<{ Size: string; EA: number }>
+  >([]);
 
   const sizeArr = [
     { outerSize: "090" },
@@ -44,7 +44,7 @@ const ProductDetail = () => {
 
   const deleteProductHandler = (size: string) => {
     setProductArr(productArr.filter((el) => el.Size !== size));
-  }
+  };
 
   const changeEAHandler = (size: string, ea: number) => {
     productArr.map((el) => {
@@ -97,7 +97,7 @@ const ProductDetail = () => {
           <Price style={{ borderTop: "1px solid #dbdbdb" }}>
             <PriceDt>총 합계금액</PriceDt>
             <PriceDd style={{ fontSize: "20px", color: "#dd3d42" }}>
-              {totalPrice.toString()}원
+              {totalPrice}원
             </PriceDd>
           </Price>
         </ItemPrice>
