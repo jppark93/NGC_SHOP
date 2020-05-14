@@ -14,11 +14,11 @@ const Shop = () => {
     setBoolOne(e);
     setBoolTwo(false);
     if (boolOne === true) {
-      ShopData.sort((a, b) => {
+      ShopData.sort((a: any, b: any) => {
         return parseInt(b.price) - parseInt(a.price);
       });
     } else {
-      ShopData.sort((a, b) => {
+      ShopData.sort((a: any, b: any) => {
         return parseInt(a.price) - parseInt(b.price);
       });
     }
@@ -31,11 +31,11 @@ const Shop = () => {
     setBoolTwo(e);
     setBoolOne(false);
     if (boolTwo === true) {
-      ShopData.sort((a, b) => {
+      ShopData.sort((a: any, b: any) => {
         return parseInt(a.price) - parseInt(b.price);
       });
     } else {
-      ShopData.sort((a, b) => {
+      ShopData.sort((a: any, b: any) => {
         return parseInt(b.price) - parseInt(a.price);
       });
     }
@@ -96,7 +96,7 @@ const Shop = () => {
             </ListNum>
 
             <ProductDiv>
-              {ShopData.map((el) => {
+              {ShopData.map((el: any) => {
                 return (
                   <Product
                     img={el.img}
