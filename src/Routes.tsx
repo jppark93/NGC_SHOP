@@ -11,19 +11,18 @@ import AddressSearch from "./Pages/AddressSearch";
 const Routes = () => {
   return (
     <Router>
+      <Route exact path="/" component={Main} />
       <Switch>
-        <Route exact path="/" component={Main} />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Route path="/signup2" component={SignUpTwo} />
         <Route path="/addresssearch" component={AddressSearch} />
         <Route path="/cart" component={Cart} />
-        <Route path="/shop" component={Shop} />
+        <Route path="/shop/:name" component={Shop} />
+        <Route path="/shop/" component={Shop} />
         <Route path="/product" component={Product} />
       </Switch>
-      
     </Router>
-    
   );
 };
 

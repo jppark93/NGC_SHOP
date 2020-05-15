@@ -144,7 +144,7 @@ const MenuBar = styled.div`
 const ShopProduct = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
   min-width: 1100px;
   margin-left: 30px;
   margin-top: 50px;

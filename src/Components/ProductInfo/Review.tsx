@@ -5,20 +5,29 @@ import Comment from "../../Components/Comment";
 const Review = (props: any) => {
   const [size, setSize] = useState<string>("");
   const [ment, setMent] = useState<string>("");
+  const [slidePage, setSlidePage] = useState<number>(8);
+  const [currentpage, setCurrentNum] = useState<number>(1);
   const [num, setNum] = useState<number>(0);
   const [arr, setArr] = useState<
     Array<{ size: string; ment: string; indexKey: number }>
   >([]);
-  let sibal = num;
+  const pageArr: Array<any> = [];
+  const Last = currentpage * slidePage;
+  const First = Last - slidePage;
+  const slide = arr.slice(First, Last);
   console.log(arr);
-  console.log(num + "현재숫자");
+  console.log(arr.length + " arr의 길이");
+  console.log(pageArr);
+
   const SIZE = (e: any) => {
     setSize(e.target.value);
   };
   const MENT = (e: any) => {
     setMent(e.target.value);
   };
-
+  const pageChange = (e: number) => {
+    setCurrentNum(e);
+  };
   const ReviewDel = (k: number) => {
     setArr(
       arr.filter((el) => {
@@ -26,7 +35,18 @@ const Review = (props: any) => {
       })
     );
   };
-
+  for (let i = 1; i <= Math.ceil(arr.length / 8); i++) {
+    pageArr.push(i);
+  }
+  const pageNumber = () => {
+    return pageArr.map((el: any, index: number) => {
+      return (
+        <li onClick={() => pageChange(index + 1)}>
+          <span>{el}</span>{" "}
+        </li>
+      );
+    });
+  };
   return (
     <ItemDiv>
       <h3>플러스리뷰({arr.length})</h3>
@@ -83,7 +103,7 @@ const Review = (props: any) => {
         </BtnDiv>
       </Ment>
       <CommentBox>
-        {arr.map((el, index) => {
+        {slide.map((el, index) => {
           return (
             <Comment
               num={el.indexKey}
@@ -95,11 +115,7 @@ const Review = (props: any) => {
         })}
 
         <Pagination>
-          <ul>
-            <li>
-              <span>1</span>
-            </li>
-          </ul>
+          <ul>{pageNumber()}</ul>
         </Pagination>
       </CommentBox>
     </ItemDiv>
@@ -296,6 +312,8 @@ const Pagination = styled.div`
       height: 26px;
       color: black;
       border: 1px solid black;
+      margin-left: 5px;
+      cursor: pointer;
     }
   }
 `;

@@ -21,8 +21,8 @@ const Menu = (props: any) => {
       return <MenuCategory src={close} onClick={closeModal} />;
     }
   };
-  const goShop = () => {
-    props.history.push("./shop");
+  const goShop = (e: any) => {
+    props.history.push(`./shop/${e}`);
   };
   return (
     <MenuBlock>
@@ -32,7 +32,7 @@ const Menu = (props: any) => {
         <MenuItem>
           <span>MAN</span>
           <ul>
-            <li onClick={goShop}>OUTER</li>
+            <li onClick={() => goShop("")}>OUTER</li>
             <li>TOP</li>
             <li>BOTTOM</li>
           </ul>

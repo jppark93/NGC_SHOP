@@ -1,9 +1,9 @@
-import React, { useState, Props } from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import deleteBtn from "../../Images/reviewDel.png";
 const Comment = (props: any) => {
   const [like, setLike] = useState<number>(0);
-  console.log(props);
+
   const newDate = new Date();
   const likeBtn = () => {
     if (like === 0) {
