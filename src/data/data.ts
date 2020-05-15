@@ -1,4 +1,4 @@
-const dataRequest = () => {
+const dataRequest = (kind1: string, kind2: string = "") => {
   let goods: any;
   const xhr = new XMLHttpRequest();
   xhr.onload = function () {
@@ -9,7 +9,7 @@ const dataRequest = () => {
       console.log("굿즈 데이터 얻어오기 실패", xhr.responseText);
     }
   };
-  xhr.open("GET", "http://220.73.54.64:8999/resources/goods/man/outer", false);
+  xhr.open("GET", `http://220.73.54.64:8999/resources/goods/${kind1}${kind2 !== "" ? "/" + kind2 : ""}`, false);
   xhr.send();
   return goods;
 };
