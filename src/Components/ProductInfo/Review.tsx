@@ -7,6 +7,7 @@ const Review = (props: any) => {
   const [ment, setMent] = useState<string>("");
   const [slidePage, setSlidePage] = useState<number>(5);
   const [currentpage, setCurrentNum] = useState<number>(1);
+  const [like, setLike] = useState<number>(0);
   const [num, setNum] = useState<number>(0);
   const [boolean, setBoolean] = useState<boolean>(false);
   const [arr, setArr] = useState<
@@ -19,7 +20,7 @@ const Review = (props: any) => {
   console.log(arr);
   console.log(arr.length + " arr의 길이");
   console.log(pageArr);
-
+  const LikeBtn = () => {};
   const SIZE = (e: any) => {
     setSize(e.target.value);
   };
