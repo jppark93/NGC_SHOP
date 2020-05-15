@@ -5,9 +5,10 @@ import Comment from "../../Components/Comment";
 const Review = (props: any) => {
   const [size, setSize] = useState<string>("");
   const [ment, setMent] = useState<string>("");
-  const [slidePage, setSlidePage] = useState<number>(8);
+  const [slidePage, setSlidePage] = useState<number>(5);
   const [currentpage, setCurrentNum] = useState<number>(1);
   const [num, setNum] = useState<number>(0);
+  const [boolean, setBoolean] = useState<boolean>(false);
   const [arr, setArr] = useState<
     Array<{ size: string; ment: string; indexKey: number }>
   >([]);
@@ -27,6 +28,7 @@ const Review = (props: any) => {
   };
   const pageChange = (e: number) => {
     setCurrentNum(e);
+    setBoolean(true);
   };
   const ReviewDel = (k: number) => {
     setArr(
@@ -35,7 +37,7 @@ const Review = (props: any) => {
       })
     );
   };
-  for (let i = 1; i <= Math.ceil(arr.length / 8); i++) {
+  for (let i = 1; i <= Math.ceil(arr.length / slidePage); i++) {
     pageArr.push(i);
   }
   const pageNumber = () => {
@@ -311,9 +313,14 @@ const Pagination = styled.div`
       width: 26px;
       height: 26px;
       color: black;
-      border: 1px solid black;
+      @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap");
+      font-family: "Raleway", sans-serif;
       margin-left: 5px;
+      border: 1px solid black;
       cursor: pointer;
+      :hover {
+        border: 1px solid gray;
+      }
     }
   }
 `;
