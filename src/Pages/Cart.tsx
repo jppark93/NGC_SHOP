@@ -1,12 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import CartItem from "../Components/CartItem";
 import Next from "../Images/next.png";
 import Next2 from "../Images/next2.png";
 import Layout from "../Components/Layout";
 import PricePlus from "../Images/priceplus.png";
 import PriceTotal from "../Images/pricetotal.png";
+
 const Cart = () => {
+  const [cartArr, setCartArr] = useState([1, 2, 3]);
+  const cartState = () => {
+    if (cartArr.length === 0) {
+      return (
+        <Basket>
+          <span>장바구니에 담겨있는 상품이 없습니다.</span>
+        </Basket>
+      );
+    } else {
+      return (
+        <Basket2>
+          <TR>
+            <th style={{ width: "38px" }}>
+              <CheckBox>
+                <input type="checkbox" />
+                <span className="checkmark" />
+              </CheckBox>
+            </th>
+            <th style={{ width: "525px" }}>상품/옵션 정보</th>
+            <th style={{ width: "121px" }}>수량</th>
+            <th style={{ width: "121px" }}>상품금액</th>
+            <th style={{ width: "156px" }}>할인/적립</th>
+            <th style={{ width: "240px" }}>합계금액</th>
+          </TR>
+          {cartArr.map((el: any) => {
+            return <CartItem />;
+          })}
+        </Basket2>
+      );
+    }
+  };
   return (
     <Layout>
       <ParenDiv>
@@ -30,9 +63,7 @@ const Cart = () => {
                 </li>
               </ol>
             </TOP>
-            <Basket>
-              <span>장바구니에 담겨있는 상품이 없습니다.</span>
-            </Basket>
+            {cartState()}
             <PriceDiv>
               <Price>
                 <Num>
@@ -222,5 +253,83 @@ const Basket = styled.div`
   border-bottom: 1px solid #e6e6e6;
   font-size: 12px;
   color: #444444;
+`;
+const Basket2 = styled.div`
+  display: block;
+
+  width: 100%;
+
+  font-size: 12px;
+  color: #444444;
+  margin-top: 50px;
+  border-top: 1px solid #111;
+`;
+const TR = styled.tr`
+  display: flex;
+  background-color: #f7f7f7;
+  width: 100%;
+  height: 39px;
+  border-bottom: 1px solid #e6e6e6;
+  th {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+`;
+const CheckBox = styled.label`
+  display: flex;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 15px;
+  margin-left: 5px;
+  cursor: pointer;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: white;
+    border: 1px solid #111;
+  }
+  &:hover input ~ .checkmark {
+    background-color: white;
+  }
+  input:checked ~ .checkmark {
+    background-color: white;
+  }
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  input:checked ~ .checkmark:after {
+    display: block;
+  }
+  .checkmark:after {
+    left: 3px;
+    top: 0px;
+    width: 5px;
+    height: 8px;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
 `;
 export default Cart;

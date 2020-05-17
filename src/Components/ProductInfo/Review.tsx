@@ -5,22 +5,24 @@ import Comment from "../../Components/Comment";
 const Review = (props: any) => {
   const [size, setSize] = useState<string>("");
   const [ment, setMent] = useState<string>("");
-  const [slidePage, setSlidePage] = useState<number>(5);
   const [currentpage, setCurrentNum] = useState<number>(1);
-  const [like, setLike] = useState<number>(0);
+  const [likeB, setLikeB] = useState<number>(0);
   const [num, setNum] = useState<number>(0);
-  const [boolean, setBoolean] = useState<boolean>(false);
   const [arr, setArr] = useState<
-    Array<{ size: string; ment: string; indexKey: number }>
+    Array<{ size: string; ment: string; like: number; indexKey: number }>
   >([]);
   const pageArr: Array<any> = [];
-  const Last = currentpage * slidePage;
-  const First = Last - slidePage;
+  const slidePage: number = 5;
+  const Last: number = currentpage * slidePage;
+  const First: number = Last - slidePage;
+
   const slide = arr.slice(First, Last);
   console.log(arr);
-  console.log(arr.length + " arr의 길이");
-  console.log(pageArr);
-  const LikeBtn = () => {};
+  const LikeBtn = (e: number) => {
+    if (e === 1) {
+    } else if (e === 0) {
+    }
+  };
   const SIZE = (e: any) => {
     setSize(e.target.value);
   };
@@ -29,7 +31,6 @@ const Review = (props: any) => {
   };
   const pageChange = (e: number) => {
     setCurrentNum(e);
-    setBoolean(true);
   };
   const ReviewDel = (k: number) => {
     setArr(
@@ -82,7 +83,9 @@ const Review = (props: any) => {
           if (size.length === 0 && ment.length === 0) {
             alert("글을 작성해주세요");
           } else {
-            setArr(arr.concat({ size: size, ment: ment, indexKey: num }));
+            setArr(
+              arr.concat({ size: size, ment: ment, indexKey: num, like: likeB })
+            );
             setNum(num + 1);
           }
         }}
@@ -113,6 +116,8 @@ const Review = (props: any) => {
               size={el.size}
               ment={el.ment}
               delete={ReviewDel}
+              likeBtn={LikeBtn}
+              like={el.like}
             />
           );
         })}

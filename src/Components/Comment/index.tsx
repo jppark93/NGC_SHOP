@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import deleteBtn from "../../Images/reviewDel.png";
-const Comment = (props: any) => {
-  const [like, setLike] = useState<number>(0);
 
+const Comment = (props: any) => {
+  console.log(props.like);
   const newDate = new Date();
-  const likeBtn = () => {
-    if (like === 0) {
-      return setLike(1);
-    } else if (like === 1) {
-      return setLike(0);
+  const Btn = () => {
+    if (props.like === 0) {
+      return props.likeBtn(1);
+    } else if (props.like === 1) {
+      return props.likeBtn(0);
     }
   };
   const DeleteBtn = () => {
@@ -32,8 +32,8 @@ const Comment = (props: any) => {
         </TbTop>
         <TbMid>{props.ment}</TbMid>
         <TbBot>
-          <span>추천하기&nbsp;&nbsp;:&nbsp;{like}</span>
-          <button className="likeBtn" type="button" onClick={likeBtn}>
+          <span>추천하기&nbsp;&nbsp;:&nbsp;{props.like}</span>
+          <button className="likeBtn" type="button" onClick={Btn}>
             추천하기
           </button>
           <DeleteDiv>

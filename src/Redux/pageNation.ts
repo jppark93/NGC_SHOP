@@ -1,14 +1,12 @@
 //초기화
 export const initialState: State = {
   pageArray: [],
-  startIndex: 0,
-  endPage: 10,
+  slide: 16,
   currentPage: 1,
 };
 export interface State {
   pageArray: Array<INote>;
-  startIndex: number;
-  endPage: number;
+  slide: number;
   currentPage: number;
 }
 
@@ -26,9 +24,9 @@ export const setCurrentPage = (current: number) => ({
   type: CURRENT_PAGE,
   payload: current + 1,
 });
-export const setStartEndPage = (startIndex: number, endPage: number) => ({
+export const setStartEndPage = (slide: number) => ({
   type: UPDATE_START_END,
-  payload: { startIndex, endPage },
+  payload: slide,
 });
 
 type NextAction = ReturnType<typeof setCurrentPage | typeof setStartEndPage>;
@@ -44,8 +42,7 @@ export default (prev: State = initialState, next: NextAction): State => {
     case UPDATE_START_END:
       return {
         ...prev,
-        startIndex: next.payload.startIndex,
-        endPage: next.payload.endPage,
+        slide: next.payload,
       };
     default: {
       return {
@@ -57,8 +54,7 @@ export default (prev: State = initialState, next: NextAction): State => {
 
 export interface State {
   currentPage: number;
-  startIndex: number;
-  endPage: number;
+  slide: number;
 }
 
 export interface INote {
