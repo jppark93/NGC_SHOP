@@ -10,7 +10,19 @@ const CartItem = () => {
           <span className="checkmark" />
         </CheckBox>
       </td>
-      <td className="borderTB" style={{ width: "525px" }}></td>
+      <td className="borderTB" style={{ width: "525px" }}>
+        <OptionInfo>
+          <span>
+            <img src="https://www.naturestore.co.kr/data/goods/20/02/06/1000002246/1000002246_list_073.jpg" />
+          </span>
+          <div className="pick">
+            <span>
+              내셔널지오그래픽 N202UJP910 월리스 바람막이 점퍼 CARBORN BLACK
+            </span>
+            <span>SIZE: 095</span>
+          </div>
+        </OptionInfo>
+      </td>
       <td
         className="border1"
         style={{
@@ -48,7 +60,7 @@ const CartItem = () => {
 const ItemBox = styled.tr`
   display: flex;
   width: 100%;
-  height: 89px;
+  height: 102px;
 
   td {
     display: flex;
@@ -67,6 +79,35 @@ const ItemBox = styled.tr`
   .border1 {
     border: 1px solid #e6e6e6;
     border-top: none;
+  }
+`;
+const OptionInfo = styled.div`
+  display: flex;
+  border: 1px solid black;
+  width: 95%;
+  height: 59px;
+  span {
+    width: 52px;
+    height: 59px;
+    img {
+      width: 42px;
+      height: 42px;
+    }
+  }
+  .pick {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    span {
+      width: 453px;
+      height: 18px;
+      font-size: 12px;
+      :nth-child(2) {
+        color: #a9a9a9;
+        font-size: 11px;
+        padding: 3px 0px;
+      }
+    }
   }
 `;
 const CheckBox = styled.label`

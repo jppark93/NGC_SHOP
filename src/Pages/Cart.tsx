@@ -94,6 +94,11 @@ const Cart = () => {
                 </Num3>
               </Price>
             </PriceDiv>
+            <PickDiv>
+              <span className="pickBtn">
+                <button type="button">선택 상품 삭제</button>
+              </span>
+            </PickDiv>
           </SignUpBlock>
         </DIV>
       </ParenDiv>
@@ -275,6 +280,29 @@ const TR = styled.tr`
     align-items: center;
     justify-content: center;
     height: 100%;
+  }
+`;
+const PickDiv = styled.div`
+  width: 100%;
+  height: 100px;
+  margin-top: 20px;
+
+  .pickBtn {
+    display: flex;
+    width: 378px;
+    height: 30px;
+    button {
+      width: 120px;
+      height: 100%;
+      color: #626262;
+      padding: 0px 15px 0 15px;
+      font-size: 12px;
+      border: 1px solid #a3a3a3;
+      background-color: white;
+      :hover {
+        border: 1px solid #111;
+      }
+    }
   }
 `;
 const CheckBox = styled.label`
