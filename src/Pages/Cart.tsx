@@ -8,9 +8,48 @@ import Layout from "../Components/Layout";
 import PricePlus from "../Images/priceplus.png";
 import PriceTotal from "../Images/pricetotal.png";
 
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../Redux/index";
+import { pushBasket, delBasket, clearBasket } from "../Redux/shopBasket";
+
 const Cart = () => {
-  const [cartArr, setCartArr] = useState([1, 2, 3]);
+  //const [cartArr, setCartArr] = useState([1, 2, 3]);
+  const { basket, basketTotalPrice } = useSelector((redux: RootState) => redux.shopBasket);
+  const dispatch = useDispatch();
+
+  const onClearBasket = () => dispatch(clearBasket());
+
   const cartState = () => {
+    if (basket.length === 0) {
+      return (
+        <Basket>
+          <span>장바구니에 담겨있는 상품이 없습니다.</span>
+        </Basket>
+      );
+    } else {
+      return (
+        <Basket2>
+          <TR>
+            <th style={{ width: "38px" }}>
+              <CheckBox>
+                <input type="checkbox" />
+                <span className="checkmark" />
+              </CheckBox>
+            </th>
+            <th style={{ width: "525px" }}>상품/옵션 정보</th>
+            <th style={{ width: "121px" }}>수량</th>
+            <th style={{ width: "121px" }}>상품금액</th>
+            <th style={{ width: "156px" }}>할인/적립</th>
+            <th style={{ width: "240px" }}>합계금액</th>
+          </TR>
+          {basket.map((el: any) => {
+            return <CartItem info={el}/>;
+          })}
+        </Basket2>
+      );
+    }
+  };
+    /*
     if (cartArr.length === 0) {
       return (
         <Basket>
@@ -34,12 +73,14 @@ const Cart = () => {
             <th style={{ width: "240px" }}>합계금액</th>
           </TR>
           {cartArr.map((el: any) => {
-            return <CartItem />;
+            const data = {name : '시발', ea: 5};
+            return <CartItem info={data}/>;
           })}
         </Basket2>
       );
     }
   };
+  */
   return (
     <Layout>
       <ParenDiv>
@@ -68,10 +109,10 @@ const Cart = () => {
               <Price>
                 <Num>
                   <span>
-                    총 <h1>0</h1>개의 상품금액
+                    총 <h1>{basket.length}</h1>개의 상품금액
                   </span>
                   <span>
-                    <h1>0</h1>원
+                    <h1>{basketTotalPrice}</h1>원
                   </span>
                 </Num>
                 <span className="price">
@@ -89,7 +130,7 @@ const Cart = () => {
                 <Num3>
                   <span>합계</span>
                   <span>
-                    <h1>0</h1>원
+                    <h1>{basketTotalPrice}</h1>원
                   </span>
                 </Num3>
               </Price>

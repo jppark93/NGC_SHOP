@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const CartItem = () => {
+const CartItem = (props: any) => {
   return (
     <ItemBox>
       <td className="borderTB" style={{ width: "38px" }}>
@@ -13,13 +13,13 @@ const CartItem = () => {
       <td className="borderTB" style={{ width: "525px" }}>
         <OptionInfo>
           <span>
-            <img src="https://www.naturestore.co.kr/data/goods/20/02/06/1000002246/1000002246_list_073.jpg" />
+            <img src={props.info.img} />
           </span>
           <div className="pick">
             <span>
-              내셔널지오그래픽 N202UJP910 월리스 바람막이 점퍼 CARBORN BLACK
+            {props.info.name}
             </span>
-            <span>SIZE: 095</span>
+            <span>SIZE: {props.info.size}</span>
           </div>
         </OptionInfo>
       </td>
@@ -30,7 +30,7 @@ const CartItem = () => {
           borderBottom: "1px solid #e6e6e6",
         }}
       >
-        1개
+        {props.info.ea}개
       </td>
       <td
         className="border"
@@ -38,7 +38,7 @@ const CartItem = () => {
           width: "121px",
         }}
       >
-        1원
+        {props.info.ea * props.info.price}원
       </td>
       <td
         className="border"
@@ -52,7 +52,7 @@ const CartItem = () => {
           width: "240px",
         }}
       >
-        1원
+        {props.info.ea * props.info.price}원
       </td>
     </ItemBox>
   );
