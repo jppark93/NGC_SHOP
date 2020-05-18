@@ -8,6 +8,9 @@ import Review from "../Components/ProductInfo/Review";
 import Delivery from "../Components/ProductInfo/Delivery";
 import ItemList from "../Components/Item";
 import { OuterIMG } from "../data/data";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../Redux/index";
+import { pushBasket, delBasket, clearBasket } from "../Redux/shopBasket";
 
 const ProductDetail = () => {
   const [changeNum, setChangeNum] = useState<string>("1");
@@ -20,12 +23,21 @@ const ProductDetail = () => {
     Array<{ Size: string; EA: number }>
   >([]);
 
+  const { basket, basketTotalPrice } = useSelector(
+    (redux: RootState) => redux.shopBasket
+  );
+  const dispatch = useDispatch();
+
   const sizeArr = [
     { outerSize: "090" },
     { outerSize: "095" },
     { outerSize: "100" },
     { outerSize: "105" },
   ];
+
+  //const onPushBasket = () => dispatch(pushBasket(데이터));
+  //const onDelBasket = () => dispatch(delBasket(데이터));
+  const onClearBasket = () => dispatch(clearBasket());
 
   const pageChange = () => {
     if (changeNum === "1") {
@@ -112,7 +124,7 @@ const ProductDetail = () => {
           <Pd>
             <PdBox>
               <PdImg>
-                <img src={Img} alt="pd"></img>
+                <img src={OuterIMG[imgIndex].img} alt="pd"></img>
               </PdImg>
               <Imgs>
                 {OuterIMG.map((el, index) => {

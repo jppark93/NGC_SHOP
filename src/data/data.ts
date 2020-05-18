@@ -9,7 +9,13 @@ const dataRequest = (kind1: string, kind2: string = "") => {
       console.log("굿즈 데이터 얻어오기 실패", xhr.responseText);
     }
   };
-  xhr.open("GET", `http://220.73.54.64:8999/resources/goods/${kind1}${kind2 !== "" ? "/" + kind2 : ""}`, false);
+  xhr.open(
+    "GET",
+    `http://220.73.54.64:8999/resources/goods/${kind1}${
+      kind2 !== "" ? "/" + kind2 : ""
+    }`,
+    false
+  );
   xhr.send();
   return goods;
 };
@@ -261,15 +267,15 @@ export const OuterIMG = [
   },
   {
     img:
-      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg",
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/1000002246_detail_174.jpg",
   },
   {
     img:
-      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg",
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/1000002246_detail_287.jpg",
   },
   {
     img:
-      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002246_detail_044.jpg",
+      "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002245_detail_353.jpg",
   },
 ];
 export const FrontData = [

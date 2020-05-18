@@ -1,11 +1,11 @@
 export const BasketState: State = {
   basket: [],
-  totalPrice: 0,
+  basketTotalPrice: 0,
 };
 
 export interface State {
   basket: Array<goodsType>;
-  totalPrice: number;
+  basketTotalPrice: number;
 }
 
 export interface goodsType {
@@ -44,31 +44,37 @@ export default (state: State = BasketState, act: action): State => {
 
   switch (act.type) {
     case BASKET_PUSH: {
-      let findResult: number = prev_basket.findIndex((goods: any) => goods.name === act.payload.name && goods.size === act.payload.size);
+      let findResult: number = prev_basket.findIndex(
+        (goods: any) =>
+          goods.name === act.payload.name && goods.size === act.payload.size
+      );
       if (findResult !== -1) {
         next_basket = prev_basket;
         next_basket[findResult].ea += act.payload.ea;
-      }
-      else
-        next_basket = state.basket.concat(act.payload);
+      } else next_basket = state.basket.concat(act.payload);
       return {
         ...state,
         basket: next_basket,
-        totalPrice: state.totalPrice + (act.payload.price * act.payload.ea),
+        basketTotalPrice:
+          state.basketTotalPrice + act.payload.price * act.payload.ea,
       };
     }
     case BASKET_DEL: {
-      next_basket = state.basket.filter((goods: any) => goods.name !== act.payload.name || goods.size !== act.payload.size);
+      next_basket = state.basket.filter(
+        (goods: any) =>
+          goods.name !== act.payload.name || goods.size !== act.payload.size
+      );
       return {
         ...state,
         basket: next_basket,
-        totalPrice: (prev_basket.length - 1 === next_basket.length) ?
-          state.totalPrice - (act.payload.price * act.payload.ea) :
-          state.totalPrice,
+        basketTotalPrice:
+          prev_basket.length - 1 === next_basket.length
+            ? state.basketTotalPrice - act.payload.price * act.payload.ea
+            : state.basketTotalPrice,
       };
     }
     case BASKET_CLEAR: {
-      return { ...state, basket: [], totalPrice: 0 };
+      return { ...state, basket: [], basketTotalPrice: 0 };
     }
     default: {
       return {
