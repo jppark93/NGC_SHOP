@@ -83,7 +83,7 @@ const ItemBox = styled.tr`
 `;
 const OptionInfo = styled.div`
   display: flex;
-  border: 1px solid black;
+  margin-top: 20px;
   width: 95%;
   height: 59px;
   span {
