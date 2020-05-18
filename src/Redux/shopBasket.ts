@@ -1,11 +1,11 @@
 export const BasketState: State = {
   basket: [],
-  totalPrice: 0,
+  basketTotalPrice: 0,
 };
 
 export interface State {
   basket: Array<goodsType>;
-  totalPrice: number;
+  basketTotalPrice: number;
 }
 
 export interface goodsType {
@@ -19,6 +19,7 @@ export interface goodsType {
 export const BASKET_PUSH = "BASKET_PUSH" as const;
 export const BASKET_DEL = "BASKET_DEL" as const;
 export const BASKET_CLEAR = "BASKET_CLEAR" as const;
+export const BASKET_PRINT = "BASKET_PRINT" as const;
 
 export const pushBasket = (goods: any) => ({
   type: BASKET_PUSH,
@@ -34,8 +35,12 @@ export const clearBasket = () => ({
   type: BASKET_CLEAR,
 });
 
+export const printBasket = () => ({
+  type: BASKET_PRINT,
+});
+
 type action = ReturnType<
-  typeof pushBasket | typeof delBasket | typeof clearBasket
+  typeof pushBasket | typeof delBasket | typeof clearBasket | typeof printBasket
 >;
 
 export default (state: State = BasketState, act: action): State => {
@@ -54,7 +59,7 @@ export default (state: State = BasketState, act: action): State => {
       return {
         ...state,
         basket: next_basket,
-        totalPrice: state.totalPrice + (act.payload.price * act.payload.ea),
+        basketTotalPrice: state.basketTotalPrice + (act.payload.price * act.payload.ea),
       };
     }
     case BASKET_DEL: {
@@ -62,13 +67,17 @@ export default (state: State = BasketState, act: action): State => {
       return {
         ...state,
         basket: next_basket,
-        totalPrice: (prev_basket.length - 1 === next_basket.length) ?
-          state.totalPrice - (act.payload.price * act.payload.ea) :
-          state.totalPrice,
+        basketTotalPrice: (prev_basket.length - 1 === next_basket.length) ?
+          state.basketTotalPrice - (act.payload.price * act.payload.ea) :
+          state.basketTotalPrice,
       };
     }
     case BASKET_CLEAR: {
-      return { ...state, basket: [], totalPrice: 0 };
+      return { ...state, basket: [], basketTotalPrice: 0 };
+    }
+    case BASKET_PRINT: {
+      console.log(state.basket, state.basketTotalPrice);
+      return { ...state };
     }
     default: {
       return {

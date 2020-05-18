@@ -8,6 +8,8 @@ import Review from "../Components/ProductInfo/Review";
 import Delivery from "../Components/ProductInfo/Delivery";
 import ItemList from "../Components/Item";
 import { OuterIMG } from "../data/data";
+import { useDispatch } from "react-redux";
+import { pushBasket, printBasket } from "../Redux/shopBasket";
 
 const ProductDetail = () => {
   const [changeNum, setChangeNum] = useState<string>("1");
@@ -20,12 +22,32 @@ const ProductDetail = () => {
     Array<{ Size: string; EA: number }>
   >([]);
 
+  const dispatch = useDispatch();
+
   const sizeArr = [
     { outerSize: "090" },
     { outerSize: "095" },
     { outerSize: "100" },
     { outerSize: "105" },
   ];
+
+  const onPushBasket = (goodsData : any) => dispatch(pushBasket(goodsData));
+  const onPrintBasket = () => dispatch(printBasket());
+
+  const onClickBasketButton = () => {
+    productArr.map((product) => {
+      const goodsData = {
+        img : Img,
+        name : '내셔널지오그래픽 N202MRG640 남성 소매배색 빅 로고 래쉬가드',
+        size : product.Size,
+        ea : product.EA,
+        price : 69000,
+      }
+      onPushBasket(goodsData);
+    });
+    console.log("데이터 삽입이 완료되었습니다.")
+    onPrintBasket();
+  }
 
   const pageChange = () => {
     if (changeNum === "1") {
@@ -179,7 +201,7 @@ const ProductDetail = () => {
                 {onTotalPriceChanged()}
               </ItemChoice>
               <BtnChoice>
-                <button type="button">장바구니</button>
+                <button type="button" onClick={onClickBasketButton}>장바구니</button>
                 <button type="button">찜하기</button>
                 <button type="button">바로구매</button>
               </BtnChoice>
