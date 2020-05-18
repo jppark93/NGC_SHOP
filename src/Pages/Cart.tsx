@@ -13,8 +13,9 @@ import { RootState } from "../Redux/index";
 import { pushBasket, delBasket, clearBasket } from "../Redux/shopBasket";
 
 const Cart = () => {
-  //const [cartArr, setCartArr] = useState([1, 2, 3]);
-  const { basket, basketTotalPrice } = useSelector((redux: RootState) => redux.shopBasket);
+  const { basket, basketTotalPrice } = useSelector(
+    (redux: RootState) => redux.shopBasket
+  );
   const dispatch = useDispatch();
 
   const onClearBasket = () => dispatch(clearBasket());
@@ -43,44 +44,13 @@ const Cart = () => {
             <th style={{ width: "240px" }}>합계금액</th>
           </TR>
           {basket.map((el: any) => {
-            return <CartItem info={el}/>;
+            return <CartItem info={el} />;
           })}
         </Basket2>
       );
     }
   };
-    /*
-    if (cartArr.length === 0) {
-      return (
-        <Basket>
-          <span>장바구니에 담겨있는 상품이 없습니다.</span>
-        </Basket>
-      );
-    } else {
-      return (
-        <Basket2>
-          <TR>
-            <th style={{ width: "38px" }}>
-              <CheckBox>
-                <input type="checkbox" />
-                <span className="checkmark" />
-              </CheckBox>
-            </th>
-            <th style={{ width: "525px" }}>상품/옵션 정보</th>
-            <th style={{ width: "121px" }}>수량</th>
-            <th style={{ width: "121px" }}>상품금액</th>
-            <th style={{ width: "156px" }}>할인/적립</th>
-            <th style={{ width: "240px" }}>합계금액</th>
-          </TR>
-          {cartArr.map((el: any) => {
-            const data = {name : '시발', ea: 5};
-            return <CartItem info={data}/>;
-          })}
-        </Basket2>
-      );
-    }
-  };
-  */
+
   return (
     <Layout>
       <ParenDiv>
@@ -206,7 +176,8 @@ const PriceDiv = styled.div`
 const Price = styled.div`
   display: flex;
   align-items: center;
-  width: 357px;
+  justify-content: flex-end;
+  width: 500px;
   height: 64px;
 
   margin-left: auto;
@@ -230,7 +201,6 @@ const Price = styled.div`
 const Num = styled.div`
   display: flex;
   flex-direction: column;
-  width: 147px;
   height: 64px;
 
   span {
@@ -272,7 +242,7 @@ const Num2 = styled.div`
 const Num3 = styled.div`
   display: flex;
   flex-direction: column;
-  width: 42px;
+
   height: 64px;
 
   span {

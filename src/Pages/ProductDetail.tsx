@@ -8,11 +8,11 @@ import Review from "../Components/ProductInfo/Review";
 import Delivery from "../Components/ProductInfo/Delivery";
 import ItemList from "../Components/Item";
 import { OuterIMG } from "../data/data";
-
+import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { pushBasket, printBasket } from "../Redux/shopBasket";
 
-const ProductDetail = () => {
+const ProductDetail = (props: any) => {
   const [changeNum, setChangeNum] = useState<string>("1");
   const [imgIndex, setImgIndex] = useState<number>(0);
 
@@ -48,6 +48,7 @@ const ProductDetail = () => {
     });
     console.log("데이터 삽입이 완료되었습니다.");
     onPrintBasket();
+    props.history.push("/cart");
   };
 
   const pageChange = () => {
@@ -555,4 +556,4 @@ const InfoLi = styled.li`
     border-bottom: 1px solid #dadada;
   }
 `;
-export default ProductDetail;
+export default withRouter(ProductDetail);

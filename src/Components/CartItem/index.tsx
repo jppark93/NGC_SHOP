@@ -16,9 +16,7 @@ const CartItem = (props: any) => {
             <img src={props.info.img} />
           </span>
           <div className="pick">
-            <span>
-            {props.info.name}
-            </span>
+            <span>{props.info.name}</span>
             <span>SIZE: {props.info.size}</span>
           </div>
         </OptionInfo>
@@ -38,7 +36,7 @@ const CartItem = (props: any) => {
           width: "121px",
         }}
       >
-        {props.info.ea * props.info.price}원
+        {props.info.price}원
       </td>
       <td
         className="border"
