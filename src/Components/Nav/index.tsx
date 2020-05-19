@@ -9,6 +9,7 @@ import { setLogOut } from "../../Redux/login";
 
 const Nav = () => {
   const { loginState, userId } = useSelector((redux: RootState) => redux.login);
+  const { basket } = useSelector((redux: RootState) => redux.shopBasket);
   const dispatch = useDispatch();
 
   const onLogOutEvent = () => {
@@ -50,7 +51,7 @@ const Nav = () => {
               <Li>MYPAGE</Li>
               <Link to="/cart" style={{ textDecoration: "none" }}>
                 <Li>
-                  CART(<Strong>0</Strong>)
+                  CART(<Strong>{basket.length}</Strong>)
                 </Li>
               </Link>
               <Li>CS CENTER</Li>
