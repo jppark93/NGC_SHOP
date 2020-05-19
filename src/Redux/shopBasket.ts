@@ -14,25 +14,32 @@ export interface goodsType {
   size: string;
   ea: number;
   price: number;
+  checked: boolean;
 }
 
 export const BASKET_PUSH = "BASKET_PUSH" as const;
 export const BASKET_DEL = "BASKET_DEL" as const;
 export const BASKET_CLEAR = "BASKET_CLEAR" as const;
+export const BASKET_CAHNGE_CHECK = "BASKET_CAHNGE_CHECK" as const;
 export const BASKET_PRINT = "BASKET_PRINT" as const;
 
 export const pushBasket = (goods: any) => ({
   type: BASKET_PUSH,
-  payload: goods,
+  payload: {...goods, checked: true},
 });
 
 export const delBasket = (goods: any) => ({
   type: BASKET_DEL,
-  payload: goods,
+  payload: {...goods, checked: true},
 });
 
 export const clearBasket = () => ({
   type: BASKET_CLEAR,
+});
+
+export const changeCheckBasket = (goods: any) => ({
+  type: BASKET_CAHNGE_CHECK,
+  payload: goods,
 });
 
 export const printBasket = () => ({
@@ -40,7 +47,7 @@ export const printBasket = () => ({
 });
 
 type action = ReturnType<
-  typeof pushBasket | typeof delBasket | typeof clearBasket | typeof printBasket
+  typeof pushBasket | typeof delBasket | typeof clearBasket | typeof changeCheckBasket | typeof printBasket
 >;
 
 export default (state: State = BasketState, act: action): State => {
@@ -76,6 +83,24 @@ export default (state: State = BasketState, act: action): State => {
           prev_basket.length - 1 === next_basket.length
             ? state.basketTotalPrice - act.payload.price * act.payload.ea
             : state.basketTotalPrice,
+      };
+    }
+    case BASKET_CAHNGE_CHECK: {
+      let findResult: number = prev_basket.findIndex(
+        (goods: any) =>
+          goods.name === act.payload.name && goods.size === act.payload.size
+      );
+      if (findResult !== -1) {
+        next_basket = prev_basket;
+        next_basket[findResult].checked = !next_basket[findResult].checked;
+      } else return { ...state };
+      return {
+        ...state,
+        basket: next_basket,
+        basketTotalPrice: state.basketTotalPrice + (
+                next_basket[findResult].checked === true ?
+                  (next_basket[findResult].price * next_basket[findResult].ea) :
+                  -1 * (next_basket[findResult].price * next_basket[findResult].ea)),
       };
     }
     case BASKET_CLEAR: {

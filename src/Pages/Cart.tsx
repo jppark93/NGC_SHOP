@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import CartItem from "../Components/CartItem";
@@ -10,15 +10,35 @@ import PriceTotal from "../Images/pricetotal.png";
 
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../Redux/index";
-import { pushBasket, delBasket, clearBasket } from "../Redux/shopBasket";
+import { changeCheckBasket, clearBasket } from "../Redux/shopBasket";
 
 const Cart = () => {
+
+  const [bigCheckBox, setBigCheckBox] = useState<boolean>(true);
+
   const { basket, basketTotalPrice } = useSelector(
     (redux: RootState) => redux.shopBasket
   );
+
   const dispatch = useDispatch();
 
+  const onChangeCheckBasket = (goodsData: any) => dispatch(changeCheckBasket(goodsData));
   const onClearBasket = () => dispatch(clearBasket());
+
+  const onChangeChecked = (goods: any = 0, isCheck: boolean = true) => {
+    let next_state: boolean;
+    if (goods === 0){
+      next_state = !bigCheckBox;
+      setBigCheckBox(next_state);
+      basket.map((goods, index) => {
+        if (basket[index].checked !== next_state) 
+          onChangeCheckBasket(goods);
+      });
+    }
+    else{
+      onChangeCheckBasket(goods)
+    }
+  }
 
   const cartState = () => {
     if (basket.length === 0) {
@@ -32,8 +52,8 @@ const Cart = () => {
         <Basket2>
           <TR>
             <th style={{ width: "38px" }}>
-              <CheckBox>
-                <input type="checkbox" />
+              <CheckBox onChange={() => onChangeChecked()}>
+                <input type="checkbox" checked={bigCheckBox}/>
                 <span className="checkmark" />
               </CheckBox>
             </th>
@@ -43,8 +63,8 @@ const Cart = () => {
             <th style={{ width: "156px" }}>할인/적립</th>
             <th style={{ width: "240px" }}>합계금액</th>
           </TR>
-          {basket.map((el: any) => {
-            return <CartItem info={el} />;
+          {basket.map((el: any, index: number) => {
+            return <CartItem info={el}/>;
           })}
         </Basket2>
       );
