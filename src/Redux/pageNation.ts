@@ -1,12 +1,12 @@
 //초기화
 export const initialState: State = {
-  product: [],
+  productLength: 0,
   pageArray: [],
   slide: 16,
   currentPage: 1,
 };
 export interface State {
-  product: Array<Product>
+  productLength: number;
   pageArray: Array<number>;
   slide: number;
   currentPage: number;
@@ -19,15 +19,15 @@ export interface Product {
 }
 
 //액션 타입
-export const SET_PRODUCT = "SET_PRODUCT" as const;
+export const SET_PRODUCT_LENGTH = "SET_PRODUCT_LENGTH" as const;
 export const SET_PAGEARRAY = "SET_PAGEARRAY" as const;
 export const SET_SLIDE = "SET_SLIDE" as const;
 export const SET_PAGE = "SET_PAGE" as const;
 
 //액션 생성 함수
-export const setProduct = (product: Array<Product>) => ({
-  type: SET_PRODUCT,
-  payload: product,
+export const setProductLength = (productLength: number) => ({
+  type: SET_PRODUCT_LENGTH,
+  payload: productLength,
 });
 export const setPageArray = () => ({
   type: SET_PAGEARRAY,
@@ -41,19 +41,22 @@ export const setCurrentPage = (current: number) => ({
   payload: current + 1,
 });
 
-type NextAction = ReturnType<typeof setProduct | typeof setPageArray | typeof setSlide | typeof setCurrentPage>;
+type NextAction = ReturnType<typeof setProductLength | typeof setPageArray | typeof setSlide | typeof setCurrentPage>;
 
 export default (prev: State = initialState, next: NextAction): State => {
   switch (next.type) {
-    case SET_PRODUCT:
+    case SET_PRODUCT_LENGTH:
+      if (next.payload < 0) return { ...prev };
       return {
         ...prev,
-        product : next.payload,
+        productLength: next.payload,
       };
 
     case SET_PAGEARRAY:
-      let new_pageArray : Array<number> = [];
-      for(let i=1; i <= Math.ceil(prev.product.length / prev.slide); i++)
+      if (prev.productLength === 0)
+        return { ...prev };
+      let new_pageArray: Array<number> = [];
+      for (let i = 1; i <= Math.ceil(prev.productLength / prev.slide); i++)
         new_pageArray.push(i);
       return {
         ...prev,
@@ -69,7 +72,7 @@ export default (prev: State = initialState, next: NextAction): State => {
     case SET_PAGE:
       return {
         ...prev,
-        currentPage: next.payload,
+        currentPage: prev.pageArray.findIndex((page) => page === next.payload) !== -1 ? next.payload : prev.currentPage,
       };
 
     default: {
