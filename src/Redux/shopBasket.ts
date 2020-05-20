@@ -30,7 +30,7 @@ export const pushBasket = (goods: any) => ({
 
 export const delBasket = (goods: any) => ({
   type: BASKET_DEL,
-  payload: {...goods, checked: true},
+  payload: goods,
 });
 
 export const clearBasket = () => ({

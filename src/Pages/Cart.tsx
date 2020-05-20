@@ -25,7 +25,7 @@ const Cart = () => {
   const onChangeCheckBasket = (goodsData: any) => dispatch(changeCheckBasket(goodsData));
   const onDelBasket = (goodsData: any) => dispatch(delBasket(goodsData));
 
-  const onChangeChecked = (goods: any = 0, isCheck: boolean = true) => {
+  const onChangeChecked = (goods: any = 0) => {
     let next_state: boolean;
     if (goods === 0){
       next_state = !bigCheckBox;
