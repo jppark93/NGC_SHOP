@@ -10,29 +10,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Redux";
 import {
   setCurrentPage,
-  setProduct,
   setPageArray,
-  setSlide,
 } from "../Redux/pageNation";
 const Shop = () => {
   const [boolOne, setBoolOne] = useState<boolean>(false);
   const [boolTwo, setBoolTwo] = useState<boolean>(false);
-  const { pageArray, currentPage, slide, product } = useSelector(
+  const { pageArray, currentPage, slide } = useSelector(
     (redux: RootState) => redux.pageNation
   );
   const dispatch = useDispatch();
-  const setProductData = () => dispatch(setProduct(FrontData));
-  const setPageArrData = () => dispatch(setPageArray(FrontData));
-  useEffect(() => {
-    setProductData();
-    setPageArrData();
-  }, []);
-  const changeCurrentNum = (currentPage: number) =>
-    dispatch(setCurrentPage(currentPage));
+  const setReduxPageArray = (len: number = FrontData.length) => dispatch(setPageArray(len));
+  const setReduxCurrentPage = (currentPage: number = 1) => dispatch(setCurrentPage(currentPage));
 
-  const Last = currentPage * slide;
-  const First = Last - slide;
-  const SlideData = product.slice(First, Last);
+  useEffect(() => {
+    setReduxPageArray();
+  }, []);
+
+  // slice 작업
+  const lastGoods = currentPage * slide;
+  const firstGoods = lastGoods - slide;
+  const SlideData = FrontData.slice(firstGoods, lastGoods);
+
   const lowPrice = (e: boolean) => {
     setBoolOne(e);
     setBoolTwo(false);
@@ -120,7 +118,7 @@ const Shop = () => {
               <ul>
                 {pageArray.map((el, index) => {
                   return (
-                    <span onClick={() => changeCurrentNum(index + 1)}>
+                    <span onClick={() => setReduxCurrentPage(index + 1)}>
                       {el}
                     </span>
                   );
