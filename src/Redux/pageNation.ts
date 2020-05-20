@@ -7,7 +7,6 @@ export const initialState: State = {
 };
 export interface State {
   product: Array<Product>;
-
   pageArray: Array<number>;
   slide: number;
   currentPage: number;
@@ -56,6 +55,7 @@ export default (prev: State = initialState, next: NextAction): State => {
     case SET_PRODUCT:
       return {
         ...prev,
+
         product: next.payload,
       };
 
@@ -64,6 +64,7 @@ export default (prev: State = initialState, next: NextAction): State => {
       for (let i = 1; i <= Math.ceil(prev.product.length / prev.slide); i++) {
         new_pageArray.push(i);
       }
+
       return {
         ...prev,
         pageArray: new_pageArray,
