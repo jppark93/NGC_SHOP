@@ -1,49 +1,77 @@
 //초기화
 export const initialState: State = {
+  product: [],
   pageArray: [],
   slide: 16,
   currentPage: 1,
 };
 export interface State {
-  pageArray: Array<INote>;
+  product: Array<Product>
+  pageArray: Array<number>;
   slide: number;
   currentPage: number;
 }
-
-export interface INote {
-  id: string;
-  inBasket: boolean;
+export interface Product {
+  img: string,
+  name: string,
+  price: string,
+  sale: string,
 }
+
 //액션 타입
-export const CURRENT_PAGE = "CURRENT_PAGE" as const;
-export const UPDATE_START_END = "UPDATE_START_END" as const;
-export const END_PAGE = "END_PAGE" as const;
+export const SET_PRODUCT = "SET_PRODUCT" as const;
+export const SET_PAGEARRAY = "SET_PAGEARRAY" as const;
+export const SET_SLIDE = "SET_SLIDE" as const;
+export const SET_PAGE = "SET_PAGE" as const;
 
 //액션 생성 함수
-export const setCurrentPage = (current: number) => ({
-  type: CURRENT_PAGE,
-  payload: current + 1,
+export const setProduct = (product: Array<Product>) => ({
+  type: SET_PRODUCT,
+  payload: product,
 });
-export const setStartEndPage = (slide: number) => ({
-  type: UPDATE_START_END,
+export const setPageArray = () => ({
+  type: SET_PAGEARRAY,
+});
+export const setSlide = (slide: number) => ({
+  type: SET_SLIDE,
   payload: slide,
 });
+export const setCurrentPage = (current: number) => ({
+  type: SET_PAGE,
+  payload: current + 1,
+});
 
-type NextAction = ReturnType<typeof setCurrentPage | typeof setStartEndPage>;
+type NextAction = ReturnType<typeof setProduct | typeof setPageArray | typeof setSlide | typeof setCurrentPage>;
 
 export default (prev: State = initialState, next: NextAction): State => {
   switch (next.type) {
-    case CURRENT_PAGE:
+    case SET_PRODUCT:
+      return {
+        ...prev,
+        product : next.payload,
+      };
+
+    case SET_PAGEARRAY:
+      let new_pageArray : Array<number> = [];
+      for(let i=1; i <= Math.ceil(prev.product.length / prev.slide); i++)
+        new_pageArray.push(i);
+      return {
+        ...prev,
+        pageArray: new_pageArray,
+      };
+
+    case SET_SLIDE:
+      return {
+        ...prev,
+        slide: next.payload,
+      };
+
+    case SET_PAGE:
       return {
         ...prev,
         currentPage: next.payload,
       };
 
-    case UPDATE_START_END:
-      return {
-        ...prev,
-        slide: next.payload,
-      };
     default: {
       return {
         ...prev,
@@ -52,11 +80,4 @@ export default (prev: State = initialState, next: NextAction): State => {
   }
 };
 
-export interface State {
-  currentPage: number;
-  slide: number;
-}
 
-export interface INote {
-  id: string;
-}
