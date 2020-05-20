@@ -6,9 +6,16 @@ import ShopBar from "../Components/ShopBar";
 import Product from "../Components/Product";
 import { ShopMenus } from "../data/data";
 import { FrontData } from "../data/data";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../Redux";
 const Shop = () => {
   const [boolOne, setBoolOne] = useState<boolean>(false);
   const [boolTwo, setBoolTwo] = useState<boolean>(false);
+  const [currentpage, setCurrentNum] = useState<number>(1);
+  const { pageArray, product } = useSelector(
+    (redux: RootState) => redux.pageNation
+  );
+  const dispatch = useDispatch();
 
   const lowPrice = (e: boolean) => {
     setBoolOne(e);
@@ -108,10 +115,13 @@ const Shop = () => {
             </ProductDiv>
 
             <Pagination>
-              <ul>
-                <span>1</span>
-                <span>2</span>
-              </ul>
+              {pageArray.map((el) => {
+                return (
+                  <ul>
+                    <span>{el}</span>
+                  </ul>
+                );
+              })}
             </Pagination>
           </ShopProduct>
         </ShopDiv>
