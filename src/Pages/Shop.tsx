@@ -138,6 +138,7 @@ const Shop = () => {
 const ShopDiv = styled.div`
   display: flex;
   width: 100%;
+  justify-content: center;
 `;
 const Empty = styled.div`
   width: 100%;
