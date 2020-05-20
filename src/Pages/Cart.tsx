@@ -10,7 +10,7 @@ import PriceTotal from "../Images/pricetotal.png";
 
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../Redux/index";
-import { changeCheckBasket, clearBasket } from "../Redux/shopBasket";
+import { changeCheckBasket, delBasket } from "../Redux/shopBasket";
 
 const Cart = () => {
 
@@ -23,7 +23,7 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   const onChangeCheckBasket = (goodsData: any) => dispatch(changeCheckBasket(goodsData));
-  const onClearBasket = () => dispatch(clearBasket());
+  const onDelBasket = (goodsData: any) => dispatch(delBasket(goodsData));
 
   const onChangeChecked = (goods: any = 0, isCheck: boolean = true) => {
     let next_state: boolean;
@@ -38,6 +38,13 @@ const Cart = () => {
     else{
       onChangeCheckBasket(goods)
     }
+  }
+
+  const onDeleteButtonClick = () => {
+    basket.map((goods) => {
+      if (goods.checked)
+        onDelBasket(goods);
+    });
   }
 
   const cartState = () => {
@@ -127,7 +134,7 @@ const Cart = () => {
             </PriceDiv>
             <PickDiv>
               <span className="pickBtn">
-                <button type="button">선택 상품 삭제</button>
+                <button type="button" onClick={onDeleteButtonClick}>선택 상품 삭제</button>
               </span>
             </PickDiv>
           </SignUpBlock>
