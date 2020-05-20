@@ -22,7 +22,6 @@ export interface Product {
 
 //액션 타입
 export const SET_PRODUCT = "SET_PRODUCT" as const;
-
 export const SET_PAGEARRAY = "SET_PAGEARRAY" as const;
 export const SET_SLIDE = "SET_SLIDE" as const;
 export const SET_PAGE = "SET_PAGE" as const;
@@ -32,8 +31,9 @@ export const setProduct = (product: Array<Product>) => ({
   type: SET_PRODUCT,
   payload: product,
 });
-export const setPageArray = () => ({
+export const setPageArray = (pageArrData: Array<Product>) => ({
   type: SET_PAGEARRAY,
+  payload: pageArrData,
 });
 export const setSlide = (slide: number) => ({
   type: SET_SLIDE,
@@ -41,7 +41,7 @@ export const setSlide = (slide: number) => ({
 });
 export const setCurrentPage = (current: number) => ({
   type: SET_PAGE,
-  payload: current + 1,
+  payload: current,
 });
 
 type NextAction = ReturnType<
@@ -61,8 +61,9 @@ export default (prev: State = initialState, next: NextAction): State => {
 
     case SET_PAGEARRAY:
       let new_pageArray: Array<number> = [];
-      for (let i = 1; i <= Math.ceil(prev.product.length / prev.slide); i++)
+      for (let i = 1; i <= Math.ceil(prev.product.length / prev.slide); i++) {
         new_pageArray.push(i);
+      }
       return {
         ...prev,
         pageArray: new_pageArray,

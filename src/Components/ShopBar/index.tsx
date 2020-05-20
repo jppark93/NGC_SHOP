@@ -15,13 +15,13 @@ const ShopBar = (props: any) => {
     if (bool === false) {
       return (
         <Span onClick={On}>
-          {props.title} <img src={XBTN} />
+          {props.info.title} <img src={XBTN} />
         </Span>
       );
     } else {
       return (
         <Span onClick={Off}>
-          {props.title}{" "}
+          {props.info.title}{" "}
           <img
             style={{
               transform: "rotate(135deg)",
@@ -39,76 +39,80 @@ const ShopBar = (props: any) => {
     <BarLi>
       {Btn()}
       <UL style={bool ? { display: "block" } : { display: "none" }}>
-        <li>{props.one}</li>
-        <li>{props.two}</li>
-        <li>{props.three}</li>
+        <li>{props.info.one}</li>
+        <li>{props.info.two}</li>
+        <li>{props.info.three}</li>
         <li
           style={
-            props.four === undefined
+            props.info.four === undefined
               ? { display: "none" }
               : { display: "block" }
           }
         >
-          {props.four}
+          {props.info.four}
         </li>
         <li
           style={
-            props.five === undefined
+            props.info.five === undefined
               ? { display: "none" }
               : { display: "block" }
           }
         >
-          {props.five}
+          {props.info.five}
         </li>
         <li
           style={
-            props.six === undefined ? { display: "none" } : { display: "block" }
-          }
-        >
-          {props.six}
-        </li>
-        <li
-          style={
-            props.seven === undefined
+            props.info.six === undefined
               ? { display: "none" }
               : { display: "block" }
           }
         >
-          {props.seven}
+          {props.info.six}
         </li>
         <li
           style={
-            props.eight === undefined
+            props.info.seven === undefined
               ? { display: "none" }
               : { display: "block" }
           }
         >
-          {props.eight}
+          {props.info.seven}
         </li>
         <li
           style={
-            props.nine === undefined
+            props.info.eight === undefined
               ? { display: "none" }
               : { display: "block" }
           }
         >
-          {props.nine}
+          {props.info.eight}
         </li>
         <li
           style={
-            props.ten === undefined ? { display: "none" } : { display: "block" }
-          }
-        >
-          {props.ten}
-        </li>
-        <li
-          style={
-            props.eleven === undefined
+            props.info.nine === undefined
               ? { display: "none" }
               : { display: "block" }
           }
         >
-          {props.eleven}
+          {props.info.nine}
+        </li>
+        <li
+          style={
+            props.info.ten === undefined
+              ? { display: "none" }
+              : { display: "block" }
+          }
+        >
+          {props.info.ten}
+        </li>
+        <li
+          style={
+            props.info.eleven === undefined
+              ? { display: "none" }
+              : { display: "block" }
+          }
+        >
+          {props.info.eleven}
         </li>
       </UL>
     </BarLi>

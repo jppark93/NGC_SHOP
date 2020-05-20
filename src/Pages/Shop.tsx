@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Layout from "../Components/Layout";
@@ -8,15 +8,31 @@ import { ShopMenus } from "../data/data";
 import { FrontData } from "../data/data";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Redux";
+import {
+  setCurrentPage,
+  setProduct,
+  setPageArray,
+  setSlide,
+} from "../Redux/pageNation";
 const Shop = () => {
   const [boolOne, setBoolOne] = useState<boolean>(false);
   const [boolTwo, setBoolTwo] = useState<boolean>(false);
-  const [currentpage, setCurrentNum] = useState<number>(1);
-  const { pageArray, product } = useSelector(
+  const { pageArray, currentPage, slide, product } = useSelector(
     (redux: RootState) => redux.pageNation
   );
   const dispatch = useDispatch();
+  const setProductData = () => dispatch(setProduct(FrontData));
+  const setPageArrData = () => dispatch(setPageArray(FrontData));
+  useEffect(() => {
+    setProductData();
+    setPageArrData();
+  }, []);
+  const changeCurrentNum = (currentPage: number) =>
+    dispatch(setCurrentPage(currentPage));
 
+  const Last = currentPage * slide;
+  const First = Last - slide;
+  const SlideData = product.slice(First, Last);
   const lowPrice = (e: boolean) => {
     setBoolOne(e);
     setBoolTwo(false);
@@ -51,6 +67,7 @@ const Shop = () => {
     console.log(boolOne + "첫번째");
     console.log(boolTwo + "두번째");
   };
+
   return (
     <Layout>
       <div>
@@ -58,22 +75,7 @@ const Shop = () => {
           <ShopMenu>
             <MenuBar>TOP</MenuBar>
             {ShopMenus.map((el) => {
-              return (
-                <ShopBar
-                  title={el.title}
-                  one={el.one}
-                  two={el.two}
-                  three={el.three}
-                  four={el.four}
-                  five={el.five}
-                  six={el.six}
-                  seven={el.seven}
-                  eight={el.eight}
-                  nine={el.nine}
-                  ten={el.ten}
-                  eleven={el.eleven}
-                />
-              );
+              return <ShopBar info={el} />;
             })}
           </ShopMenu>
 
@@ -102,7 +104,7 @@ const Shop = () => {
             </ListNum>
 
             <ProductDiv>
-              {FrontData.map((el: any) => {
+              {SlideData.map((el: any) => {
                 return (
                   <Product
                     img={el.img}
@@ -115,16 +117,19 @@ const Shop = () => {
             </ProductDiv>
 
             <Pagination>
-              {pageArray.map((el) => {
-                return (
-                  <ul>
-                    <span>{el}</span>
-                  </ul>
-                );
-              })}
+              <ul>
+                {pageArray.map((el, index) => {
+                  return (
+                    <span onClick={() => changeCurrentNum(index + 1)}>
+                      {el}
+                    </span>
+                  );
+                })}
+              </ul>
             </Pagination>
           </ShopProduct>
         </ShopDiv>
+        <Empty />
       </div>
     </Layout>
   );
@@ -133,6 +138,10 @@ const Shop = () => {
 const ShopDiv = styled.div`
   display: flex;
   width: 100%;
+`;
+const Empty = styled.div`
+  width: 100%;
+  height: 100px;
 `;
 const ShopMenu = styled.div`
   display: flex;
@@ -223,6 +232,9 @@ const Pagination = styled.div`
       font-size: 12px;
       border: 1px solid black;
       margin-right: 5px;
+      :hover {
+        border: 1px solid gray;
+      }
     }
   }
 `;
