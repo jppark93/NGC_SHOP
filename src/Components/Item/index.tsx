@@ -4,11 +4,6 @@ import countUpBtn from "../../Images/countup.png";
 import countDownBtn from "../../Images/countdown.png";
 import deleteBtn from "../../Images/closeBtn.png";
 import ReactDOM from "react-dom";
-/* type Linked = {
-  total: number;
-  outerSize: string;
-  onClick: (total: number) => void;
-}; */
 
 const Item = (props: any) => {
   console.log(props);

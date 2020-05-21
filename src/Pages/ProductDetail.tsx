@@ -41,11 +41,11 @@ const ProductDetail = (props: any) => {
   const onClickBasketButton = () => {
     productArr.map((product) => {
       const goodsData = {
-        img: Img,
-        name: "내셔널지오그래픽 N202MRG640 남성 소매배색 빅 로고 래쉬가드",
+        img: ShopInfoData.img,
+        name: ShopInfoData.name,
         size: product.Size,
         ea: product.EA,
-        price: 69000,
+        price: ShopInfoData.price,
       };
       onPushBasket(goodsData);
     });
@@ -94,7 +94,7 @@ const ProductDetail = (props: any) => {
     }
     let new_Arr = productArr.concat({ Size: e.target.value, EA: 1 });
     setProductArr(new_Arr);
-    setTotalPrice(totalPrice + 69000);
+    setTotalPrice(totalPrice + parseInt(ShopInfoData.price));
   };
 
   const selectChange = () => {
@@ -105,7 +105,7 @@ const ProductDetail = (props: any) => {
             changeTotal={totalPriceChangeHandler}
             changeEA={changeEAHandler}
             exitComponent={deleteProductHandler}
-            price={69000}
+            price={parseInt(ShopInfoData.price)}
             ea={el.EA}
             outerSize={el.Size}
           />
