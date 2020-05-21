@@ -3,26 +3,20 @@ import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux";
-import { setPushInfo, setPushIndex } from "../../Redux/shopInfo";
+import { setPushInfo } from "../../Redux/shopInfo";
 const Product = (props: any) => {
-  console.log(props);
-  const { ShopInfoData, productIndex } = useSelector(
-    (redux: RootState) => redux.shopInfo
-  );
+  console.log(props.index);
+  const { ShopInfoData } = useSelector((redux: RootState) => redux.shopInfo);
   const dispatch = useDispatch();
   const onPushData = (e: any) => dispatch(setPushInfo(e));
-  const onPushIndex = (k: number) => dispatch(setPushIndex(k));
-  const goDetail = (e: any, k: number) => {
-    props.history.push("/product");
+
+  const goDetail = (e: any) => {
     onPushData(e);
-    onPushIndex(k);
+    props.history.push("/product");
   };
   return (
     <ProductLi>
-      <ProductDiv
-        key={props.index}
-        onClick={() => goDetail(props.info, props.index)}
-      >
+      <ProductDiv onClick={() => goDetail(props.info)}>
         <Img>
           <img src={props.info.img} alt="product" />
         </Img>

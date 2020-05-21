@@ -23,9 +23,9 @@ const ProductDetail = (props: any) => {
   const [productArr, setProductArr] = useState<
     Array<{ Size: string; EA: number }>
   >([]);
-  const { ShopInfoData, productIndex } = useSelector(
-    (redux: RootState) => redux.shopInfo
-  );
+  const { ShopInfoData } = useSelector((redux: RootState) => redux.shopInfo);
+  console.log(ShopInfoData);
+
   const dispatch = useDispatch();
 
   const sizeArr = [
@@ -139,7 +139,7 @@ const ProductDetail = (props: any) => {
           <Pd>
             <PdBox>
               <PdImg>
-                <img src={OuterIMG[imgIndex].img} alt="pd"></img>
+                <img src={ShopInfoData.img} alt="pd"></img>
               </PdImg>
               <Imgs>
                 {OuterIMG.map((el, index) => {
@@ -149,17 +149,17 @@ const ProductDetail = (props: any) => {
             </PdBox>
             <PdItemInfo>
               <PdName>
-                <h1>{ShopInfoData[productIndex].name}</h1>
+                <h1>{ShopInfoData.name}</h1>
               </PdName>
               <ItemDetail>
                 <ProductDl>
                   <ProductDt>정가</ProductDt>
-                  <ProductDd>69,000원</ProductDd>
+                  <ProductDd>{ShopInfoData.sale}원</ProductDd>
                 </ProductDl>
                 <ProductDl>
                   <ProductDt>판매가</ProductDt>
                   <ProductDd>
-                    <h1>69,000원</h1>
+                    <h1>{ShopInfoData.price}원</h1>
                   </ProductDd>
                 </ProductDl>
                 <ProductDl>

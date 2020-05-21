@@ -25,7 +25,7 @@ export const BASKET_PRINT = "BASKET_PRINT" as const;
 
 export const pushBasket = (goods: any) => ({
   type: BASKET_PUSH,
-  payload: {...goods, checked: true},
+  payload: { ...goods, checked: true },
 });
 
 export const delBasket = (goods: any) => ({
@@ -47,7 +47,11 @@ export const printBasket = () => ({
 });
 
 type action = ReturnType<
-  typeof pushBasket | typeof delBasket | typeof clearBasket | typeof changeCheckBasket | typeof printBasket
+  | typeof pushBasket
+  | typeof delBasket
+  | typeof clearBasket
+  | typeof changeCheckBasket
+  | typeof printBasket
 >;
 
 export default (state: State = BasketState, act: action): State => {
@@ -97,10 +101,12 @@ export default (state: State = BasketState, act: action): State => {
       return {
         ...state,
         basket: next_basket,
-        basketTotalPrice: state.basketTotalPrice + (
-                next_basket[findResult].checked === true ?
-                  (next_basket[findResult].price * next_basket[findResult].ea) :
-                  -1 * (next_basket[findResult].price * next_basket[findResult].ea)),
+        basketTotalPrice:
+          state.basketTotalPrice +
+          (next_basket[findResult].checked === true
+            ? next_basket[findResult].price * next_basket[findResult].ea
+            : -1 *
+              (next_basket[findResult].price * next_basket[findResult].ea)),
       };
     }
     case BASKET_CLEAR: {

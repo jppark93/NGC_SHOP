@@ -101,8 +101,8 @@ const Shop = () => {
             </ListNum>
 
             <ProductDiv>
-              {SlideData.map((el: any, index: number) => {
-                return <Product info={el} key={index} />;
+              {SlideData.map((el: any) => {
+                return <Product info={el} />;
               })}
             </ProductDiv>
 
