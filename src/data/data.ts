@@ -11,7 +11,7 @@ const dataRequest = (kind1: string, kind2: string = "") => {
   };
   xhr.open(
     "GET",
-    `http://220.73.54.64:8999/resources/goods/${kind1}${
+    `http://220.73.54.64:8999/shopDatas/${kind1}${
       kind2 !== "" ? "/" + kind2 : ""
     }`,
     false
