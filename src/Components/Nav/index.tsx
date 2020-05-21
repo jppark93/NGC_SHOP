@@ -92,7 +92,7 @@ const NavImage = styled.div`
 `;
 const NavSearch = styled.div`
   position: relative;
-  width: 470px;
+  width: 400px;
   height: 38px;
   border: none;
   margin-left: 27%;
@@ -101,7 +101,7 @@ const NavSearch = styled.div`
   margin-bottom: 10px;
 `;
 const TextArea = styled.input`
-  width: 300px;
+  width: 88%;
   height: 100%;
   padding: 5px 0px 5px 15px;
   font-size: 20px;
