@@ -2,15 +2,20 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Camera from "../../Images/camera.png";
 import Comment from "../../Components/Comment";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Redux";
 const Review = (props: any) => {
+
+  const { loginState, userId } = useSelector((redux: RootState) => redux.login);
+
   const [size, setSize] = useState<string>("");
   const [ment, setMent] = useState<string>("");
   const [currentpage, setCurrentNum] = useState<number>(1);
   const [likeB, setLikeB] = useState<number>(0);
   const [num, setNum] = useState<number>(0);
   const [arr, setArr] = useState<
-    Array<{ size: string; ment: string; like: number; indexKey: number }>
-  >([]);
+    Array<{ username: string, size: string; ment: string; like: number; indexKey: number, date: string }>
+  >(props.comments);
   const pageArr: Array<any> = [];
   const slidePage: number = 5;
   const Last: number = currentpage * slidePage;
@@ -32,10 +37,32 @@ const Review = (props: any) => {
   const pageChange = (e: number) => {
     setCurrentNum(e);
   };
-  const ReviewDel = (k: number) => {
+  const ReviewDel = (info: any) => {
+
     setArr(
       arr.filter((el) => {
-        return el.indexKey !== k;
+        if (
+          !(el.username === info.username &&
+            el.size === info.size &&
+            el.date === info.date &&
+            el.indexKey === info.indexKey
+          )
+        )
+          return true;
+        else {
+          const xhr = new XMLHttpRequest();
+          xhr.onload = function () {
+            if (xhr.status === 201) {
+              console.log("리뷰 삭제완료", xhr.responseText);
+            } else {
+              console.log("리뷰 삭제실패", xhr.responseText);
+            }
+          };
+          xhr.open("POST", "http://220.73.54.64:8999/details/comments/delete");
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(JSON.stringify({ ...el, goodsname: props.goodsname }));
+          return false;
+        }
       })
     );
   };
@@ -51,6 +78,20 @@ const Review = (props: any) => {
       );
     });
   };
+  const pushReview = (data: any) => {
+    const xhr = new XMLHttpRequest();
+
+    xhr.onload = function () {
+      if (xhr.status === 201) {
+        console.log("리뷰 등록완료", xhr.responseText);
+      } else {
+        console.log("리뷰 등록실패", xhr.responseText);
+      }
+    };
+    xhr.open("POST", "http://220.73.54.64:8999/details/comments/push");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify(data));
+  }
   return (
     <ItemDiv>
       <h3>플러스리뷰({arr.length})</h3>
@@ -76,17 +117,31 @@ const Review = (props: any) => {
       <Ment
         method="post"
         onSubmit={(e) => {
+
           e.preventDefault();
+
+          if (!loginState){
+            alert("리뷰를 작성하시려면 로그인 해주세요.");
+            return;
+          }
+
           setMent("");
           setSize("");
 
           if (size.length === 0 && ment.length === 0) {
             alert("글을 작성해주세요");
           } else {
+            const date = new Date();
+            const data = { username: userId, size: size, ment: ment, indexKey: num, like: likeB, date: `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}` };
+            const new_arr = arr;
+            new_arr.unshift(data);
             setArr(
-              arr.concat({ size: size, ment: ment, indexKey: num, like: likeB })
+              new_arr
+              // details 테이블에 comment 업데이트
             );
+            pushReview({ ...data, goodsname: props.goodsname });
             setNum(num + 1);
+
           }
         }}
       >
@@ -112,12 +167,9 @@ const Review = (props: any) => {
         {slide.map((el, index) => {
           return (
             <Comment
-              num={el.indexKey}
-              size={el.size}
-              ment={el.ment}
+              info={el}
               delete={ReviewDel}
               likeBtn={LikeBtn}
-              like={el.like}
             />
           );
         })}

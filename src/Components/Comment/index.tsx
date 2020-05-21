@@ -3,34 +3,34 @@ import styled, { css } from "styled-components";
 import deleteBtn from "../../Images/reviewDel.png";
 
 const Comment = (props: any) => {
-  console.log(props.like);
-  const newDate = new Date();
+  console.log(props.info.like);
+  const newDate : Date = new Date();
   const Btn = () => {
-    if (props.like === 0) {
+    if (props.info.like === 0) {
       return props.likeBtn(1);
-    } else if (props.like === 1) {
+    } else if (props.info.like === 1) {
       return props.likeBtn(0);
     }
   };
   const DeleteBtn = () => {
-    props.delete(props.num);
+    props.delete(props.info);
   };
   return (
     <BuyerReview>
       <DayName>
         <span>
-          {newDate.getFullYear()}.{newDate.getMonth() + 1}.{newDate.getDate()}
+          {props.info.date}
         </span>
-        <span>로그인닉네임</span>
+        <span>{props.info.username}</span>
       </DayName>
       <TextBox>
         <TbTop>
           <Size>
             <dt>SIZE</dt>
-            <dd>{props.size}</dd>
+            <dd>{props.info.size}</dd>
           </Size>
         </TbTop>
-        <TbMid>{props.ment}</TbMid>
+        <TbMid>{props.info.ment}</TbMid>
         <TbBot>
           <span>추천하기&nbsp;&nbsp;:&nbsp;{props.like}</span>
           <button className="likeBtn" type="button" onClick={Btn}>

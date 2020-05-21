@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import Layout from "../Components/Layout";
+import { detailRequest } from "../data/data";
 import Img from "../Images/testing.jpg";
 import Info from "../Components/ProductInfo/Info";
 import ExChange from "../Components/ProductInfo/ExChange";
@@ -12,21 +13,27 @@ import { withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../Redux";
 import { pushBasket, printBasket } from "../Redux/shopBasket";
+import { stringify } from "querystring";
 
 const ProductDetail = (props: any) => {
-  const [changeNum, setChangeNum] = useState<string>("1");
-  const [imgIndex, setImgIndex] = useState<number>(0);
 
+  const { ShopInfoData } = useSelector((redux: RootState) => redux.shopInfo);
+  const dispatch = useDispatch();
+
+  const [changeNum, setChangeNum] = useState<string>("1");
+  
+  const [detailData, setDetailData] = 
+    useState<{name: string, goodsImages: Array<string>, detailImages: Array<string>, comments: Array<any>}>(detailRequest(ShopInfoData.name));
+    const [mainImageSrc, setMainImageSrc] = useState<string>(ShopInfoData.img);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [selectValue, setSelectValue] = useState({ value: "" });
 
   const [productArr, setProductArr] = useState<
     Array<{ Size: string; EA: number }>
   >([]);
-  const { ShopInfoData } = useSelector((redux: RootState) => redux.shopInfo);
-  console.log(ShopInfoData);
 
-  const dispatch = useDispatch();
+  console.log(detailData);
+  
 
   const sizeArr = [
     { outerSize: "090" },
@@ -56,13 +63,15 @@ const ProductDetail = (props: any) => {
 
   const pageChange = () => {
     if (changeNum === "1") {
-      return <Info />;
+      return <Info detailImages={detailData.detailImages}/>;
+      //return <Info />;
     } else if (changeNum === "2") {
       return <ExChange />;
     } else if (changeNum === "3") {
       return <Delivery />;
     } else if (changeNum === "4") {
-      return <Review />;
+      return <Review comments={detailData.comments} goodsname={ShopInfoData.name}/>;
+      //return <Review goodsname={ShopInfoData.name}/>;
     }
   };
   const totalPriceChangeHandler = (fluctuation: number) => {
@@ -139,12 +148,19 @@ const ProductDetail = (props: any) => {
           <Pd>
             <PdBox>
               <PdImg>
-                <img src={ShopInfoData.img} alt="pd"></img>
+                <img src={mainImageSrc} alt="pd"></img>
               </PdImg>
               <Imgs>
-                {OuterIMG.map((el, index) => {
+                {
+                detailData.goodsImages.map((el, index) => {
+                  return <img src={el} key={index} onClick={() => setMainImageSrc(el)}/>;
+                })
+                /*
+                OuterIMG.map((el, index) => {
                   return <img src={el.img} key={index} />;
-                })}
+                })
+                */
+                }
               </Imgs>
             </PdBox>
             <PdItemInfo>

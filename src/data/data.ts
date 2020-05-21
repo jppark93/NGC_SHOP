@@ -1,4 +1,4 @@
-const dataRequest = (kind1: string, kind2: string = "") => {
+export const shopDataRequest = (kind1: string, kind2: string = "") => {
   let goods: any;
   const xhr = new XMLHttpRequest();
   xhr.onload = function () {
@@ -6,7 +6,7 @@ const dataRequest = (kind1: string, kind2: string = "") => {
       goods = JSON.parse(xhr.responseText);
       console.log(goods.length);
     } else {
-      console.log("굿즈 데이터 얻어오기 실패", xhr.responseText);
+      console.log("샵 데이터 얻어오기 실패", xhr.responseText);
     }
   };
   xhr.open(
@@ -18,6 +18,26 @@ const dataRequest = (kind1: string, kind2: string = "") => {
   );
   xhr.send();
   return goods;
+};
+
+export const detailRequest = (name: string) => {
+  let goods: any;
+  const xhr = new XMLHttpRequest();
+  xhr.onload = function () {
+    if (xhr.status === 200 || xhr.status === 304) {
+      goods = JSON.parse(xhr.responseText);
+      console.log(goods.length);
+    } else {
+      console.log("디테일 데이터 얻어오기 실패", xhr.responseText);
+    }
+  };
+  xhr.open(
+    "GET",
+    `http://220.73.54.64:8999/details/${name}`,
+    false
+  );
+  xhr.send();
+  return goods[0];
 };
 
 export const IMGS = [
@@ -278,7 +298,10 @@ export const OuterIMG = [
       "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002245_detail_353.jpg",
   },
 ];
-export const FrontData = [
+export const FrontData = 
+//shopDataRequest("man", "outer");
+
+[
   {
     img:
       "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/1000002246_main_041.jpg",
@@ -568,3 +591,4 @@ export const FrontData = [
     price: "109000",
   },
 ];
+

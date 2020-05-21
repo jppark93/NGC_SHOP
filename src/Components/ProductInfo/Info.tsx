@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const Info = () => {
+const Info = (props : any) => {
   const obj = [
     {
       img:
@@ -24,9 +24,17 @@ const Info = () => {
     <ItemDiv>
       <h3>상품상세정보</h3>
       <ImgDiv>
-        {obj.map((el: any) => {
-          return <img src={el.img} alt="" />;
-        })}
+        {
+        props.detailImages.map((el: any) => {
+          return <img src={el} alt="" />;
+        })
+      }
+        {/*
+          obj.map((el: any) => {
+            return <img src={el.img} alt="" />;
+          })
+          */
+        }
       </ImgDiv>
     </ItemDiv>
   );
