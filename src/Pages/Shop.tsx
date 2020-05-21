@@ -101,8 +101,8 @@ const Shop = () => {
             </ListNum>
 
             <ProductDiv>
-              {SlideData.map((el: any) => {
-                return <Product info={el} />;
+              {SlideData.map((el: any, index: number) => {
+                return <Product info={el} key={index} />;
               })}
             </ProductDiv>
 
@@ -128,7 +128,6 @@ const Shop = () => {
 const ShopDiv = styled.div`
   display: flex;
   width: 100%;
-  justify-content: center;
 `;
 const Empty = styled.div`
   width: 100%;

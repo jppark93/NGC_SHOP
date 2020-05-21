@@ -9,7 +9,8 @@ import Delivery from "../Components/ProductInfo/Delivery";
 import ItemList from "../Components/Item";
 import { OuterIMG } from "../data/data";
 import { withRouter } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../Redux";
 import { pushBasket, printBasket } from "../Redux/shopBasket";
 
 const ProductDetail = (props: any) => {
@@ -22,7 +23,9 @@ const ProductDetail = (props: any) => {
   const [productArr, setProductArr] = useState<
     Array<{ Size: string; EA: number }>
   >([]);
-
+  const { ShopInfoData, productIndex } = useSelector(
+    (redux: RootState) => redux.shopInfo
+  );
   const dispatch = useDispatch();
 
   const sizeArr = [
@@ -146,10 +149,7 @@ const ProductDetail = (props: any) => {
             </PdBox>
             <PdItemInfo>
               <PdName>
-                <h1>
-                  내셔널지오그래픽 N202MRG640 남성 소매배색 빅 로고 래쉬가드
-                  ADMIRAL MINT
-                </h1>
+                <h1>{ShopInfoData[productIndex].name}</h1>
               </PdName>
               <ItemDetail>
                 <ProductDl>
