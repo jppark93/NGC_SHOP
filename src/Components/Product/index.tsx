@@ -9,14 +9,14 @@ const Product = (props: any) => {
     <ProductLi>
       <ProductDiv onClick={goDetail}>
         <Img>
-          <img src={props.img} alt="product" />
+          <img src={props.info.img} alt="product" />
         </Img>
         <EX>
           <h1>
-            <span>{props.name}</span>
+            <span>{props.info.name}</span>
           </h1>
-          <h2>{props.sale}원</h2>
-          <h3>{props.price}원</h3>
+          <h2>{props.info.price}원</h2>
+          <h3>{props.info.sale}원</h3>
         </EX>
       </ProductDiv>
     </ProductLi>

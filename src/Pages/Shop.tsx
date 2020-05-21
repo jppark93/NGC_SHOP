@@ -8,10 +8,7 @@ import { ShopMenus } from "../data/data";
 import { FrontData } from "../data/data";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Redux";
-import {
-  setCurrentPage,
-  setPageArray,
-} from "../Redux/pageNation";
+import { setCurrentPage, setPageArray } from "../Redux/pageNation";
 const Shop = () => {
   const [boolOne, setBoolOne] = useState<boolean>(false);
   const [boolTwo, setBoolTwo] = useState<boolean>(false);
@@ -19,8 +16,10 @@ const Shop = () => {
     (redux: RootState) => redux.pageNation
   );
   const dispatch = useDispatch();
-  const setReduxPageArray = (len: number = FrontData.length) => dispatch(setPageArray(len));
-  const setReduxCurrentPage = (currentPage: number = 1) => dispatch(setCurrentPage(currentPage));
+  const setReduxPageArray = (len: number = FrontData.length) =>
+    dispatch(setPageArray(len));
+  const setReduxCurrentPage = (currentPage: number = 1) =>
+    dispatch(setCurrentPage(currentPage));
 
   useEffect(() => {
     setReduxPageArray();
@@ -103,14 +102,7 @@ const Shop = () => {
 
             <ProductDiv>
               {SlideData.map((el: any) => {
-                return (
-                  <Product
-                    img={el.img}
-                    name={el.name}
-                    sale={el.sale}
-                    price={el.price}
-                  />
-                );
+                return <Product info={el} />;
               })}
             </ProductDiv>
 
