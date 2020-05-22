@@ -6,7 +6,7 @@ const CartItem = (props: any) => {
     <ItemBox>
       <td className="borderTB" style={{ width: "38px" }}>
         <CheckBox onChange={() => props.onChangeChecked(props.info)}>
-          <input type="checkbox" checked={props.info.checked}/>
+          <input type="checkbox" checked={props.info.checked} />
           <span className="checkmark" />
         </CheckBox>
       </td>

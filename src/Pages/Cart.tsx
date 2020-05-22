@@ -33,7 +33,14 @@ const Cart = () => {
         if (basket[index].checked !== next_state) onChangeCheckBasket(goods);
       });
     } else {
+      next_state = !goods.checked;
       onChangeCheckBasket(goods);
+      let result: boolean = true;
+      basket.forEach((el) => {
+        if (el.checked === false) result = false;
+      });
+      if (result) setBigCheckBox(true);
+      else setBigCheckBox(false);
     }
   };
 
