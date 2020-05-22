@@ -239,6 +239,7 @@ const Pagination = styled.div`
       font-size: 12px;
       border: 1px solid black;
       margin-right: 5px;
+      cursor: pointer;
       :hover {
         border: 1px solid gray;
       }
