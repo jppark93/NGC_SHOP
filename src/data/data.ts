@@ -299,8 +299,8 @@ export const OuterIMG = [
   },
 ];
 export const FrontData = 
-//shopDataRequest("man", "outer");
-
+shopDataRequest("man", "outer");
+/*
 [
   {
     img:
@@ -592,3 +592,4 @@ export const FrontData =
   },
 ];
 
+*/

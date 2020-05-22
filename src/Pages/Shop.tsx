@@ -109,11 +109,12 @@ const Shop = () => {
             <Pagination>
               <ul>
                 {pageArray.map((el, index) => {
-                  return (
-                    <span onClick={() => setReduxCurrentPage(index + 1)}>
-                      {el}
-                    </span>
-                  );
+                  if (Math.abs(el - currentPage) <= 3)
+                    return (
+                      <span onClick={() => setReduxCurrentPage(index + 1)}>
+                        {el}
+                      </span>
+                    );
                 })}
               </ul>
             </Pagination>
