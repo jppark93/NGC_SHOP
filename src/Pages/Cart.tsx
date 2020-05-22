@@ -13,7 +13,6 @@ import { RootState } from "../Redux/index";
 import { changeCheckBasket, delBasket } from "../Redux/shopBasket";
 
 const Cart = () => {
-
   const [bigCheckBox, setBigCheckBox] = useState<boolean>(true);
 
   const { basket, basketTotalPrice } = useSelector(
@@ -22,30 +21,28 @@ const Cart = () => {
 
   const dispatch = useDispatch();
 
-  const onChangeCheckBasket = (goodsData: any) => dispatch(changeCheckBasket(goodsData));
+  const onChangeCheckBasket = (goodsData: any) =>
+    dispatch(changeCheckBasket(goodsData));
   const onDelBasket = (goodsData: any) => dispatch(delBasket(goodsData));
 
   const onChangeChecked = (goods: any = 0) => {
     let next_state: boolean;
-    if (goods === 0){
+    if (goods === 0) {
       next_state = !bigCheckBox;
       setBigCheckBox(next_state);
       basket.map((goods, index) => {
-        if (basket[index].checked !== next_state) 
-          onChangeCheckBasket(goods);
+        if (basket[index].checked !== next_state) onChangeCheckBasket(goods);
       });
+    } else {
+      onChangeCheckBasket(goods);
     }
-    else{
-      onChangeCheckBasket(goods)
-    }
-  }
+  };
 
   const onDeleteButtonClick = () => {
     basket.map((goods) => {
-      if (goods.checked)
-        onDelBasket(goods);
+      if (goods.checked) onDelBasket(goods);
     });
-  }
+  };
 
   const cartState = () => {
     if (basket.length === 0) {
@@ -60,7 +57,7 @@ const Cart = () => {
           <TR>
             <th style={{ width: "38px" }}>
               <CheckBox onChange={() => onChangeChecked()}>
-                <input type="checkbox" checked={bigCheckBox}/>
+                <input type="checkbox" checked={bigCheckBox} />
                 <span className="checkmark" />
               </CheckBox>
             </th>
@@ -71,7 +68,7 @@ const Cart = () => {
             <th style={{ width: "240px" }}>합계금액</th>
           </TR>
           {basket.map((el: any, index: number) => {
-            return <CartItem info={el}/>;
+            return <CartItem info={el} />;
           })}
         </Basket2>
       );
@@ -134,7 +131,9 @@ const Cart = () => {
             </PriceDiv>
             <PickDiv>
               <span className="pickBtn">
-                <button type="button" onClick={onDeleteButtonClick}>선택 상품 삭제</button>
+                <button type="button" onClick={onDeleteButtonClick}>
+                  선택 상품 삭제
+                </button>
               </span>
             </PickDiv>
           </SignUpBlock>
