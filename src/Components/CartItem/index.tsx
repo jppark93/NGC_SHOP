@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { changeCheckBasket } from "../../Redux/shopBasket";
 
 const CartItem = (props: any) => {
-  const dispatch = useDispatch();
-  const onChangeCheckBasket = (goodsData: any) => dispatch(changeCheckBasket(goodsData));
   return (
     <ItemBox>
       <td className="borderTB" style={{ width: "38px" }}>
-        <CheckBox onChange={() => onChangeCheckBasket(props.info)}>
+        <CheckBox onChange={() => props.onChangeChecked(props.info)}>
           <input type="checkbox" checked={props.info.checked}/>
           <span className="checkmark" />
         </CheckBox>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import CartItem from "../Components/CartItem";
 import Next from "../Images/next.png";
 import Next2 from "../Images/next2.png";
@@ -27,16 +26,26 @@ const Cart = () => {
 
   const onChangeChecked = (goods: any = 0) => {
     let next_state: boolean;
-    if (goods === 0){
+    if (goods === 0) {
       next_state = !bigCheckBox;
       setBigCheckBox(next_state);
       basket.map((goods, index) => {
-        if (basket[index].checked !== next_state) 
+        if (basket[index].checked !== next_state)
           onChangeCheckBasket(goods);
       });
     }
-    else{
-      onChangeCheckBasket(goods)
+    else {
+      next_state = !goods.checked;
+      onChangeCheckBasket(goods);
+      let result: boolean = true;
+      basket.forEach((el) => {
+        if (el.checked === false)
+          result = false;
+      });
+      if (result)
+          setBigCheckBox(true);
+      else
+          setBigCheckBox(false);
     }
   }
 
@@ -60,7 +69,7 @@ const Cart = () => {
           <TR>
             <th style={{ width: "38px" }}>
               <CheckBox onChange={() => onChangeChecked()}>
-                <input type="checkbox" checked={bigCheckBox}/>
+                <input type="checkbox" checked={bigCheckBox} />
                 <span className="checkmark" />
               </CheckBox>
             </th>
@@ -71,7 +80,7 @@ const Cart = () => {
             <th style={{ width: "240px" }}>합계금액</th>
           </TR>
           {basket.map((el: any, index: number) => {
-            return <CartItem info={el}/>;
+            return <CartItem info={el} onChangeChecked={onChangeChecked} />;
           })}
         </Basket2>
       );
