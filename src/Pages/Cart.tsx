@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import CartItem from "../Components/CartItem";
 import Next from "../Images/next.png";
 import Next2 from "../Images/next2.png";
@@ -68,7 +67,7 @@ const Cart = () => {
             <th style={{ width: "240px" }}>합계금액</th>
           </TR>
           {basket.map((el: any, index: number) => {
-            return <CartItem info={el} />;
+            return <CartItem info={el} onChangeChecked={onChangeChecked} />;
           })}
         </Basket2>
       );
