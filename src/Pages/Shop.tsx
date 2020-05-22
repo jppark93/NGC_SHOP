@@ -109,12 +109,24 @@ const Shop = () => {
             <Pagination>
               <ul>
                 {pageArray.map((el, index) => {
-                  if (Math.abs(el - currentPage) <= 3)
+                  if (Math.floor((currentPage) / 10) === Math.floor(el / 10))
                     return (
                       <span onClick={() => setReduxCurrentPage(index + 1)}>
                         {el}
                       </span>
                     );
+                  else if(Math.floor((currentPage) / 10) === Math.floor((el - 1) / 10))
+                  return (
+                    <span onClick={() => setReduxCurrentPage(index + 1)}>
+                      {">"}
+                    </span>
+                  );
+                  else if(Math.floor((currentPage) / 10) === Math.floor((el + 1) / 10))
+                  return (
+                    <span onClick={() => setReduxCurrentPage(index + 1)}>
+                      {"<"}
+                    </span>
+                  );
                 })}
               </ul>
             </Pagination>
