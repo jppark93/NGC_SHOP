@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Camera from "../../Images/camera.png";
 import Comment from "../../Components/Comment";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../Redux";
+//import { changeCheckBasket, delBasket } from "../Redux/shopBasket";
+
 const Review = (props: any) => {
 
   const { loginState, userId } = useSelector((redux: RootState) => redux.login);
+  const dispatch = useDispatch();
 
   const [size, setSize] = useState<string>("");
   const [ment, setMent] = useState<string>("");
   const [currentpage, setCurrentNum] = useState<number>(1);
-  const [likeB, setLikeB] = useState<number>(0);
   const [num, setNum] = useState<number>(0);
   const [arr, setArr] = useState<
     Array<{ username: string, size: string; ment: string; like: number; indexKey: number, date: string }>
@@ -22,11 +24,34 @@ const Review = (props: any) => {
   const First: number = Last - slidePage;
 
   const slide = arr.slice(First, Last);
-  console.log(arr);
-  const LikeBtn = (e: number) => {
-    if (e === 1) {
-    } else if (e === 0) {
+  
+  const changeLike = (data: any) => {
+    if (!loginState){
+      alert("로그인 해주세요.");
+      return;
     }
+
+    const xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+      if (xhr.status === 201) {
+        console.log("좋아요 증가완료", xhr.responseText);
+      } else {
+        console.log("좋아요 증가실패", xhr.responseText);
+      }
+    };
+    xhr.open("POST", "http://220.73.54.64:8999/details/comments/like");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify({...data, goodsname: props.goodsname, loginname: userId}));
+
+    let new_arr = JSON.parse(JSON.stringify(arr));
+    new_arr.map((info : any) => {
+      if (info.username === data.username &&
+        info.size === data.size &&
+        info.date === data.date &&
+        info.indexKey === data.indexKey)
+            info.like += 1;
+      });
+    setArr(new_arr);
   };
   const SIZE = (e: any) => {
     setSize(e.target.value);
@@ -132,7 +157,7 @@ const Review = (props: any) => {
             alert("글을 작성해주세요");
           } else {
             const date = new Date();
-            const data = { username: userId, size: size, ment: ment, indexKey: num, like: likeB, date: `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}` };
+            const data = { username: userId, size: size, ment: ment, indexKey: num, like: 0, date: `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}` };
             const new_arr = arr;
             new_arr.unshift(data);
             setArr(
@@ -169,7 +194,8 @@ const Review = (props: any) => {
             <Comment
               info={el}
               delete={ReviewDel}
-              likeBtn={LikeBtn}
+              changeLike={changeLike}
+              likeState={false}
             />
           );
         })}

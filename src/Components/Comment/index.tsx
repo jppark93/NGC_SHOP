@@ -3,13 +3,13 @@ import styled, { css } from "styled-components";
 import deleteBtn from "../../Images/reviewDel.png";
 
 const Comment = (props: any) => {
-  console.log(props.info.like);
-  const newDate : Date = new Date();
-  const Btn = () => {
-    if (props.info.like === 0) {
-      return props.likeBtn(1);
-    } else if (props.info.like === 1) {
-      return props.likeBtn(0);
+  const [likeState, setLikeState] = useState<boolean>(false);
+
+  const onClickLikeBtn = () => {
+    if (!likeState) {
+      props.changeLike(props.info);
+    } else {
+      props.changeLike(props.info);
     }
   };
   const DeleteBtn = () => {
@@ -32,8 +32,8 @@ const Comment = (props: any) => {
         </TbTop>
         <TbMid>{props.info.ment}</TbMid>
         <TbBot>
-          <span>추천하기&nbsp;&nbsp;:&nbsp;{props.like}</span>
-          <button className="likeBtn" type="button" onClick={Btn}>
+          <span>추천하기&nbsp;&nbsp;:&nbsp;{props.info.like}</span>
+          <button className="likeBtn" type="button" onClick={onClickLikeBtn}>
             추천하기
           </button>
           <DeleteDiv>
