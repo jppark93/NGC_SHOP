@@ -3,14 +3,9 @@ import styled, { css } from "styled-components";
 import deleteBtn from "../../Images/reviewDel.png";
 
 const Comment = (props: any) => {
-  const [likeState, setLikeState] = useState<boolean>(false);
 
   const onClickLikeBtn = () => {
-    if (!likeState) {
       props.changeLike(props.info);
-    } else {
-      props.changeLike(props.info);
-    }
   };
   const DeleteBtn = () => {
     props.delete(props.info);
@@ -32,9 +27,9 @@ const Comment = (props: any) => {
         </TbTop>
         <TbMid>{props.info.ment}</TbMid>
         <TbBot>
-          <span>추천하기&nbsp;&nbsp;:&nbsp;{props.info.like}</span>
-          <button className="likeBtn" type="button" onClick={onClickLikeBtn}>
-            추천하기
+          <span>추천&nbsp;&nbsp;:&nbsp;{props.info.like}</span>
+          <button className="likeBtn" type="button" onClick={onClickLikeBtn} >
+            {props.likeState ? "추천취소" : "추천하기"}
           </button>
           <DeleteDiv>
             <button type="button" onClick={DeleteBtn}>

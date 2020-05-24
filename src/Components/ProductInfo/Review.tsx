@@ -16,7 +16,7 @@ const Review = (props: any) => {
   const [currentpage, setCurrentNum] = useState<number>(1);
   const [num, setNum] = useState<number>(0);
   const [arr, setArr] = useState<
-    Array<{ username: string, size: string; ment: string; like: number; indexKey: number, date: string }>
+    Array<{ username: string, size: string, ment: string, like: number, indexKey: number, date: string, likeMembers: Array<string> }>
   >(props.comments);
   const pageArr: Array<any> = [];
   const slidePage: number = 5;
@@ -48,8 +48,22 @@ const Review = (props: any) => {
       if (info.username === data.username &&
         info.size === data.size &&
         info.date === data.date &&
-        info.indexKey === data.indexKey)
+        info.indexKey === data.indexKey){
+          if (info.likeMembers === undefined) {
+            info.likeMembers = [data.username];
             info.like += 1;
+          }
+          else {
+            if (info.likeMembers.includes(data.username)) {
+              info.likeMembers = info.likeMembers.filter((el: any) => el !== data.username);
+              info.like -= 1;
+            }
+            else {
+              info.likeMembers.push(data.username);
+              info.like += 1;
+            }
+          }
+        }
       });
     setArr(new_arr);
   };
@@ -157,7 +171,7 @@ const Review = (props: any) => {
             alert("글을 작성해주세요");
           } else {
             const date = new Date();
-            const data = { username: userId, size: size, ment: ment, indexKey: num, like: 0, date: `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}` };
+            const data = { username: userId, size: size, ment: ment, indexKey: num, like: 0, likeMembers: [], date: `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}` };
             const new_arr = arr;
             new_arr.unshift(data);
             setArr(
@@ -195,7 +209,7 @@ const Review = (props: any) => {
               info={el}
               delete={ReviewDel}
               changeLike={changeLike}
-              likeState={false}
+              likeState={el.likeMembers.includes(el.username)}
             />
           );
         })}
