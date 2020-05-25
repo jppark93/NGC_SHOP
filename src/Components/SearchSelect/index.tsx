@@ -24,7 +24,7 @@ const SearchSelect = () => {
 };
 const SelectDiv = styled.div`
   display: block;
-  width: 100%;
+  width: 90%;
   height: 29.6px;
   font-size: 13px;
 

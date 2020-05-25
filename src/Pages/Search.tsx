@@ -136,7 +136,6 @@ const SearchMain = styled.div`
   display: flex;
   width: 1200px;
 
-  border: 1px solid black;
   margin-top: 45px;
 `;
 
@@ -144,7 +143,6 @@ const SideContent = styled.div`
   display: block;
   width: 300px;
   height: 508px;
-  border: 1px solid black;
 `;
 const SideForm = styled.form`
   display: block;
@@ -164,7 +162,7 @@ const ResultBox = styled.div`
   width: 100%;
   min-width: 960px;
   height: 100%;
-  border: 1px solid black;
+
   margin-left: 30px;
 `;
 const SideDl = styled.dl`
