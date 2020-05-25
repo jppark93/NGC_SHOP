@@ -50,16 +50,16 @@ const Review = (props: any) => {
         info.date === data.date &&
         info.indexKey === data.indexKey){
           if (info.likeMembers === undefined) {
-            info.likeMembers = [data.username];
+            info.likeMembers = [userId];
             info.like += 1;
           }
           else {
-            if (info.likeMembers.includes(data.username)) {
-              info.likeMembers = info.likeMembers.filter((el: any) => el !== data.username);
+            if (info.likeMembers.includes(userId)) {
+              info.likeMembers = info.likeMembers.filter((el: any) => el !== userId);
               info.like -= 1;
             }
             else {
-              info.likeMembers.push(data.username);
+              info.likeMembers.push(userId);
               info.like += 1;
             }
           }
@@ -214,7 +214,7 @@ const Review = (props: any) => {
               info={el}
               delete={ReviewDel}
               changeLike={changeLike}
-              likeState={el.likeMembers.includes(el.username)}
+              likeState={el.likeMembers.includes(userId)}
             />
           );
         })}

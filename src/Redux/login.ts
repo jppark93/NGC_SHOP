@@ -32,7 +32,7 @@ export default (state: State = initialState, act: NextAction): State => {
     case LOG_IN:
       return { ...state, loginState: true };
     case LOG_OUT:
-      return { ...state, loginState: false };
+      return { ...state, loginState: false, userId: "" };
     case CHANGE_ID:
       return { ...state, userId: act.payload };
     default: {
