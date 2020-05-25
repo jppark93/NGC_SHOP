@@ -31,11 +31,7 @@ export const detailRequest = (name: string) => {
       console.log("디테일 데이터 얻어오기 실패", xhr.responseText);
     }
   };
-  xhr.open(
-    "GET",
-    `http://220.73.54.64:8999/details/${name}`,
-    false
-  );
+  xhr.open("GET", `http://220.73.54.64:8999/details/${name}`, false);
   xhr.send();
   return goods[0];
 };
@@ -298,8 +294,7 @@ export const OuterIMG = [
       "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002245_detail_353.jpg",
   },
 ];
-export const FrontData = 
-shopDataRequest("man", "outer");
+export const FrontData = shopDataRequest("man", "outer");
 /*
 [
   {
@@ -593,3 +588,15 @@ shopDataRequest("man", "outer");
 ];
 
 */
+export const categori = [
+  { name: "MAN", index: 0 },
+  { name: "WOMAN", index: 1 },
+  { name: "KIDS", index: 2 },
+  { name: "BAG", index: 3 },
+  { name: "HEAD WEAR", index: 4 },
+  { name: "FOOT WEAR", index: 5 },
+  { name: "SKIN CARE", index: 6 },
+  { name: "SUITCASE", index: 7 },
+  { name: "CAMPING", index: 8 },
+  { name: "SURF WEAR", index: 9 },
+];

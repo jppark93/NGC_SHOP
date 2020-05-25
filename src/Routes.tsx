@@ -8,6 +8,7 @@ import Cart from "./Pages/Cart";
 import Shop from "./Pages/Shop";
 import Product from "./Pages/ProductDetail";
 import AddressSearch from "./Pages/AddressSearch";
+import Search from "./Pages/Search";
 const Routes = () => {
   return (
     <Router>
@@ -21,6 +22,7 @@ const Routes = () => {
         <Route path="/shop/:kind1/:kind2" component={Shop} />
         <Route path="/shop/" component={Shop} />
         <Route path="/product" component={Product} />
+        <Route path="/search" component={Search} />
       </Switch>
     </Router>
   );
