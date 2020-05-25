@@ -78,6 +78,11 @@ const Review = (props: any) => {
   };
   const ReviewDel = (info: any) => {
 
+    if (info.username !== userId){
+      alert("해당 리뷰의 작성자만 지울 수 있습니다.");
+      return;
+    }
+
     setArr(
       arr.filter((el) => {
         if (
