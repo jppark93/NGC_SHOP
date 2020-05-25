@@ -60,6 +60,7 @@ console.log(hashed);
         props.history.push("./");
       } else {
         console.log("로그인 실패", xhr.responseText);
+        alert("일치하는 계정이 없습니다.");
         onLogOut();
       }
     };
