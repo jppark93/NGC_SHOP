@@ -5,11 +5,15 @@ import Layout from "../Components/Layout";
 import ShopBar from "../Components/ShopBar";
 import Product from "../Components/Product";
 import { ShopMenus } from "../data/data";
-import { FrontData } from "../data/data";
+//import { FrontData } from "../data/data";
+import { shopDataRequest } from "../data/data";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Redux";
 import { setCurrentPage, setPageArray } from "../Redux/pageNation";
-const Shop = () => {
+const Shop = (props: any) => {
+
+  const FrontData = shopDataRequest(props.match.params.kind1, props.match.params.kind2);
+
   const [boolOne, setBoolOne] = useState<boolean>(false);
   const [boolTwo, setBoolTwo] = useState<boolean>(false);
   const { pageArray, currentPage, slide } = useSelector(
