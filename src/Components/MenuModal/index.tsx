@@ -3,7 +3,7 @@ import styled from "styled-components";
 type Bool = {
   isOpen: boolean;
 };
-const MenuModal = ({ isOpen }: Bool) => {
+const MenuModal = ({ isOpen }: Bool, props: any) => {
   return (
     <React.Fragment>
       {isOpen ? (

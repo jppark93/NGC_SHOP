@@ -12,14 +12,17 @@ import { useDispatch } from "react-redux";
 import { pushBasket, printBasket } from "../Redux/shopBasket";
 
 const ProductDetail = (props: any) => {
-
   const ShopInfoData = nameSearchRequest(props.match.params.name);
   const dispatch = useDispatch();
 
   const [changeNum, setChangeNum] = useState<string>("1");
-  
-  const [detailData, setDetailData] = 
-    useState<{name: string, goodsImages: Array<string>, detailImages: Array<string>, comments: Array<any>}>(detailRequest(ShopInfoData.name));
+
+  const [detailData, setDetailData] = useState<{
+    name: string;
+    goodsImages: Array<string>;
+    detailImages: Array<string>;
+    comments: Array<any>;
+  }>(detailRequest(ShopInfoData.name));
   const [mainImageSrc, setMainImageSrc] = useState<string>(ShopInfoData.img);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [selectValue, setSelectValue] = useState({ value: "" });
@@ -29,9 +32,8 @@ const ProductDetail = (props: any) => {
   >([]);
 
   console.log(detailData);
-  console.log(`props.match.params.name : ${props.match.params.name}`);
+  console.log(`props.match.params.name : ${props.match.params}`);
   console.log(`ShopinfoData : ${ShopInfoData}`);
-  
 
   const sizeArr = [
     { outerSize: "090" },
@@ -42,7 +44,6 @@ const ProductDetail = (props: any) => {
 
   const onPushBasket = (goodsData: any) => dispatch(pushBasket(goodsData));
   const onPrintBasket = () => dispatch(printBasket());
-
   const onClickBasketButton = () => {
     productArr.map((product) => {
       const goodsData = {
@@ -61,14 +62,16 @@ const ProductDetail = (props: any) => {
 
   const pageChange = () => {
     if (changeNum === "1") {
-      return <Info detailImages={detailData.detailImages}/>;
+      return <Info detailImages={detailData.detailImages} />;
       //return <Info />;
     } else if (changeNum === "2") {
       return <ExChange />;
     } else if (changeNum === "3") {
       return <Delivery />;
     } else if (changeNum === "4") {
-      return <Review comments={detailData.comments} goodsname={ShopInfoData.name}/>;
+      return (
+        <Review comments={detailData.comments} goodsname={ShopInfoData.name} />
+      );
       //return <Review goodsname={ShopInfoData.name}/>;
     }
   };
@@ -149,11 +152,15 @@ const ProductDetail = (props: any) => {
                 <img src={mainImageSrc} alt="pd"></img>
               </PdImg>
               <Imgs>
-                {
-                detailData.goodsImages.map((el, index) => {
-                  return <img src={el} key={index} onClick={() => setMainImageSrc(el)}/>;
-                })
-                }
+                {detailData.goodsImages.map((el, index) => {
+                  return (
+                    <img
+                      src={el}
+                      key={index}
+                      onClick={() => setMainImageSrc(el)}
+                    />
+                  );
+                })}
               </Imgs>
             </PdBox>
             <PdItemInfo>
