@@ -25,9 +25,7 @@ const Nav = () => {
   };
   const onLogOutComponent = () => {
     return (
-      <Link to="./" style={{ textDecoration: "none" }}>
-        <Li onClick={onLogOutEvent}>LOGOUT</Li>
-      </Link>
+      <Li onClick={onLogOutEvent}>LOGOUT</Li>
     );
   };
   return (
