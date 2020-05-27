@@ -20,7 +20,7 @@ const Routes = () => {
         <Route path="/addresssearch" component={AddressSearch} />
         <Route path="/cart" component={Cart} />
         <Route path="/shop/:kind1/:kind2" component={Shop} />
-        <Route path="/shop/" component={Shop} />
+        <Route path="/shop/:kind1/" component={Shop} />
         <Route path="/product/:name" component={Product} />
         <Route path="/search" component={Search} />
       </Switch>

@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-type Bool = {
-  isOpen: boolean;
-};
-const MenuModal = ({ isOpen }: Bool, props: any) => {
+
+import { withRouter } from "react-router-dom";
+
+const MenuModal = (props: any) => {
+  const goShop = (kind1: string, kind2: string = "") => {
+    props.history.push(`/shop/${kind1}${kind2 !== "" ? "/" + kind2 : ""}`);
+  };
+
   return (
     <React.Fragment>
-      {isOpen ? (
+      {props.isOpen ? (
         <React.Fragment>
           <ModalDiv>
             <ParentsUl>
@@ -31,10 +35,12 @@ const MenuModal = ({ isOpen }: Bool, props: any) => {
               </ParentsLi>
               <ParentsLi>
                 <MenuContDiv>
-                  <span>MAN</span>
+                  <span onClick={() => goShop("man")}>MAN</span>
                   <ULSECOND>
                     <MiddleLi>
-                      <LowestSpan>OUTER</LowestSpan>
+                      <LowestSpan onClick={() => goShop("man", "outer")}>
+                        OUTER
+                      </LowestSpan>
                       <ULTHIRD>
                         <LowestLi>자켓</LowestLi>
                         <LowestLi>다운</LowestLi>
@@ -42,7 +48,9 @@ const MenuModal = ({ isOpen }: Bool, props: any) => {
                       </ULTHIRD>
                     </MiddleLi>
                     <MiddleLi>
-                      <LowestSpan>TOP</LowestSpan>
+                      <LowestSpan onClick={() => goShop("man", "top")}>
+                        TOP
+                      </LowestSpan>
                       <ULTHIRD>
                         <LowestLi>맨투맨</LowestLi>
                         <LowestLi>후디</LowestLi>
@@ -50,7 +58,9 @@ const MenuModal = ({ isOpen }: Bool, props: any) => {
                       </ULTHIRD>
                     </MiddleLi>
                     <MiddleLi>
-                      <LowestSpan>BOTTOM</LowestSpan>
+                      <LowestSpan onClick={() => goShop("man", "bottom")}>
+                        BOTTOM
+                      </LowestSpan>
                       <ULTHIRD>
                         <LowestLi>팬츠</LowestLi>
                         <LowestLi>트레이닝 팬츠</LowestLi>
@@ -63,10 +73,12 @@ const MenuModal = ({ isOpen }: Bool, props: any) => {
               </ParentsLi>
               <ParentsLi>
                 <MenuContDiv>
-                  <span>WOMAN</span>
+                  <span onClick={() => goShop("woman")}>WOMAN</span>
                   <ULSECOND>
                     <MiddleLi>
-                      <LowestSpan>OUTER</LowestSpan>
+                      <LowestSpan onClick={() => goShop("woman", "outer")}>
+                        OUTER
+                      </LowestSpan>
                       <ULTHIRD>
                         <LowestLi>자켓</LowestLi>
                         <LowestLi>다운</LowestLi>
@@ -74,7 +86,9 @@ const MenuModal = ({ isOpen }: Bool, props: any) => {
                       </ULTHIRD>
                     </MiddleLi>
                     <MiddleLi>
-                      <LowestSpan>TOP</LowestSpan>
+                      <LowestSpan onClick={() => goShop("woman", "top")}>
+                        TOP
+                      </LowestSpan>
                       <ULTHIRD>
                         <LowestLi>맨투맨</LowestLi>
                         <LowestLi>후디</LowestLi>
@@ -82,7 +96,9 @@ const MenuModal = ({ isOpen }: Bool, props: any) => {
                       </ULTHIRD>
                     </MiddleLi>
                     <MiddleLi>
-                      <LowestSpan>BOTTOM</LowestSpan>
+                      <LowestSpan onClick={() => goShop("woman", "bottom")}>
+                        BOTTOM
+                      </LowestSpan>
                       <ULTHIRD>
                         <LowestLi>팬츠</LowestLi>
                         <LowestLi>트레이닝 팬츠</LowestLi>
@@ -95,10 +111,12 @@ const MenuModal = ({ isOpen }: Bool, props: any) => {
               </ParentsLi>
               <ParentsLi>
                 <MenuContDiv>
-                  <span>KIDS</span>
+                  <span onClick={() => goShop("kids")}>KIDS</span>
                   <ULSECOND>
                     <MiddleLi>
-                      <LowestSpan>OUTER</LowestSpan>
+                      <LowestSpan onClick={() => goShop("kids", "outer")}>
+                        OUTER
+                      </LowestSpan>
                       <ULTHIRD>
                         <LowestLi>다운</LowestLi>
                         <LowestLi>베스트</LowestLi>
@@ -106,7 +124,9 @@ const MenuModal = ({ isOpen }: Bool, props: any) => {
                       </ULTHIRD>
                     </MiddleLi>
                     <MiddleLi>
-                      <LowestSpan>TOP</LowestSpan>
+                      <LowestSpan onClick={() => goShop("kids", "top")}>
+                        TOP
+                      </LowestSpan>
                       <ULTHIRD>
                         <LowestLi>맨투맨</LowestLi>
                         <LowestLi>후디</LowestLi>
@@ -114,7 +134,9 @@ const MenuModal = ({ isOpen }: Bool, props: any) => {
                       </ULTHIRD>
                     </MiddleLi>
                     <MiddleLi>
-                      <LowestSpan>BOTTOM</LowestSpan>
+                      <LowestSpan onClick={() => goShop("kids", "bottom")}>
+                        BOTTOM
+                      </LowestSpan>
                       <ULTHIRD>
                         <LowestLi>팬츠</LowestLi>
                         <LowestLi>반바지</LowestLi>
@@ -309,4 +331,4 @@ const LowestSpan = styled.span`
   }
 `;
 
-export default MenuModal;
+export default withRouter(MenuModal);

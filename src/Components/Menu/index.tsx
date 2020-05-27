@@ -25,6 +25,7 @@ const Menu = (props: any) => {
   const goShop = (kind1: string, kind2: string) => {
     props.history.push(`/shop/${kind1}/${kind2}`);
   };
+
   return (
     <MenuBlock>
       {openClose()}
