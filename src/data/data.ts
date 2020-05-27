@@ -20,6 +20,26 @@ export const shopDataRequest = (kind1: string, kind2: string = "") => {
   return goods;
 };
 
+export const nameSearchRequest = (name: string) => {
+  let goods: any;
+  const xhr = new XMLHttpRequest();
+  xhr.onload = function () {
+    if (xhr.status === 200 || xhr.status === 304) {
+      goods = JSON.parse(xhr.responseText);
+      console.log(goods.length);
+    } else {
+      console.log("샵 데이터 얻어오기 실패", xhr.responseText);
+    }
+  };
+  xhr.open(
+    "GET",
+    `http://220.73.54.64:8999/shopDatas/search/${name}`,
+    false
+  );
+  xhr.send();
+  return goods[0];
+};
+
 export const detailRequest = (name: string) => {
   let goods: any;
   const xhr = new XMLHttpRequest();

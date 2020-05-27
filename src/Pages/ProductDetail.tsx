@@ -1,30 +1,26 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import Layout from "../Components/Layout";
-import { detailRequest } from "../data/data";
-import Img from "../Images/testing.jpg";
+import { nameSearchRequest, detailRequest } from "../data/data";
 import Info from "../Components/ProductInfo/Info";
 import ExChange from "../Components/ProductInfo/ExChange";
 import Review from "../Components/ProductInfo/Review";
 import Delivery from "../Components/ProductInfo/Delivery";
 import ItemList from "../Components/Item";
-import { OuterIMG } from "../data/data";
 import { withRouter } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../Redux";
+import { useDispatch } from "react-redux";
 import { pushBasket, printBasket } from "../Redux/shopBasket";
-import { stringify } from "querystring";
 
 const ProductDetail = (props: any) => {
 
-  const { ShopInfoData } = useSelector((redux: RootState) => redux.shopInfo);
+  const ShopInfoData = nameSearchRequest(props.match.params.name);
   const dispatch = useDispatch();
 
   const [changeNum, setChangeNum] = useState<string>("1");
   
   const [detailData, setDetailData] = 
     useState<{name: string, goodsImages: Array<string>, detailImages: Array<string>, comments: Array<any>}>(detailRequest(ShopInfoData.name));
-    const [mainImageSrc, setMainImageSrc] = useState<string>(ShopInfoData.img);
+  const [mainImageSrc, setMainImageSrc] = useState<string>(ShopInfoData.img);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [selectValue, setSelectValue] = useState({ value: "" });
 
@@ -33,6 +29,8 @@ const ProductDetail = (props: any) => {
   >([]);
 
   console.log(detailData);
+  console.log(`props.match.params.name : ${props.match.params.name}`);
+  console.log(`ShopinfoData : ${ShopInfoData}`);
   
 
   const sizeArr = [
@@ -155,11 +153,6 @@ const ProductDetail = (props: any) => {
                 detailData.goodsImages.map((el, index) => {
                   return <img src={el} key={index} onClick={() => setMainImageSrc(el)}/>;
                 })
-                /*
-                OuterIMG.map((el, index) => {
-                  return <img src={el.img} key={index} />;
-                })
-                */
                 }
               </Imgs>
             </PdBox>
