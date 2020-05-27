@@ -7,23 +7,21 @@ import Empty from "../Empty";
 const Layout = (props: any) => {
   return (
     <MainBlock>
-      <BOX>
-        <DIV>
-          <Nav />
-          <Menu />
-          <Empty />
-        </DIV>
-        {props.children}
-        <Footer />
-      </BOX>
+      <Nav />
+      <Menu />
+      {props.children}
+      <Footer />
     </MainBlock>
   );
 };
 
 const MainBlock = styled.div`
-  display: flex;
+  display: block;
   position: relative;
   width: 100%;
+  @media (max-width: 1200px) {
+    width: 1920px;
+  }
 `;
 const DIV = styled.div`
   display: block;

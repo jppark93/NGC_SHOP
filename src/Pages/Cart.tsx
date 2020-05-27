@@ -29,8 +29,8 @@ const Cart = () => {
     if (goods === 0) {
       next_state = !bigCheckBox;
       setBigCheckBox(next_state);
-      basket.map((goods, index) => {
-        if (basket[index].checked !== next_state) onChangeCheckBasket(goods);
+      basket.map((product, index) => {
+        if (product.checked !== next_state) onChangeCheckBasket(product);
       });
     } else {
       next_state = !goods.checked;

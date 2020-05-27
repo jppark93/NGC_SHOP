@@ -294,9 +294,7 @@ export const OuterIMG = [
       "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/t50_1000002245_detail_353.jpg",
   },
 ];
-export const FrontData = shopDataRequest("man", "outer");
-/*
-[
+export const FrontData = [
   {
     img:
       "http://www.naturestore.co.kr/data/goods/20/02/06/1000002246/1000002246_main_041.jpg",
@@ -587,7 +585,6 @@ export const FrontData = shopDataRequest("man", "outer");
   },
 ];
 
-*/
 export const categori = [
   { name: "MAN", index: 0 },
   { name: "WOMAN", index: 1 },

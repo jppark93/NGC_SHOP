@@ -29,6 +29,15 @@ const Search = () => {
   const lastGoods = currentPage * slide;
   const firstGoods = lastGoods - slide;
   const SlideData = FrontData.slice(firstGoods, lastGoods);
+  const noneResult = () => {
+    if (SlideData.length === 0) {
+      return <None>상품이 존재하지 않습니다</None>;
+    } else {
+      return SlideData.map((el: any) => {
+        return <SearchProduct info={el} />;
+      });
+    }
+  };
   return (
     <Layout>
       <SearchDiv>
@@ -88,11 +97,7 @@ const Search = () => {
                 </PickList>
               </div>
             </ListNum>
-            <ProductDiv>
-              {SlideData.map((el: any) => {
-                return <SearchProduct info={el} />;
-              })}
-            </ProductDiv>
+            <ProductDiv>{noneResult()}</ProductDiv>
             <Pagination>
               <ul>
                 {pageArray.map((el, index) => {
@@ -305,5 +310,12 @@ const Pagination = styled.div`
       }
     }
   }
+`;
+const None = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  margin: 0px auto 0px auto;
 `;
 export default Search;

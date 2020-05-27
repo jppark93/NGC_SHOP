@@ -7,7 +7,6 @@ import { RootState } from "../../Redux";
 //import { changeCheckBasket, delBasket } from "../Redux/shopBasket";
 
 const Review = (props: any) => {
-
   const { loginState, userId } = useSelector((redux: RootState) => redux.login);
   const dispatch = useDispatch();
 
@@ -16,17 +15,24 @@ const Review = (props: any) => {
   const [currentpage, setCurrentNum] = useState<number>(1);
   const [num, setNum] = useState<number>(0);
   const [arr, setArr] = useState<
-    Array<{ username: string, size: string, ment: string, like: number, indexKey: number, date: string, likeMembers: Array<string> }>
+    Array<{
+      username: string;
+      size: string;
+      ment: string;
+      like: number;
+      indexKey: number;
+      date: string;
+      likeMembers: Array<string>;
+    }>
   >(props.comments);
   const pageArr: Array<any> = [];
   const slidePage: number = 5;
   const Last: number = currentpage * slidePage;
   const First: number = Last - slidePage;
-
   const slide = arr.slice(First, Last);
-  
+
   const changeLike = (data: any) => {
-    if (!loginState){
+    if (!loginState) {
       alert("로그인 해주세요.");
       return;
     }
@@ -41,30 +47,34 @@ const Review = (props: any) => {
     };
     xhr.open("POST", "http://220.73.54.64:8999/details/comments/like");
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(JSON.stringify({...data, goodsname: props.goodsname, loginname: userId}));
+    xhr.send(
+      JSON.stringify({ ...data, goodsname: props.goodsname, loginname: userId })
+    );
 
     let new_arr = JSON.parse(JSON.stringify(arr));
-    new_arr.map((info : any) => {
-      if (info.username === data.username &&
+    new_arr.map((info: any) => {
+      if (
+        info.username === data.username &&
         info.size === data.size &&
         info.date === data.date &&
-        info.indexKey === data.indexKey){
-          if (info.likeMembers === undefined) {
-            info.likeMembers = [userId];
+        info.indexKey === data.indexKey
+      ) {
+        if (info.likeMembers === undefined) {
+          info.likeMembers = [userId];
+          info.like += 1;
+        } else {
+          if (info.likeMembers.includes(userId)) {
+            info.likeMembers = info.likeMembers.filter(
+              (el: any) => el !== userId
+            );
+            info.like -= 1;
+          } else {
+            info.likeMembers.push(userId);
             info.like += 1;
           }
-          else {
-            if (info.likeMembers.includes(userId)) {
-              info.likeMembers = info.likeMembers.filter((el: any) => el !== userId);
-              info.like -= 1;
-            }
-            else {
-              info.likeMembers.push(userId);
-              info.like += 1;
-            }
-          }
         }
-      });
+      }
+    });
     setArr(new_arr);
   };
   const SIZE = (e: any) => {
@@ -77,8 +87,7 @@ const Review = (props: any) => {
     setCurrentNum(e);
   };
   const ReviewDel = (info: any) => {
-
-    if (info.username !== userId){
+    if (info.username !== userId) {
       alert("해당 리뷰의 작성자만 지울 수 있습니다.");
       return;
     }
@@ -86,7 +95,8 @@ const Review = (props: any) => {
     setArr(
       arr.filter((el) => {
         if (
-          !(el.username === info.username &&
+          !(
+            el.username === info.username &&
             el.size === info.size &&
             el.date === info.date &&
             el.indexKey === info.indexKey
@@ -135,7 +145,7 @@ const Review = (props: any) => {
     xhr.open("POST", "http://220.73.54.64:8999/details/comments/push");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(data));
-  }
+  };
   return (
     <ItemDiv>
       <h3>플러스리뷰({arr.length})</h3>
@@ -161,10 +171,9 @@ const Review = (props: any) => {
       <Ment
         method="post"
         onSubmit={(e) => {
-
           e.preventDefault();
 
-          if (!loginState){
+          if (!loginState) {
             alert("리뷰를 작성하시려면 로그인 해주세요.");
             return;
           }
@@ -176,7 +185,17 @@ const Review = (props: any) => {
             alert("글을 작성해주세요");
           } else {
             const date = new Date();
-            const data = { username: userId, size: size, ment: ment, indexKey: num, like: 0, likeMembers: [], date: `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}` };
+            const data = {
+              username: userId,
+              size: size,
+              ment: ment,
+              indexKey: num,
+              like: 0,
+              likeMembers: [],
+              date: `${date.getFullYear()}.${
+                date.getMonth() + 1
+              }.${date.getDate()}`,
+            };
             const new_arr = arr;
             new_arr.unshift(data);
             setArr(
@@ -185,7 +204,6 @@ const Review = (props: any) => {
             );
             pushReview({ ...data, goodsname: props.goodsname });
             setNum(num + 1);
-
           }
         }}
       >

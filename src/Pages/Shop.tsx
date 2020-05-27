@@ -9,6 +9,7 @@ import { FrontData } from "../data/data";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Redux";
 import { setCurrentPage, setPageArray } from "../Redux/pageNation";
+import { shopDataRequest } from "../data/data";
 const Shop = () => {
   const [boolOne, setBoolOne] = useState<boolean>(false);
   const [boolTwo, setBoolTwo] = useState<boolean>(false);
@@ -25,10 +26,14 @@ const Shop = () => {
     setReduxPageArray();
   }, []);
 
-  // slice 작업
+  /*   front slice 작업 */
   const lastGoods = currentPage * slide;
   const firstGoods = lastGoods - slide;
   const SlideData = FrontData.slice(firstGoods, lastGoods);
+
+  /* const lastGoods = currentPage * slide;
+  const firstGoods = lastGoods - slide;
+  const SlideData = shopDataRequest().slice(firstGoods, lastGoods); */
 
   const lowPrice = (e: boolean) => {
     setBoolOne(e);

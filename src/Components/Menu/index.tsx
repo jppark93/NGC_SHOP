@@ -4,7 +4,7 @@ import MenuImg from "../../Images/menu.png";
 import MenuModal from "../MenuModal";
 import close from "../../Images/close.png";
 import { Link, withRouter } from "react-router-dom";
-
+import { shopDataRequest } from "../../data/data";
 const Menu = (props: any) => {
   const [modal, setModal] = useState<boolean>(false);
   const closeModal = () => {
@@ -22,7 +22,7 @@ const Menu = (props: any) => {
     }
   };
   const goShop = (e: any) => {
-    props.history.push(`./shop/${e}`);
+    /*   props.history.push(`/shop/${e}`); */
   };
   return (
     <MenuBlock>
@@ -133,7 +133,7 @@ const MenuList = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 70px;
+  margin-left: 10%;
   width: 99%;
   height: 51px;
 `;

@@ -61,7 +61,8 @@ const EX = styled.div`
     color: #333333;
     font-size: 12px;
     span {
-      font-weight: bold;
+      @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap");
+      font-family: "Raleway", sans-serif;
     }
   }
   h2 {
