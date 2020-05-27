@@ -21,8 +21,8 @@ const Menu = (props: any) => {
       return <MenuCategory src={close} onClick={closeModal} />;
     }
   };
-  const goShop = (e: any) => {
-    props.history.push(`./shop/${e}`);
+  const goShop = (kind1: string, kind2: string) => {
+    props.history.push(`/shop/${kind1}/${kind2}`);
   };
   return (
     <MenuBlock>
@@ -32,25 +32,25 @@ const Menu = (props: any) => {
         <MenuItem>
           <span>MAN</span>
           <ul>
-            <li onClick={() => goShop("")}>OUTER</li>
-            <li>TOP</li>
-            <li>BOTTOM</li>
+            <li onClick={() => goShop("man", "outer")}>OUTER</li>
+            <li onClick={() => goShop("man", "top")}>TOP</li>
+            <li onClick={() => goShop("man", "bottom")}>BOTTOM</li>
           </ul>
         </MenuItem>
         <MenuItem>
           <span>WOMAN</span>
           <ul>
-            <li>OUTER</li>
-            <li>TOP</li>
-            <li>BOTTOM</li>
+            <li onClick={() => goShop("woman", "outer")}>OUTER</li>
+            <li onClick={() => goShop("woman", "top")}>TOP</li>
+            <li onClick={() => goShop("woman", "bottom")}>BOTTOM</li>
           </ul>
         </MenuItem>
         <MenuItem>
           <span>KIDS</span>
           <ul>
-            <li>OUTER</li>
-            <li>TOP</li>
-            <li>BOTTOM</li>
+            <li onClick={() => goShop("kids", "outer")}>OUTER</li>
+            <li onClick={() => goShop("kids", "top")}>TOP</li>
+            <li onClick={() => goShop("kids", "bottom")}>BOTTOM</li>
           </ul>
         </MenuItem>
         <MenuItem>
