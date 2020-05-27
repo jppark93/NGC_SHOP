@@ -77,7 +77,10 @@ const Shop = (props: any) => {
       <div>
         <ShopDiv>
           <ShopMenu>
-            <MenuBar>TOP</MenuBar>
+            <MenuBar>
+              {String(props.match.params.kind1).toUpperCase()}-
+              {String(props.match.params.kind2).toUpperCase()}
+            </MenuBar>
             {ShopMenus.map((el) => {
               return <ShopBar info={el} />;
             })}

@@ -24,8 +24,8 @@ const Product = (props: any) => {
           <h1>
             <span>{props.info.name}</span>
           </h1>
-          <h2>{props.info.price}웝</h2>
-          <h3>{props.info.sale}웝</h3>
+          <h2>{props.info.price}원</h2>
+          <h3>{props.info.sale}원</h3>
         </EX>
       </ProductDiv>
     </ProductLi>

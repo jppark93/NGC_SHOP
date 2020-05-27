@@ -17,7 +17,7 @@ const CartItem = (props: any) => {
           </span>
           <div className="pick">
             <span>{props.info.name}</span>
-            <span>SIZE: {props.info.size}</span>
+            <span style={{ marginTop: "5px" }}>SIZE: {props.info.size}</span>
           </div>
         </OptionInfo>
       </td>

@@ -19,7 +19,7 @@ const MainBlock = styled.div`
   display: block;
   position: relative;
   width: 100%;
-  @media (max-width: 1200px) {
+  @media (max-width: 1450px) {
     width: 1920px;
   }
 `;
