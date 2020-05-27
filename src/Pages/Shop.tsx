@@ -12,11 +12,7 @@ import { RootState } from "../Redux";
 import { setCurrentPage, setPageArray } from "../Redux/pageNation";
 
 const Shop = (props: any) => {
-  const FrontData = shopDataRequest(
-    props.match.params.kind1,
-    props.match.params.kind2
-  );
-
+  const [FrontData, setFrontData] = useState<Array<any>>([]);
   const [boolOne, setBoolOne] = useState<boolean>(false);
   const [boolTwo, setBoolTwo] = useState<boolean>(false);
   const { pageArray, currentPage, slide } = useSelector(
@@ -30,7 +26,11 @@ const Shop = (props: any) => {
 
   useEffect(() => {
     setReduxPageArray();
-  }, []);
+    setFrontData(shopDataRequest(
+      props.match.params.kind1,
+      props.match.params.kind2
+    ));
+  }, [props.match.params.kind1, props.match.params.kind2]);
 
   /*   front slice 작업 */
   const lastGoods = currentPage * slide;
@@ -41,18 +41,14 @@ const Shop = (props: any) => {
     setBoolOne(e);
     setBoolTwo(false);
     if (boolOne === true) {
-      FrontData.sort((a: any, b: any) => {
+      setFrontData(FrontData.sort((a: any, b: any) => {
         return parseInt(b.price) - parseInt(a.price);
-      });
+      }));
     } else {
-      FrontData.sort((a: any, b: any) => {
+      setFrontData(FrontData.sort((a: any, b: any) => {
         return parseInt(a.price) - parseInt(b.price);
-      });
+      }));
     }
-    console.log(FrontData);
-    console.log(e + "인자값");
-    console.log(boolOne + "첫번째");
-    console.log(boolTwo + "두번째");
   };
   const highPrice = (e: boolean) => {
     setBoolTwo(e);
@@ -66,10 +62,6 @@ const Shop = (props: any) => {
         return parseInt(b.price) - parseInt(a.price);
       });
     }
-    console.log(FrontData);
-    console.log(e + "인자값");
-    console.log(boolOne + "첫번째");
-    console.log(boolTwo + "두번째");
   };
 
   return (
