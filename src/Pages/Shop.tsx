@@ -42,19 +42,13 @@ const Shop = (props: any) => {
     setBoolTwo(false);
     if (boolOne === true) {
       setFrontData(FrontData.sort((a: any, b: any) => {
-        console.log(`FrontData 정렬하기!`);
         return parseInt(b.price) - parseInt(a.price);
       }));
     } else {
       setFrontData(FrontData.sort((a: any, b: any) => {
-        console.log(`FrontData 정렬하기!`);
         return parseInt(a.price) - parseInt(b.price);
       }));
     }
-    console.log(FrontData);
-    console.log(e + "인자값");
-    console.log(boolOne + "첫번째");
-    console.log(boolTwo + "두번째");
   };
   const highPrice = (e: boolean) => {
     setBoolTwo(e);
@@ -68,10 +62,6 @@ const Shop = (props: any) => {
         return parseInt(b.price) - parseInt(a.price);
       });
     }
-    console.log(FrontData);
-    console.log(e + "인자값");
-    console.log(boolOne + "첫번째");
-    console.log(boolTwo + "두번째");
   };
 
   return (
