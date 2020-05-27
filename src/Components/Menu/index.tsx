@@ -21,9 +21,9 @@ const Menu = (props: any) => {
       return <MenuCategory src={close} onClick={closeModal} />;
     }
   };
-  const goShop = (kind1: string, kind2: string) => {
-    props.history.push(`/shop/${kind1}/${kind2}`);
-  };
+  const goShop = (kind1: string, kind2: string = "") => {
+    props.history.push(`/shop/${kind1}${(kind2 !== "" ? "/" + kind2 : "")}`);
+  }
   return (
     <MenuBlock>
       {openClose()}
