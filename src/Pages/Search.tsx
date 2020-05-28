@@ -15,6 +15,7 @@ const Search = (props: any) => {
   const [FrontData, setFrontData] = useState<Array<any>>([]);
   const [boolOne, setBoolOne] = useState<boolean>(false);
   const [boolTwo, setBoolTwo] = useState<boolean>(false);
+  const [selectValue, setSelectValue] = useState({ value: "" });
   const { pageArray, currentPage, slide } = useSelector(
     (redux: RootState) => redux.pageNation
   );
@@ -30,7 +31,7 @@ const Search = (props: any) => {
     setReduxPageArray(newFrontData.length);
     setReduxCurrentPage();
   }, [props.match.params.word]);
-
+  const selectValueChange = (e: any) => {};
   const lowPrice = (e: boolean) => {
     setBoolOne(e);
     setBoolTwo(false);
