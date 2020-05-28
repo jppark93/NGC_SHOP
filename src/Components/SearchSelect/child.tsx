@@ -5,17 +5,29 @@ const ChildSearchSelect = (props: any) => {
   const selectChange = (e: any) => {
     props.option(e.target.value);
   };
-  return (
-    <SelectDiv>
-      <SelectTag value={props.value} onChange={selectChange}>
-        <option>=카테고리선택=</option>
-        <option value={props.select.outer}>{props.select.outer}</option>
-        <option value={props.select.top}>{props.select.top}</option>
-        <option value={props.select.bottom}>{props.select.bottom}</option>
-        })}
-      </SelectTag>
-    </SelectDiv>
-  );
+  const Func = () => {
+    if (
+      props.parentValue === "MAN" ||
+      props.parentValue === "WOMAN" ||
+      props.parentValue === "KIDS"
+    ) {
+      return (
+        <SelectTag value={props.value} onChange={selectChange}>
+          <option>=카테고리선택=</option>
+          <option value={props.select.outer}>{props.select.outer}</option>
+          <option value={props.select.top}>{props.select.top}</option>
+          <option value={props.select.bottom}>{props.select.bottom}</option>
+        </SelectTag>
+      );
+    } else {
+      return (
+        <SelectTag value="=카테고리선택=">
+          <option>=카테고리선택=</option>
+        </SelectTag>
+      );
+    }
+  };
+  return <SelectDiv>{Func()}</SelectDiv>;
 };
 const SelectDiv = styled.div`
   display: block;

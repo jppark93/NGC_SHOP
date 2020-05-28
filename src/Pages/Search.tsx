@@ -6,7 +6,6 @@ import SearchSelect from "../Components/SearchSelect";
 import ChildSearchSelect from "../Components/SearchSelect/child";
 import SearchProduct from "../Components/SearchProduct";
 import SearchImg from "../Images/si.png";
-import { ShopMenus } from "../data/data";
 import { nameSearchRequest, etcSearchRequest } from "../data/data";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Redux";
@@ -18,9 +17,9 @@ const Search = (props: any) => {
   const [selectValue, setSelectValue] = useState({ value: "" });
   const [childSelectValue, setChildSelectValue] = useState({ value: "" });
   const [childSelect, setChildSelect] = useState({
-    outer: "",
-    top: "",
-    bottom: "",
+    outer: "OUTER",
+    top: "TOP",
+    bottom: "BOTTOM",
   });
   const { pageArray, currentPage, slide } = useSelector(
     (redux: RootState) => redux.pageNation
@@ -55,18 +54,7 @@ const Search = (props: any) => {
     console.log(selectValue);
   };
   const childSelectValueChange = (e: any) => {
-    if (
-      selectValue.value === "MAN" ||
-      selectValue.value === "WOMAN" ||
-      selectValue.value === "KIDS"
-    ) {
-      let copyChildSelect = { outer: "OUTER", top: "TOP", bottom: "BOTTOM" };
-      setChildSelect(copyChildSelect);
-      setChildSelectValue({ value: e });
-    } else {
-      setChildSelect(childSelect);
-      setChildSelectValue({ value: e });
-    }
+    setChildSelectValue({ value: e });
   };
 
   const lowPrice = (e: boolean) => {
@@ -129,6 +117,7 @@ const Search = (props: any) => {
                     option={selectValueChange}
                   />
                   <ChildSearchSelect
+                    parentValue={selectValue.value}
                     value={childSelectValue.value}
                     select={childSelect}
                     option={childSelectValueChange}
