@@ -20,7 +20,7 @@ const Nav = (props: any) => {
 
   const onChangeWord = (e: any) => {
     setWord(e.target.value);
-  }
+  };
 
   const onLogOutEvent = () => {
     dispatch(setLogOut());
@@ -49,8 +49,7 @@ const Nav = (props: any) => {
           onSubmit={(e) => {
             e.preventDefault();
             onSearchEvent();
-            }
-          }
+          }}
           onChange={onChangeWord}
         >
           <TextArea />

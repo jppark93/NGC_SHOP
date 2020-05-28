@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { categori } from "../../data/data";
-const SearchSelect = (props: any) => {
+const ChildSearchSelect = (props: any) => {
   const selectChange = (e: any) => {
     props.option(e.target.value);
   };
@@ -9,12 +9,9 @@ const SearchSelect = (props: any) => {
     <SelectDiv>
       <SelectTag value={props.value} onChange={selectChange}>
         <option>=카테고리선택=</option>
-        {categori.map((el: any) => {
-          return (
-            <option key={el.index} value={el.name}>
-              {el.name}
-            </option>
-          );
+        <option value={props.select.outer}>{props.select.outer}</option>
+        <option value={props.select.top}>{props.select.top}</option>
+        <option value={props.select.bottom}>{props.select.bottom}</option>
         })}
       </SelectTag>
     </SelectDiv>
@@ -33,4 +30,4 @@ const SelectTag = styled.select`
   height: 100%;
   color: #717171;
 `;
-export default SearchSelect;
+export default ChildSearchSelect;

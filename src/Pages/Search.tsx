@@ -3,11 +3,10 @@ import * as React from "react";
 import styled from "styled-components";
 import Layout from "../Components/Layout";
 import SearchSelect from "../Components/SearchSelect";
+import ChildSearchSelect from "../Components/SearchSelect/child";
 import SearchProduct from "../Components/SearchProduct";
 import SearchImg from "../Images/si.png";
-
-import { ShopMenus } from "../data/data";
-import { nameSearchRequest } from "../data/data";
+import { nameSearchRequest, categori } from "../data/data";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Redux";
 import { setCurrentPage, setPageArray } from "../Redux/pageNation";
@@ -16,6 +15,12 @@ const Search = (props: any) => {
   const [boolOne, setBoolOne] = useState<boolean>(false);
   const [boolTwo, setBoolTwo] = useState<boolean>(false);
   const [selectValue, setSelectValue] = useState({ value: "" });
+  const [childSelectValue, setChildSelectValue] = useState({ value: "" });
+  const [childSelect, setChildSelect] = useState({
+    outer: "",
+    top: "",
+    bottom: "",
+  });
   const { pageArray, currentPage, slide } = useSelector(
     (redux: RootState) => redux.pageNation
   );
@@ -27,11 +32,30 @@ const Search = (props: any) => {
 
   useEffect(() => {
     let newFrontData: Array<any> = nameSearchRequest(props.match.params.word);
+
     setFrontData(newFrontData);
     setReduxPageArray(newFrontData.length);
     setReduxCurrentPage();
   }, [props.match.params.word]);
-  const selectValueChange = (e: any) => {};
+  const selectValueChange = (e: any) => {
+    setSelectValue({ value: e });
+    console.log(selectValue);
+  };
+  const childSelectValueChange = (e: any) => {
+    if (
+      selectValue.value === "MAN" ||
+      selectValue.value === "WOMAN" ||
+      selectValue.value === "KIDS"
+    ) {
+      let copyChildSelect = { outer: "OUTER", top: "TOP", bottom: "BOTTOM" };
+      setChildSelect(copyChildSelect);
+      setChildSelectValue({ value: e });
+    } else {
+      setChildSelect(childSelect);
+      setChildSelectValue({ value: e });
+    }
+  };
+
   const lowPrice = (e: boolean) => {
     setBoolOne(e);
     setBoolTwo(false);
@@ -87,8 +111,15 @@ const Search = (props: any) => {
                   <span>카테고리</span>
                 </dt>
                 <dd>
-                  <SearchSelect />
-                  <SearchSelect />
+                  <SearchSelect
+                    value={selectValue.value}
+                    option={selectValueChange}
+                  />
+                  <ChildSearchSelect
+                    value={childSelectValue.value}
+                    select={childSelect}
+                    option={childSelectValueChange}
+                  />
                 </dd>
               </SideDl>
               <SideDl>
