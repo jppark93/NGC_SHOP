@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { pushBasket, printBasket } from "../Redux/shopBasket";
 
 const ProductDetail = (props: any) => {
-  const ShopInfoData = nameSearchRequest(props.match.params.name);
+  const ShopInfoData = nameSearchRequest(props.match.params.name)[0];
   const dispatch = useDispatch();
 
   const [changeNum, setChangeNum] = useState<string>("1");
