@@ -25,12 +25,15 @@ const Shop = (props: any) => {
     dispatch(setCurrentPage(currentPage));
 
   useEffect(() => {
-    setReduxPageArray();
-    setFrontData(shopDataRequest(
+    let newFrontData = shopDataRequest(
       props.match.params.kind1,
       props.match.params.kind2
-    ));
+    );
+    setFrontData(newFrontData);
+    setReduxPageArray(newFrontData.length);
+    setReduxCurrentPage();
   }, [props.match.params.kind1, props.match.params.kind2]);
+  
 
   /*   front slice 작업 */
   const lastGoods = currentPage * slide;
