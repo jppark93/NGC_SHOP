@@ -13,9 +13,8 @@ const Nav = (props: any) => {
   const { basket } = useSelector((redux: RootState) => redux.shopBasket);
   const dispatch = useDispatch();
 
-  const onSearchEvent = (e: any) => {
-    if (e.key === "Enter")
-      props.history.push("/search");
+  const onSearchEvent = () => {
+    props.history.push("/search");
   };
 
   const onLogOutEvent = () => {
@@ -30,9 +29,7 @@ const Nav = (props: any) => {
     );
   };
   const onLogOutComponent = () => {
-    return (
-      <Li onClick={onLogOutEvent}>LOGOUT</Li>
-    );
+    return <Li onClick={onLogOutEvent}>LOGOUT</Li>;
   };
   return (
     <NavBlock>
@@ -42,9 +39,15 @@ const Nav = (props: any) => {
             <img src={Logo} alt="logo"></img>
           </NavImage>
         </Link>
-        <NavSearch>
-          <TextArea onKeyPress={onSearchEvent}/>
-          <SearchButton />
+        <NavSearch
+          method="POST"
+          onSubmit={(e) => {
+            e.preventDefault();
+            onSearchEvent();
+          }}
+        >
+          <TextArea />
+          <SearchButton type="submit" />
         </NavSearch>
 
         <NavRight>
@@ -94,7 +97,7 @@ const NavImage = styled.div`
   margin-right: -250px;
   cursor: pointer;
 `;
-const NavSearch = styled.div`
+const NavSearch = styled.form`
   position: relative;
   width: 400px;
   height: 38px;
@@ -112,15 +115,16 @@ const TextArea = styled.input`
   font-weight: 700;
   border: none;
 `;
-const SearchButton = styled.div`
+const SearchButton = styled.button`
   background-image: url("http://www.naturestore.co.kr/data/skin/front/the_living/img/common/btn/btn_top_search-1.png");
   position: absolute;
   width: 50px;
-  height: 38px;
+  height: 35px;
   right: 1px;
   top: 0px;
   border: none;
   cursor: pointer;
+  background-color: white;
 `;
 
 const NavRight = styled.div`

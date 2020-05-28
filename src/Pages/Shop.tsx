@@ -92,14 +92,14 @@ const Shop = (props: any) => {
               <div>
                 <PickList>
                   <li
-                    style={boolOne ? { color: "red" } : { color: "#111" }}
+                    style={boolOne ? { color: "#111" } : { color: "gray" }}
                     onClick={() => lowPrice(true)}
                   >
                     낮은가격순
                   </li>
 
                   <li
-                    style={boolTwo ? { color: "red" } : { color: "#111" }}
+                    style={boolTwo ? { color: "#111" } : { color: "gray" }}
                     onClick={() => highPrice(true)}
                   >
                     높은가격순
