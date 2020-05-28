@@ -20,7 +20,27 @@ export const shopDataRequest = (kind1: string, kind2: string = "") => {
   return goods;
 };
 
-export const nameSearchRequest = (name: string) => {
+export const nameSearchRequest = (word: string = "all") => {
+  let goods: any = [];
+  const xhr = new XMLHttpRequest();
+  xhr.onload = function () {
+    if (xhr.status === 200 || xhr.status === 304) {
+      goods = JSON.parse(xhr.responseText);
+      console.log(goods.length);
+    } else {
+      console.log("검색 데이터 얻어오기 실패", xhr.responseText);
+    }
+  };
+  xhr.open(
+    "GET",
+    `http://220.73.54.64:8999/shopDatas/search/word/${word}`,
+    false
+  );
+  xhr.send();
+  return goods;
+};
+
+export const etcSearchRequest = (kind1: string = "all", kind2: string = "all", saleMore: number = 0, saleLess: number = 0) => {
   let goods: any;
   const xhr = new XMLHttpRequest();
   xhr.onload = function () {
@@ -28,12 +48,12 @@ export const nameSearchRequest = (name: string) => {
       goods = JSON.parse(xhr.responseText);
       console.log(goods.length);
     } else {
-      console.log("샵 데이터 얻어오기 실패", xhr.responseText);
+      console.log("검색 데이터 얻어오기 실패", xhr.responseText);
     }
   };
   xhr.open(
     "GET",
-    `http://220.73.54.64:8999/shopDatas/search/${name}`,
+    `http://220.73.54.64:8999/shopDatas/search/etc/${kind1}/${kind2}/${saleMore}/${saleLess}`,
     false
   );
   xhr.send();

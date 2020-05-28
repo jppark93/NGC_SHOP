@@ -6,7 +6,8 @@ import SearchSelect from "../Components/SearchSelect";
 import ChildSearchSelect from "../Components/SearchSelect/child";
 import SearchProduct from "../Components/SearchProduct";
 import SearchImg from "../Images/si.png";
-import { nameSearchRequest, categori } from "../data/data";
+import { ShopMenus } from "../data/data";
+import { nameSearchRequest, etcSearchRequest } from "../data/data";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Redux";
 import { setCurrentPage, setPageArray } from "../Redux/pageNation";
@@ -31,8 +32,20 @@ const Search = (props: any) => {
     dispatch(setCurrentPage(currentPage));
 
   useEffect(() => {
-    let newFrontData: Array<any> = nameSearchRequest(props.match.params.word);
-
+    let newFrontData: Array<any>;
+    console.log(`word : ${props.match.params.word}`);
+    if (props.match.params.word !== undefined) {
+      console.log("이름검색");
+      newFrontData = nameSearchRequest(props.match.params.word);
+    } else {
+      console.log("etc검색");
+      newFrontData = etcSearchRequest(
+        props.match.params.kind1,
+        props.match.params.kind2,
+        props.match.params.saleMore,
+        props.match.params.saleLess
+      );
+    }
     setFrontData(newFrontData);
     setReduxPageArray(newFrontData.length);
     setReduxCurrentPage();
@@ -144,7 +157,13 @@ const Search = (props: any) => {
           </SideContent>
           <ResultBox>
             <SearchResult>
-              <span style={{ color: "red" }}>"{props.match.params.word}" </span>
+              <span style={{ color: "red" }}>
+                "
+                {props.match.params.word === "allgoods"
+                  ? "전상품"
+                  : props.match.params.word}
+                "{" "}
+              </span>
               <span>검색결과 {FrontData.length}개</span>
             </SearchResult>
             <SearchInputBox>

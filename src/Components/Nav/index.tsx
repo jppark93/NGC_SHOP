@@ -15,7 +15,7 @@ const Nav = (props: any) => {
   const dispatch = useDispatch();
 
   const onSearchEvent = () => {
-    props.history.push(`/search/${word}`);
+    props.history.push(`/search/word/${word === "" ? "allgoods" : word}`);
   };
 
   const onChangeWord = (e: any) => {

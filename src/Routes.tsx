@@ -22,7 +22,10 @@ const Routes = () => {
         <Route path="/shop/:kind1/:kind2" component={Shop} />
         <Route path="/shop/:kind1/" component={Shop} />
         <Route path="/product/:name" component={Product} />
-        <Route path="/search/:word" component={Search} />
+        <Route path="/search/etc/kind1/:kind1/kind2/:kind2/saleMore/:saleMore/saleLess/:saleLess" component={Search} />
+        <Route path="/search/word/:word" component={Search} />
+        
+        
       </Switch>
     </Router>
   );
