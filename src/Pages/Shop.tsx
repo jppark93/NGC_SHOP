@@ -26,12 +26,11 @@ const Shop = (props: any) => {
 
   useEffect(() => {
     setReduxPageArray();
-    setFrontData(shopDataRequest(
-      props.match.params.kind1,
-      props.match.params.kind2
-    ));
+    setFrontData(
+      shopDataRequest(props.match.params.kind1, props.match.params.kind2)
+    );
   }, [props.match.params.kind1, props.match.params.kind2]);
-
+  console.log(FrontData);
   /*   front slice 작업 */
   const lastGoods = currentPage * slide;
   const firstGoods = lastGoods - slide;
@@ -41,13 +40,17 @@ const Shop = (props: any) => {
     setBoolOne(e);
     setBoolTwo(false);
     if (boolOne === true) {
-      setFrontData(FrontData.sort((a: any, b: any) => {
-        return parseInt(b.price) - parseInt(a.price);
-      }));
+      setFrontData(
+        FrontData.sort((a: any, b: any) => {
+          return parseInt(b.price) - parseInt(a.price);
+        })
+      );
     } else {
-      setFrontData(FrontData.sort((a: any, b: any) => {
-        return parseInt(a.price) - parseInt(b.price);
-      }));
+      setFrontData(
+        FrontData.sort((a: any, b: any) => {
+          return parseInt(a.price) - parseInt(b.price);
+        })
+      );
     }
   };
   const highPrice = (e: boolean) => {
