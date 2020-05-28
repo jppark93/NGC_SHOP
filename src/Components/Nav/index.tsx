@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Logo from "../../Images/Logo.png";
 import { Link } from "react-router-dom";
@@ -11,11 +11,16 @@ import { setLogOut } from "../../Redux/login";
 const Nav = (props: any) => {
   const { loginState, userId } = useSelector((redux: RootState) => redux.login);
   const { basket } = useSelector((redux: RootState) => redux.shopBasket);
+  const [word, setWord] = useState<string>("");
   const dispatch = useDispatch();
 
   const onSearchEvent = () => {
-    props.history.push("/search");
+    props.history.push(`/search/${word}`);
   };
+
+  const onChangeWord = (e: any) => {
+    setWord(e.target.value);
+  }
 
   const onLogOutEvent = () => {
     dispatch(setLogOut());
@@ -44,7 +49,9 @@ const Nav = (props: any) => {
           onSubmit={(e) => {
             e.preventDefault();
             onSearchEvent();
-          }}
+            }
+          }
+          onChange={onChangeWord}
         >
           <TextArea />
           <SearchButton type="submit" />

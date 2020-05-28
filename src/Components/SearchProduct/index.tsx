@@ -14,13 +14,13 @@ const SearchProduct = (props: any) => {
     <ProductLi>
       <ProductDiv onClick={() => goDetail(props.info)}>
         <Img>
-          <img src={testImg} alt="product" />
+          <img src={props.info.img} alt="product" />
         </Img>
         <EX>
           <h1>
-            <span>내셔널다훈그래픽</span>
+            <span>{props.info.name}</span>
           </h1>
-          <h3>10000원</h3>
+          <h3>{props.info.sale}원</h3>
         </EX>
       </ProductDiv>
     </ProductLi>

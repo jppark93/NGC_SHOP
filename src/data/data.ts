@@ -37,7 +37,7 @@ export const nameSearchRequest = (name: string) => {
     false
   );
   xhr.send();
-  return goods[0];
+  return goods;
 };
 
 export const detailRequest = (name: string) => {

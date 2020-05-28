@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import * as React from "react";
 import styled from "styled-components";
 import Layout from "../Components/Layout";
 import SearchSelect from "../Components/SearchSelect";
 import SearchProduct from "../Components/SearchProduct";
 import SearchImg from "../Images/si.png";
-import { FrontData, nameSearchRequest } from "../data/data";
+
+import { ShopMenus } from "../data/data";
+import { nameSearchRequest } from "../data/data";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Redux";
 import { setCurrentPage, setPageArray } from "../Redux/pageNation";
-const Search = () => {
+const Search = (props: any) => {
   const [FrontData, setFrontData] = useState<Array<any>>([]);
   const [boolOne, setBoolOne] = useState<boolean>(false);
   const [boolTwo, setBoolTwo] = useState<boolean>(false);
@@ -22,8 +25,12 @@ const Search = () => {
     dispatch(setCurrentPage(currentPage));
 
   useEffect(() => {
-    setReduxPageArray();
-  }, []);
+    let newFrontData: Array<any> = nameSearchRequest(props.match.params.word);
+    setFrontData(newFrontData);
+    setReduxPageArray(newFrontData.length);
+    setReduxCurrentPage();
+  }, [props.match.params.word]);
+
   const lowPrice = (e: boolean) => {
     setBoolOne(e);
     setBoolTwo(false);
@@ -105,8 +112,8 @@ const Search = () => {
           </SideContent>
           <ResultBox>
             <SearchResult>
-              <span style={{ color: "red" }}>""</span>
-              <span>검색결과 285개</span>
+              <span style={{ color: "red" }}>"{props.match.params.word}" </span>
+              <span>검색결과 {FrontData.length}개</span>
             </SearchResult>
             <SearchInputBox>
               <form method="POST">
