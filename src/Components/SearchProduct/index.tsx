@@ -8,7 +8,7 @@ import testImg from "../../Images/testing.jpg";
 
 const SearchProduct = (props: any) => {
   const goDetail = (e: any) => {
-    props.history.push("/product");
+    props.history.push(`/product/${e.name}`);
   };
   return (
     <ProductLi>
