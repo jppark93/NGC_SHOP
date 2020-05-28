@@ -94,9 +94,7 @@ console.log(hashed);
                 </LoginInput>
                 <LoginBtn onClick={tryLogin}>로그인</LoginBtn>
               </IdPassForm>
-              <FacebookLoginBtn>
-                <img src={FacebookLogin} alt="zz" />
-              </FacebookLoginBtn>
+
               <EmptyLine />
               <Link to="/signup" style={{ textDecoration: "none" }}>
                 <SignUpBtn>
@@ -209,7 +207,8 @@ const FacebookLoginBtn = styled.div`
 `;
 const EmptyLine = styled.div`
   width: 100%;
-  border: 1px solid #dcdcdc;
+
+  border: 2px solid #dcdcdc;
   margin-top: 20px;
   margin-bottom: 20px;
 `;

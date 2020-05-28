@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Logo from "../../Images/Logo.png";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
-
+import { FrontData, nameSearchRequest } from "../../data/data";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../Redux/index";
 import { setLogOut } from "../../Redux/login";

@@ -4,12 +4,12 @@ import Layout from "../Components/Layout";
 import SearchSelect from "../Components/SearchSelect";
 import SearchProduct from "../Components/SearchProduct";
 import SearchImg from "../Images/si.png";
-import { ShopMenus } from "../data/data";
-import { FrontData } from "../data/data";
+import { FrontData, nameSearchRequest } from "../data/data";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Redux";
 import { setCurrentPage, setPageArray } from "../Redux/pageNation";
 const Search = () => {
+  const [FrontData, setFrontData] = useState<Array<any>>([]);
   const [boolOne, setBoolOne] = useState<boolean>(false);
   const [boolTwo, setBoolTwo] = useState<boolean>(false);
   const { pageArray, currentPage, slide } = useSelector(
@@ -24,7 +24,36 @@ const Search = () => {
   useEffect(() => {
     setReduxPageArray();
   }, []);
-
+  const lowPrice = (e: boolean) => {
+    setBoolOne(e);
+    setBoolTwo(false);
+    if (boolOne === true) {
+      setFrontData(
+        FrontData.sort((a: any, b: any) => {
+          return parseInt(b.price) - parseInt(a.price);
+        })
+      );
+    } else {
+      setFrontData(
+        FrontData.sort((a: any, b: any) => {
+          return parseInt(a.price) - parseInt(b.price);
+        })
+      );
+    }
+  };
+  const highPrice = (e: boolean) => {
+    setBoolTwo(e);
+    setBoolOne(false);
+    if (boolTwo === true) {
+      FrontData.sort((a: any, b: any) => {
+        return parseInt(a.price) - parseInt(b.price);
+      });
+    } else {
+      FrontData.sort((a: any, b: any) => {
+        return parseInt(b.price) - parseInt(a.price);
+      });
+    }
+  };
   // slice 작업
   const lastGoods = currentPage * slide;
   const firstGoods = lastGoods - slide;
@@ -91,9 +120,19 @@ const Search = () => {
             <ListNum>
               <div>
                 <PickList>
-                  <li>낮은가격순</li>
+                  <li
+                    style={boolOne ? { color: "#111" } : { color: "gray" }}
+                    onClick={() => lowPrice(true)}
+                  >
+                    낮은가격순
+                  </li>
 
-                  <li>높은가격순</li>
+                  <li
+                    style={boolTwo ? { color: "#111" } : { color: "gray" }}
+                    onClick={() => highPrice(true)}
+                  >
+                    높은가격순
+                  </li>
                 </PickList>
               </div>
             </ListNum>
