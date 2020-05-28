@@ -2,15 +2,21 @@ import * as React from "react";
 import styled from "styled-components";
 import Logo from "../../Images/Logo.png";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../Redux/index";
 import { setLogOut } from "../../Redux/login";
 
-const Nav = () => {
+const Nav = (props: any) => {
   const { loginState, userId } = useSelector((redux: RootState) => redux.login);
   const { basket } = useSelector((redux: RootState) => redux.shopBasket);
   const dispatch = useDispatch();
+
+  const onSearchEvent = (e: any) => {
+    if (e.key === "Enter")
+      props.history.push("/search");
+  };
 
   const onLogOutEvent = () => {
     dispatch(setLogOut());
@@ -37,7 +43,7 @@ const Nav = () => {
           </NavImage>
         </Link>
         <NavSearch>
-          <TextArea />
+          <TextArea onKeyPress={onSearchEvent}/>
           <SearchButton />
         </NavSearch>
 
@@ -65,7 +71,7 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default withRouter(Nav);
 
 const NavBlock = styled.div`
   display: flex;
