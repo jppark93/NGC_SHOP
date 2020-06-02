@@ -6,6 +6,7 @@ import SearchSelect from "../Components/SearchSelect";
 import ChildSearchSelect from "../Components/SearchSelect/child";
 import SearchProduct from "../Components/SearchProduct";
 import SearchImg from "../Images/si.png";
+import { withRouter } from "react-router-dom";
 import { nameSearchRequest, etcSearchRequest } from "../data/data";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Redux";
@@ -57,12 +58,14 @@ const Search = (props: any) => {
     setReduxCurrentPage();
   }, [props.match.params.word]);
   const selectValueChange = (e: any) => {
-    setSelectValue({ value: e });
-    console.log(selectValue);
+    let newValue = { value: e };
+    setSelectValue(newValue);
+    console.log(newValue);
   };
   const childSelectValueChange = (e: any) => {
-    setChildSelectValue({ value: e });
-    console.log(childSelectValue);
+    let secondValue = { value: e };
+    setChildSelectValue(secondValue);
+    console.log(secondValue);
   };
 
   const lowPrice = (e: boolean) => {
@@ -97,18 +100,20 @@ const Search = (props: any) => {
   };
 
   const Min = (e: any) => {
-    let saleMore = setMinPrice(e.target.value);
-    console.log(minPrice);
+    let saleMore = e.target.value;
+    setMinPrice(saleMore);
+    console.log(saleMore);
   };
   const Max = (e: any) => {
-    let saleLess = setMaxPrice(e.target.value);
-    console.log(maxPrice);
+    let saleLess = e.target.value;
+    setMaxPrice(saleLess);
+    console.log(saleLess);
   };
   const etcSearch = () => {
     props.history.push(
-      `/search/word/${selectValue}/${childSelectValue}/${parseInt(
+      `/search/etc/kind1/${selectValue.value.toLowerCase()}/kind2/${childSelectValue.value.toLowerCase()}/saleMore/${parseInt(
         minPrice
-      )}/${parseInt(maxPrice)}`
+      )}/saleLess/${parseInt(maxPrice)}`
     );
   };
   // slice 작업
@@ -129,7 +134,13 @@ const Search = (props: any) => {
       <SearchDiv>
         <SearchMain>
           <SideContent>
-            <SideForm method="POST">
+            <SideForm
+              method="POST"
+              onSubmit={(e) => {
+                e.preventDefault();
+                etcSearch();
+              }}
+            >
               <SideDl>
                 <dt>
                   <div />
@@ -180,13 +191,7 @@ const Search = (props: any) => {
               <span>검색결과 {FrontData.length}개</span>
             </SearchResult>
             <SearchInputBox>
-              <form
-                method="POST"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  etcSearch();
-                }}
-              >
+              <form method="POST">
                 <input type="text" />
                 <button type="submit">
                   검색
@@ -434,4 +439,4 @@ const None = styled.div`
   height: 500px;
   margin: 0px auto 0px auto;
 `;
-export default Search;
+export default withRouter(Search);

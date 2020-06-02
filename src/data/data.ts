@@ -40,8 +40,13 @@ export const nameSearchRequest = (word: string = "all") => {
   return goods;
 };
 
-export const etcSearchRequest = (kind1: string = "all", kind2: string = "all", saleMore: number = 0, saleLess: number = 0) => {
-  let goods: any;
+export const etcSearchRequest = (
+  kind1: string = "all",
+  kind2: string = "all",
+  saleMore: number = 0,
+  saleLess: number = 0
+) => {
+  let goods: any = [];
   const xhr = new XMLHttpRequest();
   xhr.onload = function () {
     if (xhr.status === 200 || xhr.status === 304) {
