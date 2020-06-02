@@ -111,9 +111,9 @@ const Search = (props: any) => {
   };
   const etcSearch = () => {
     props.history.push(
-      `/search/etc/kind1/${selectValue.value.toLowerCase()}/kind2/${childSelectValue.value.toLowerCase()}/saleMore/${parseInt(
-        minPrice
-      )}/saleLess/${parseInt(maxPrice)}`
+      `/search/etc/kind1/${selectValue.value.toLowerCase()}/kind2/${childSelectValue.value.toLowerCase()}/saleMore/${
+        parseInt(minPrice) === NaN ? 0 : parseInt(minPrice)
+      }/saleLess/${parseInt(maxPrice) === NaN ? 0 : parseInt(maxPrice)}`
     );
   };
   // slice 작업
@@ -183,13 +183,11 @@ const Search = (props: any) => {
             <SearchResult>
               <span style={{ color: "red" }}>
                 "
-                {
-                  props.match.params.word !== undefined ? 
-                  (props.match.params.word === "allgoods"
-                  ? "전상품"
-                  : props.match.params.word)
-                  : "조건"
-                  }
+                {props.match.params.word !== undefined
+                  ? props.match.params.word === "allgoods"
+                    ? "전상품"
+                    : props.match.params.word
+                  : "조건"}
                 "{" "}
               </span>
               <span>검색결과 {FrontData.length}개</span>
