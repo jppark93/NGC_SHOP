@@ -14,8 +14,14 @@ const Search = (props: any) => {
   const [FrontData, setFrontData] = useState<Array<any>>([]);
   const [boolOne, setBoolOne] = useState<boolean>(false);
   const [boolTwo, setBoolTwo] = useState<boolean>(false);
-  const [selectValue, setSelectValue] = useState({ value: "" });
-  const [childSelectValue, setChildSelectValue] = useState({ value: "" });
+  const [selectValue, setSelectValue] = useState<{ value: string }>({
+    value: "",
+  });
+  const [childSelectValue, setChildSelectValue] = useState<{ value: string }>({
+    value: "",
+  });
+  const [minPrice, setMinPrice] = useState<string>("");
+  const [maxPrice, setMaxPrice] = useState<string>("");
   const [childSelect, setChildSelect] = useState({
     outer: "OUTER",
     top: "TOP",
@@ -24,6 +30,7 @@ const Search = (props: any) => {
   const { pageArray, currentPage, slide } = useSelector(
     (redux: RootState) => redux.pageNation
   );
+
   const dispatch = useDispatch();
   const setReduxPageArray = (len: number = FrontData.length) =>
     dispatch(setPageArray(len));
@@ -55,6 +62,7 @@ const Search = (props: any) => {
   };
   const childSelectValueChange = (e: any) => {
     setChildSelectValue({ value: e });
+    console.log(childSelectValue);
   };
 
   const lowPrice = (e: boolean) => {
@@ -87,9 +95,25 @@ const Search = (props: any) => {
       });
     }
   };
+
+  const Min = (e: any) => {
+    let saleMore = setMinPrice(e.target.value);
+    console.log(minPrice);
+  };
+  const Max = (e: any) => {
+    let saleLess = setMaxPrice(e.target.value);
+    console.log(maxPrice);
+  };
+  const etcSearch = () => {
+    props.history.push(
+      `/search/word/${selectValue}/${childSelectValue}/${parseInt(
+        minPrice
+      )}/${parseInt(maxPrice)}`
+    );
+  };
   // slice 작업
-  const lastGoods = currentPage * slide;
-  const firstGoods = lastGoods - slide;
+  const lastGoods = currentPage * 18;
+  const firstGoods = lastGoods - 18;
   const SlideData = FrontData.slice(firstGoods, lastGoods);
   const noneResult = () => {
     if (SlideData.length === 0) {
@@ -135,9 +159,9 @@ const Search = (props: any) => {
                     flexWrap: "wrap",
                   }}
                 >
-                  <input type="text" />
+                  <input type="text" onChange={Min} value={minPrice} />
                   &nbsp;<span>~</span>
-                  <input type="text" />
+                  <input type="text" onChange={Max} value={maxPrice} />
                   &nbsp;<span> 원</span>
                 </dd>
               </SideDl>
@@ -156,7 +180,13 @@ const Search = (props: any) => {
               <span>검색결과 {FrontData.length}개</span>
             </SearchResult>
             <SearchInputBox>
-              <form method="POST">
+              <form
+                method="POST"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  etcSearch();
+                }}
+              >
                 <input type="text" />
                 <button type="submit">
                   검색
