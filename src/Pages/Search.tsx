@@ -64,12 +64,12 @@ const Search = (props: any) => {
     props.match.params.saleLess
   ]);
   const selectValueChange = (e: any) => {
-    let newValue = { value: e };
+    let newValue = { value: (e === "=카테고리선택=" ? "" : e) };
     setSelectValue(newValue);
     console.log(newValue);
   };
   const childSelectValueChange = (e: any) => {
-    let secondValue = { value: e };
+    let secondValue = { value: (e === "=카테고리선택=" ? "" : e) };
     setChildSelectValue(secondValue);
     console.log(secondValue);
   };
@@ -117,9 +117,11 @@ const Search = (props: any) => {
   };
   const etcSearch = () => {
     props.history.push(
-      `/search/etc/kind1/${selectValue.value.toLowerCase()}/kind2/${childSelectValue.value.toLowerCase()}/saleMore/${parseInt(
-        minPrice
-      )}/saleLess/${parseInt(maxPrice)}`
+      `/search/etc/` + 
+      `kind1/${selectValue.value === "" ? "all" : selectValue.value.toLowerCase()}/` + 
+      `kind2/${childSelectValue.value === "" ? "all" : childSelectValue.value.toLowerCase()}/` + 
+      `saleMore/${minPrice === "" ? 0 : parseInt(minPrice)}/` +
+      `saleLess/${maxPrice === "" ? 0 : parseInt(maxPrice)}`
     );
   };
   // slice 작업
