@@ -56,7 +56,13 @@ const Search = (props: any) => {
     setFrontData(newFrontData);
     setReduxPageArray(newFrontData.length);
     setReduxCurrentPage();
-  }, [props.match.params.word]);
+  }, [
+    props.match.params.word,
+    props.match.params.kind1,
+    props.match.params.kind2,
+    props.match.params.saleMore,
+    props.match.params.saleLess
+  ]);
   const selectValueChange = (e: any) => {
     let newValue = { value: e };
     setSelectValue(newValue);
@@ -195,7 +201,10 @@ const Search = (props: any) => {
               <span>검색결과 {FrontData.length}개</span>
             </SearchResult>
             <SearchInputBox>
-              <form method="POST">
+              <form method="POST" onSubmit={(e) => {
+                e.preventDefault();
+                props.history.push(`/search/word/바람막이`);
+              }}>
                 <input type="text" />
                 <button type="submit">
                   검색
