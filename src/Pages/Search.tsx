@@ -23,6 +23,7 @@ const Search = (props: any) => {
   });
   const [minPrice, setMinPrice] = useState<string>("");
   const [maxPrice, setMaxPrice] = useState<string>("");
+  const [search, setSearch] = useState<string>("");
   const [childSelect, setChildSelect] = useState({
     outer: "OUTER",
     top: "TOP",
@@ -61,7 +62,7 @@ const Search = (props: any) => {
     props.match.params.kind1,
     props.match.params.kind2,
     props.match.params.saleMore,
-    props.match.params.saleLess
+    props.match.params.saleLess,
   ]);
   const selectValueChange = (e: any) => {
     let newValue = { value: e };
@@ -115,12 +116,19 @@ const Search = (props: any) => {
     setMaxPrice(saleLess);
     console.log(saleLess);
   };
+  const SearchValueChange = (e: any) => {
+    let currentValue = e.target.value;
+    setSearch(currentValue);
+  };
   const etcSearch = () => {
     props.history.push(
       `/search/etc/kind1/${selectValue.value.toLowerCase()}/kind2/${childSelectValue.value.toLowerCase()}/saleMore/${
-        parseInt(minPrice) === NaN ? 0 : parseInt(minPrice)
-      }/saleLess/${parseInt(maxPrice) === NaN ? 0 : parseInt(maxPrice)}`
+        minPrice === "" ? 0 : parseInt(minPrice)
+      }/saleLess/${maxPrice === "" ? 0 : parseInt(maxPrice)}`
     );
+  };
+  const wordSearch = () => {
+    props.history.push(`/search/word/${search === "" ? "allgoods" : search}`);
   };
   // slice 작업
   const lastGoods = currentPage * 18;
@@ -199,11 +207,18 @@ const Search = (props: any) => {
               <span>검색결과 {FrontData.length}개</span>
             </SearchResult>
             <SearchInputBox>
-              <form method="POST" onSubmit={(e) => {
-                e.preventDefault();
-                props.history.push(`/search/word/바람막이`);
-              }}>
-                <input type="text" />
+              <form
+                method="POST"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  wordSearch();
+                }}
+              >
+                <input
+                  type="text"
+                  value={search}
+                  onChange={SearchValueChange}
+                />
                 <button type="submit">
                   검색
                   <ImgDiv />
