@@ -69,7 +69,15 @@ const Shop = (props: any) => {
       });
     }
   };
-
+  const noneData = () => {
+    if (FrontData.length === 0) {
+      return <None>상품이 존재하지 않습니다.</None>;
+    } else {
+      return SlideData.map((el: any) => {
+        return <Product info={el} />;
+      });
+    }
+  };
   return (
     <Layout>
       <div>
@@ -78,7 +86,7 @@ const Shop = (props: any) => {
             <MenuBar>
               {String(props.match.params.kind1).toUpperCase()}-
               {props.match.params.kind2 === undefined
-                ? ""
+                ? "ALL"
                 : String(props.match.params.kind2).toUpperCase()}
             </MenuBar>
             {ShopMenus.map((el) => {
@@ -110,11 +118,7 @@ const Shop = (props: any) => {
               </div>
             </ListNum>
 
-            <ProductDiv>
-              {SlideData.map((el: any) => {
-                return <Product info={el} />;
-              })}
-            </ProductDiv>
+            <ProductDiv>{noneData()}</ProductDiv>
 
             <Pagination>
               <ul>
@@ -255,5 +259,12 @@ const Pagination = styled.div`
       }
     }
   }
+`;
+const None = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  margin: 0px auto 0px auto;
 `;
 export default Shop;

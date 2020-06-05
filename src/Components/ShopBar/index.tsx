@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import XBTN from "../../Images/X.png";
+import { Link, withRouter } from "react-router-dom";
 import { Z_BLOCK } from "zlib";
 const ShopBar = (props: any) => {
   const [bool, setBool] = useState<boolean>(false);
+  let title = props.info.title;
+  let upper = title.toUpperCase();
   const On = () => {
     setBool(true);
   };
@@ -11,6 +14,9 @@ const ShopBar = (props: any) => {
     setBool(false);
   };
 
+  const goShop = (kind1: string, kind2: string) => {
+    props.history.push(`/shop/${kind1}/${kind2}`);
+  };
   const Btn = () => {
     if (bool === false) {
       return (
@@ -39,81 +45,20 @@ const ShopBar = (props: any) => {
     <BarLi>
       {Btn()}
       <UL style={bool ? { display: "block" } : { display: "none" }}>
-        <li>{props.info.one}</li>
-        <li>{props.info.two}</li>
-        <li>{props.info.three}</li>
-        <li
-          style={
-            props.info.four === undefined
-              ? { display: "none" }
-              : { display: "block" }
-          }
-        >
-          {props.info.four}
-        </li>
-        <li
-          style={
-            props.info.five === undefined
-              ? { display: "none" }
-              : { display: "block" }
-          }
-        >
-          {props.info.five}
-        </li>
-        <li
-          style={
-            props.info.six === undefined
-              ? { display: "none" }
-              : { display: "block" }
-          }
-        >
-          {props.info.six}
-        </li>
-        <li
-          style={
-            props.info.seven === undefined
-              ? { display: "none" }
-              : { display: "block" }
-          }
-        >
-          {props.info.seven}
-        </li>
-        <li
-          style={
-            props.info.eight === undefined
-              ? { display: "none" }
-              : { display: "block" }
-          }
-        >
-          {props.info.eight}
-        </li>
-        <li
-          style={
-            props.info.nine === undefined
-              ? { display: "none" }
-              : { display: "block" }
-          }
-        >
-          {props.info.nine}
-        </li>
-        <li
-          style={
-            props.info.ten === undefined
-              ? { display: "none" }
-              : { display: "block" }
-          }
-        >
-          {props.info.ten}
-        </li>
-        <li
-          style={
-            props.info.eleven === undefined
-              ? { display: "none" }
-              : { display: "block" }
-          }
-        >
-          {props.info.eleven}
-        </li>
+        {props.info.sub.map((el: any) => {
+          return (
+            <li
+              onClick={() =>
+                goShop(
+                  String(props.info.title).toLowerCase(),
+                  String(el).toLowerCase()
+                )
+              }
+            >
+              {el}
+            </li>
+          );
+        })}
       </UL>
     </BarLi>
   );
@@ -155,4 +100,4 @@ const Span = styled.span`
     margin-right: 15px;
   }
 `;
-export default ShopBar;
+export default withRouter(ShopBar);

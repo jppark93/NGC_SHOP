@@ -1,5 +1,5 @@
 export const shopDataRequest = (kind1: string, kind2: string = "") => {
-  let goods: any;
+  let goods: any = [];
   const xhr = new XMLHttpRequest();
   xhr.onload = function () {
     if (xhr.status === 200 || xhr.status === 304) {
@@ -40,7 +40,12 @@ export const nameSearchRequest = (word: string = "all") => {
   return goods;
 };
 
-export const etcSearchRequest = (kind1: string = "all", kind2: string = "all", saleMore: number = 0, saleLess: number = 0) => {
+export const etcSearchRequest = (
+  kind1: string = "all",
+  kind2: string = "all",
+  saleMore: number = 0,
+  saleLess: number = 0
+) => {
   let goods: any = [];
   const xhr = new XMLHttpRequest();
   xhr.onload = function () {
@@ -275,42 +280,35 @@ export const IMGS = [
   },
 ];
 export const ShopMenus = [
-  { title: "MAN", one: "OUTER", two: "TOP", three: "BOTTOM" },
-  { title: "WOMAN", one: "OUTER", two: "TOP", three: "BOTTOM" },
-  { title: "KIDS", one: "OUTER", two: "TOP", three: "BOTTOM" },
+  { title: "MAN", sub: ["OUTER", "TOP", "BOTTOM"] },
+  { title: "WOMAN", sub: ["OUTER", "TOP", "BOTTOM"] },
+  { title: "KIDS", sub: ["OUTER", "TOP", "BOTTOM"] },
   {
     title: "BAG",
-    one: "백팩",
-    two: "도트백",
-    three: "서브백",
-    four: "워터백",
-    five: "멀티백",
-    six: "ACC",
+    sub: ["백팩", "도트백", "서브백", "워터백", "멀티백", "ACC"],
   },
-  { title: "HEAD WEAR", one: "CAP" },
-  { title: "FOOT WEAR", one: "스니커즈", two: "슬리퍼", three: "SOCKS" },
-  { title: "SKIN CARE", one: "SKIN CARE" },
+  { title: "HEAD WEAR", sub: ["CAP"] },
+  { title: "FOOT WEAR", sub: ["스니커즈", "슬리퍼", "SOCKS"] },
+  { title: "SKIN CARE", sub: ["SKIN CARE"] },
   {
     title: "SUITCASE",
-    one: "케리어",
-    two: "케리어 세트",
-    three: "기내용",
-    four: "화물용",
-    five: "액세서리",
+    sub: ["케리어", "케리어 세트", "기내용", "화물용", "액세서리"],
   },
   {
     title: "CAMPING",
-    one: "오토캠핑",
-    two: "미니멀백패킹",
-    three: "피크닉",
-    four: "텐트",
-    five: "타프",
-    six: "테이블&의자",
-    seven: "침낭",
-    eight: "침낭",
-    nine: "스틱",
-    ten: "코펠",
-    eleven: "액세서리",
+    sub: [
+      "오토캠핑",
+      "미니멀백패킹",
+      "피크닉",
+      "텐트",
+      "타프",
+      "테이블&의자",
+      "침낭",
+      "침낭",
+      "스틱",
+      "코펠",
+      "액세서리",
+    ],
   },
 ];
 
